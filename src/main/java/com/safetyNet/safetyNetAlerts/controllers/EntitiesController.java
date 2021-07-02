@@ -14,6 +14,9 @@ public class EntitiesController {
 	@RequestMapping (value="/person", method = RequestMethod.GET )
 	public void testJson() {
 		
+		SafetyNetAlertsFileReader alertsFileReader = new SafetyNetAlertsFileReader();
+		alertsFileReader.ReadFile();
+		
 		
 	}
 	public void returnAllEntities() {
