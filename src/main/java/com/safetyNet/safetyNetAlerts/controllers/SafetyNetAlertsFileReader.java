@@ -1,26 +1,14 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonReader;
-
+import java.util.Map;
 
 /*
  * A terme HttpRequest de la liste Json
@@ -31,42 +19,37 @@ import javax.json.JsonReader;
 @Component
 public class SafetyNetAlertsFileReader {
 
+	
 	@SuppressWarnings("unchecked")
-	public void ReadFile() {
-		String header1 = null;
-		String header2 = null;
+	public Map <String, String> jsonDataFromUrlToMap() {
+
 		HttpURLConnection connection;
-			
-			try {
-			connection = (HttpURLConnection) new URL(
-						"https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json")
-								.openConnection();
-		
+		String url = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json";
+		Map<String, String> jsonMap = null;
+		try {
+			connection = (HttpURLConnection) new URL(url).openConnection();
+
 			connection.setRequestMethod("GET");
-			// Get Response
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			JSONArray jsonArray = new JSONArray();
-			JSONParser parser = new JSONParser(); 
-			
-			String inputLine;
-			StringBuffer content = new StringBuffer();
-			while ((inputLine = reader.readLine()) != null) {
-			    content.append(inputLine);
+			int responseCode = connection.getResponseCode();
+
+			if (responseCode != 200) {
+				throw new RuntimeException("HttpResponseCode: " + responseCode);
+
+			} else {
+
+				ObjectMapper mapper = new ObjectMapper();
+				jsonMap = mapper.readValue(new URL(url), Map.class);
+
+				System.out.println(jsonMap);
 			}
-			String sContent = content.toString();
-			JSONObject json = (JSONObject) parser.parse(sContent);
-			
-			System.out.println(json);
-			reader.close();
 			connection.disconnect();
-			} catch (MalformedURLException e) {
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonMap;
 	}
 }

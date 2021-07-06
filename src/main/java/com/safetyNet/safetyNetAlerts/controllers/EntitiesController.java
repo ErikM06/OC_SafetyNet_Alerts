@@ -15,7 +15,7 @@ public class EntitiesController {
 	public void testJson() {
 		
 		SafetyNetAlertsFileReader alertsFileReader = new SafetyNetAlertsFileReader();
-		alertsFileReader.ReadFile();
+		alertsFileReader.jsonDataFromUrlToMap();
 		
 		
 	}
