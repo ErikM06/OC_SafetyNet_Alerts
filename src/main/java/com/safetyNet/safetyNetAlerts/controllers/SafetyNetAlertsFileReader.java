@@ -21,11 +21,11 @@ public class SafetyNetAlertsFileReader {
 
 	
 	@SuppressWarnings("unchecked")
-	public Map <String, String> jsonDataFromUrlToMap() {
+	public Map <String, Object> jsonDataFromUrlToMap() {
 
 		HttpURLConnection connection;
 		String url = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json";
-		Map<String, String> jsonMap = null;
+		Map<String, Object> jsonMap = null;
 		try {
 			connection = (HttpURLConnection) new URL(url).openConnection();
 

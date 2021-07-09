@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EntitiesController {
 	
-	/* Entities entities = new Entities(); */
 	
 	@RequestMapping (value="/person", method = RequestMethod.GET )
 	public void testJson() {
