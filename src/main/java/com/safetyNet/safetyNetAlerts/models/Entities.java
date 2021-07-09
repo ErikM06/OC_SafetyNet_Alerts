@@ -1,7 +1,18 @@
 package com.safetyNet.safetyNetAlerts.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+
+@Entity
+
 public class Entities {
-	
+	@Id
+	@GeneratedValue
+
+	private int id;
+
 	private String name;
 	private String lastname;
 	private String address;
@@ -12,14 +23,29 @@ public class Entities {
 	private int phone;
 	private int station;
 	private int birthdayDate;
-	
-	public Entities (String name, String lastname, String address, String city ) {
+
+	public Entities(int id, String name, String lastname, String address, String city) {
+		id = this.id;
 		name = this.name;
 		lastname = this.lastname;
 		address = this.address;
 		city = this.city;
 	}
-		
+
+	@Override
+	public String toString() {
+		return "Entities {" + "id=" + id + ", name=" + name + '\''
+				+ ", lastname=" + lastname + ", address=" + address + '\'' 
+				+ ", city=" + city + "}";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -101,5 +127,4 @@ public class Entities {
 		this.birthdayDate = birthdayDate;
 	}
 
-	
 }
