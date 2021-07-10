@@ -4,10 +4,20 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 
 /*
@@ -19,9 +29,8 @@ import java.util.Map;
 @Component
 public class SafetyNetAlertsFileReader {
 
-	
 	@SuppressWarnings("unchecked")
-	public Map <String, Object> jsonDataFromUrlToMap() {
+	public Map<String, Object> jsonDataFromUrlToMap() {
 
 		HttpURLConnection connection;
 		String url = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json";
@@ -51,5 +60,37 @@ public class SafetyNetAlertsFileReader {
 			e.printStackTrace();
 		}
 		return jsonMap;
+	}
+
+	@SuppressWarnings("static-access")
+	public void setUpDataSQLFromJsonMap() {
+		FileOutputStream fOut;
+		
+		
+		try {
+			Path path = Paths.get("C:/dev/P5/Projet 5/safetyNetAlerts/src/main/resources/data");
+			Path tempFile = Files.createTempFile(path, null, ".sql");
+			String strPath = path.toString();
+		
+			fOut = new FileOutputStream(strPath);
+			SafetyNetAlertsFileReader safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
+			Map<String, Object> mapToFile = new HashMap<String, Object>();
+
+			ObjectOutputStream out = new ObjectOutputStream(fOut);
+			out.writeObject(mapToFile);
+
+			out.close();
+			fOut.close();
+		} catch (
+
+		FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
