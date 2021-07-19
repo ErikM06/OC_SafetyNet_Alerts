@@ -3,6 +3,7 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.safetyNet.safetyNetAlerts.models.Root;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,11 +31,11 @@ import java.util.Map;
 public class SafetyNetAlertsFileReader {
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> jsonDataFromUrlToMap() {
+	public Root jsonDataFromUrlToMap() {
 
 		HttpURLConnection connection;
 		String url = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json";
-		Map<String, Object> jsonMap = null;
+		Root mapFromJson = null;
 		try {
 			connection = (HttpURLConnection) new URL(url).openConnection();
 
@@ -47,9 +48,9 @@ public class SafetyNetAlertsFileReader {
 			} else {
 
 				ObjectMapper mapper = new ObjectMapper();
-				jsonMap = mapper.readValue(new URL(url), Map.class);
+				mapFromJson = mapper.readValue(new URL(url), Root.class);
 
-				System.out.println(jsonMap);
+				System.out.println(mapFromJson);
 			}
 			connection.disconnect();
 		} catch (MalformedURLException e) {
@@ -59,22 +60,21 @@ public class SafetyNetAlertsFileReader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return jsonMap;
+		return mapFromJson;
 	}
 
-	@SuppressWarnings("static-access")
-	public void setUpDataSQLFromJsonMap() {
+	/* public void setUpDataSQLFromJsonMap( Map<String, Object> mapWithJsonData) {
 		FileOutputStream fOut;
-		
 		
 		try {
 			Path path = Paths.get("C:/dev/P5/Projet 5/safetyNetAlerts/src/main/resources/data");
 			Path tempFile = Files.createTempFile(path, null, ".sql");
 			String strPath = path.toString();
+			System.out.println(strPath);
 		
 			fOut = new FileOutputStream(strPath);
 			SafetyNetAlertsFileReader safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
-			Map<String, Object> mapToFile = new HashMap<String, Object>();
+			Map<String, Object> mapToFile = safetyNetAlertsFileReader.jsonDataFromUrlToMap();
 
 			ObjectOutputStream out = new ObjectOutputStream(fOut);
 			out.writeObject(mapToFile);
@@ -92,5 +92,5 @@ public class SafetyNetAlertsFileReader {
 			e.printStackTrace();
 		}
 
-	}
+	} */
 }

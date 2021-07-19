@@ -38,13 +38,13 @@ public class EntitiesController {
 	@PostMapping(value = "/persons")
 	public ResponseEntity<Void> ajouterProduit(@RequestBody Entities entities) {
 
-		Entities productAdded = entitiesDaoImple.save(entities);
+		Entities entityAdded = entitiesDaoImple.save(entities);
 
-		if (productAdded == null)
+		if (entityAdded == null)
 			return ResponseEntity.noContent().build();
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(productAdded.getId()).toUri();
+				.buildAndExpand(entityAdded.getId()).toUri();
 
 		return ResponseEntity.created(location).build();
 	}
