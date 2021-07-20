@@ -31,11 +31,11 @@ import java.util.Map;
 public class SafetyNetAlertsFileReader {
 
 	@SuppressWarnings("unchecked")
-	public Root jsonDataFromUrlToMap() {
+	public Root jsonDataFromUrl() {
 
 		HttpURLConnection connection;
 		String url = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DA+Java+EN/P5+/data.json";
-		Root mapFromJson = null;
+		Root jsonObject = null;
 		try {
 			connection = (HttpURLConnection) new URL(url).openConnection();
 
@@ -48,9 +48,9 @@ public class SafetyNetAlertsFileReader {
 			} else {
 
 				ObjectMapper mapper = new ObjectMapper();
-				mapFromJson = mapper.readValue(new URL(url), Root.class);
+				jsonObject = mapper.readValue(new URL(url), Root.class);
 
-				System.out.println(mapFromJson);
+				System.out.println(jsonObject);
 			}
 			connection.disconnect();
 		} catch (MalformedURLException e) {
@@ -60,37 +60,6 @@ public class SafetyNetAlertsFileReader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return mapFromJson;
+		return jsonObject;
 	}
-
-	/* public void setUpDataSQLFromJsonMap( Map<String, Object> mapWithJsonData) {
-		FileOutputStream fOut;
-		
-		try {
-			Path path = Paths.get("C:/dev/P5/Projet 5/safetyNetAlerts/src/main/resources/data");
-			Path tempFile = Files.createTempFile(path, null, ".sql");
-			String strPath = path.toString();
-			System.out.println(strPath);
-		
-			fOut = new FileOutputStream(strPath);
-			SafetyNetAlertsFileReader safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
-			Map<String, Object> mapToFile = safetyNetAlertsFileReader.jsonDataFromUrlToMap();
-
-			ObjectOutputStream out = new ObjectOutputStream(fOut);
-			out.writeObject(mapToFile);
-
-			out.close();
-			fOut.close();
-		} catch (
-
-		FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	} */
 }

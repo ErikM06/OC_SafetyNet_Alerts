@@ -3,22 +3,34 @@ package com.safetyNet.safetyNetAlerts.models;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import org.hibernate.type.StringNVarcharType;
+import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 
 @Entity
 public class Medicalrecord {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	
 	private int id;
 	private String firstName;
     private String lastName;
     private String birthdate;
-   // private List<String> medications;
-    //private List<String> allergies;
+    @Column (name = "medication")
+	@ElementCollection(targetClass = String.class)
+    private List<String> medications;
+    @Column (name = "allergies")
+	@ElementCollection(targetClass = String.class)
+    private List<String> allergies;
 	
     @Column (name ="Id", nullable = false, length = 512)
 	public int getId() {
@@ -51,8 +63,9 @@ public class Medicalrecord {
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
-	/*
-	//@Column (name = "Medication", nullable = false, length = 512)
+	
+	@Column (name = "medication")
+	@ElementCollection(targetClass = String.class)
 	public List<String> getMedications() {
 		return medications;
 	}
@@ -60,12 +73,13 @@ public class Medicalrecord {
 		this.medications = medications;
 	}
 	
-	// @Column (name = "Allergies", nullable = false, length = 512)
+	@Column (name = "allergies")
+	@ElementCollection(targetClass = String.class)
 	public List<String> getAllergies() {
 		return allergies;
 	}
 	public void setAllergies(List<String> allergies) {
 		this.allergies = allergies;
-	}*/
+	}
 	
 }
