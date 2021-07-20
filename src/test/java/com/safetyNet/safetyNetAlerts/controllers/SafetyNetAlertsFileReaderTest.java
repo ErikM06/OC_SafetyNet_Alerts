@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
 import org.junit.Assert;
 
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetyNet.safetyNetAlerts.models.Root;
 
-@Component
+@SpringBootTest
 class SafetyNetAlertsFileReaderTest {
 
 
