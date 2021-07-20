@@ -5,12 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
-@Entity
+
 
 public class Entities {
-	@Id
-	@GeneratedValue
-
+	
 	private int id;
 
 	private String name;

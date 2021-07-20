@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.safetyNet.safetyNetAlerts.models.Entities;
+import com.safetyNet.safetyNetAlerts.models.Firestation;
 
 @RestController
 public class EntitiesController {
@@ -23,7 +24,7 @@ public class EntitiesController {
 
 	@GetMapping(value = "persons")
 
-	public List<Entities> entitiesList() {
+	public List<Firestation> entitiesList() {
 		return entitiesDaoImple.findAll();
 	}
 
@@ -36,9 +37,9 @@ public class EntitiesController {
 	}
 
 	@PostMapping(value = "/persons")
-	public ResponseEntity<Void> ajouterProduit(@RequestBody Entities entities) {
+	public ResponseEntity<Void> ajouterProduit(@RequestBody Firestation firestation) {
 
-		Entities entityAdded = entitiesDaoImple.save(entities);
+		Firestation entityAdded = entitiesDaoImple.save(firestation);
 
 		if (entityAdded == null)
 			return ResponseEntity.noContent().build();

@@ -26,14 +26,6 @@ import com.safetyNet.safetyNetAlerts.models.Root;
 @Component
 class SafetyNetAlertsFileReaderTest {
 
-	private SafetyNetAlertsFileReader safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
-	Root jsonMap;
-
-	@Test
-	void testJsonDataFromUrlToMap() {
-
-		jsonMap = safetyNetAlertsFileReader.jsonDataFromUrlToMap();
-		assertFalse(jsonMap.isEmpty());
 
 	}
 
@@ -65,4 +57,3 @@ class SafetyNetAlertsFileReaderTest {
 
 	} */
 
-}
