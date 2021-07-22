@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
+
 @SpringBootTest
 class SafetyNetAlertsFileReaderTest {
 

@@ -1,4 +1,4 @@
-package com.safetyNet.safetyNetAlerts.controllers;
+package com.safetyNet.safetyNetAlerts.services;
 
 import org.springframework.stereotype.Component;
 
