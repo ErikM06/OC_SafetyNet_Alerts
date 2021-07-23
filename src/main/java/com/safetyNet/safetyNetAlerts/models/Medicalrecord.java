@@ -39,6 +39,7 @@ public class Medicalrecord {
 	private String firstName;
 	private String lastName;
 	private String birthdate;
+	
 	@Column(name = "medication")
 	@ElementCollection(targetClass = String.class)
 	private List<String> medications;

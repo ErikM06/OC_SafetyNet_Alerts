@@ -1,30 +1,17 @@
 package com.safetyNet.safetyNetAlerts.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.InputStreamReader;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.safetyNet.safetyNetAlerts.config.DataBaseConfig;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
+
 
 class RootDaoTest {
 
@@ -49,16 +36,19 @@ class RootDaoTest {
 			List<Person> personsLs = jsonObjet.persons;
 			System.out.println(personsLs);
 			
-			//Gson builder in pom dep for Object to json 
+			/*Gson builder in pom dep for Object to json 
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			Gson gson = gsonBuilder.create();
-			String jsonObject = gson.toJson(personsLs);
+			String personsLsSt = gson.toJson(personsLs);
+			JSONParser parser = new JSONParser();  
+		 	JSONObject json = (JSONObject) parser.parse(personsLsSt); */  
 			
 
-			JSONArray jsonArray = (JSONArray)jsonObject.get("persons");
-			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person VALUE (?,?,?,?,?,?,?,?) ");
+			//JSONArray jsonArray = (JSONArray)json.get("persons");
+			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person (id, firstName, lastName, adress, city, zip, phone, email) "
+					+ " VALUE (?,?,?,?,?,?,?,?) ");
 
-			for (Object object : jsonArray) {
+			for (Object object : personsLs) {
 				JSONObject record = (JSONObject) object;
 				while (personsLs != null) {
 					id++;
