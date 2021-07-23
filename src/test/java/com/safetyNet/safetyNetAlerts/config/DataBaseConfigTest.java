@@ -19,9 +19,9 @@ class DataBaseConfigTest {
 	@Test
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 		logger.info("Opening DB connection");
-		Class.forName("jdbc:h2:mem:testdb");
+		Class.forName("org.h2.Driver");
 		
-		return DriverManager.getConnection("http://localhost:8080/h2-console","root","rootroot");		
+		return DriverManager.getConnection("jdbc:h2:mem:testdb","root","rootroot");		
 	}
 	
 	public void closeConnection (Connection con) {

@@ -13,6 +13,15 @@ import org.springframework.stereotype.Repository;
 @ Entity
 public class Firestation {
 
+	public Firestation () {
+		super();
+	}
+	public Firestation(int id, String address, String station) {
+		
+		this.id = id;
+		this.address = address;
+		this.station = station;
+	}
 	@Id
 	@GeneratedValue
 	private int id;

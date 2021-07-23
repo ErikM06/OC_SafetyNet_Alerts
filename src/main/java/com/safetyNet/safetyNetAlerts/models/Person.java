@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Person {
 	
+	
 	@Id
 	@GeneratedValue
 	
@@ -19,6 +20,22 @@ public class Person {
 	private String zip;
 	private String phone;
 	private String email;
+	
+	//added a default constructeur bc Jackson looking for POJO (which is a class without restriction)
+	public Person() {
+		super();
+	}
+	public Person(int id, String firstName, String lastName, String address, String city, String zip, String phone,
+			String email) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.zip = zip;
+		this.phone = phone;
+		this.email = email;
+	}
     
 	@Column (name = "id")
     public int getId() {
@@ -80,5 +97,11 @@ public class Person {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
 	}
 }

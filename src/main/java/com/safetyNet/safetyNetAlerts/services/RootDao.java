@@ -1,6 +1,7 @@
 package com.safetyNet.safetyNetAlerts.services;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -26,15 +27,17 @@ public class RootDao {
 		
 		
 		Connection conn = null;
+		dataBaseConfig = new DataBaseConfig();
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root jsonObjet = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
 		try {
 			conn = dataBaseConfig.getConnection();
-			List<Person>personsLs = jsonObjet.persons;
+			
+			ArrayList<Person>personsLs = jsonObjet.persons;
 			System.out.println(personsLs);
 			Object personsAr = personsLs.toArray();
-			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person VALUE ? ");
+			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person" + "VALUE ? ");
 			prepSt.setArray(1, (Array) personsAr); 
 		
 			
