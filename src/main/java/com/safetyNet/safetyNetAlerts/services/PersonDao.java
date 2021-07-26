@@ -1,50 +1,51 @@
 package com.safetyNet.safetyNetAlerts.services;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.json.simple.JSONObject;
-import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import com.safetyNet.safetyNetAlerts.config.DataBaseConfig;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
 
-
-class RootDaoTest {
-
+@Repository
+public class PersonDao implements ApplicationRunner {
+	
+	private IPersonDAO IPersonDAO;
+	
+	
+	@Autowired
+	public PersonDao (IPersonDAO IPersonDao) {
+		this.IPersonDAO=IPersonDAO;
+		
+	}
 	DataBaseConfig dataBaseConfig;
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;
-
-	@Test
-	void testInsertDao() {
-
-		int i = 0;
+	
+	public void run(ApplicationArguments args) throws Exception {
+		
+		
 		int id = 0;
 		Connection conn = null;
 		dataBaseConfig = new DataBaseConfig();
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root jsonObjet = safetyNetAlertsFileReader.jsonDataFromUrl();
-
+		
 		try {
-
 			conn = dataBaseConfig.getConnection();
-
-			List<Person> personsLs = jsonObjet.persons;
+			
+			List<Person>personsLs = jsonObjet.persons;
 			System.out.println(personsLs);
-			
-			/*Gson builder in pom dep for Object to json 
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			Gson gson = gsonBuilder.create();
-			String personsLsSt = gson.toJson(personsLs);
-			JSONParser parser = new JSONParser();  
-		 	JSONObject json = (JSONObject) parser.parse(personsLsSt); */  
-			
-
-			//JSONArray jsonArray = (JSONArray)json.get("persons");
+		
 			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person (id, firstName, lastName, adress, city, zip, phone, email) "
 					+ " VALUE (?,?,?,?,?,?,?,?) ");
 
@@ -80,5 +81,4 @@ class RootDaoTest {
 		}
 		dataBaseConfig.closeConnection(conn);
 	}
-
 }
