@@ -3,52 +3,44 @@ package com.safetyNet.safetyNetAlerts.services;
 import java.util.List;
 
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.safetyNet.safetyNetAlerts.config.DataBaseConfig;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
-import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
+@Component
+public class PersonDao {
 
-public class PersonDao  {
-	
-	private PersonRepository IPersonDAO;
-	
-	
-	@Autowired
-	public PersonDao (PersonRepository IPersonDao) {
-		this.IPersonDAO=IPersonDAO;
-		
-	}
-	DataBaseConfig dataBaseConfig;
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;
-	
-	public void personToTable(){
-		
-		
-		int id = 0;
+	static final String JDBC_DRIVER = "org.h2.Driver";
+	static final String DB_URL = "jdbc:h2:mem:testdb";
+
+	public void personToTable() {
+
 		Connection conn = null;
-		dataBaseConfig = new DataBaseConfig();
+		int id = 0;
+
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root jsonObjet = safetyNetAlertsFileReader.jsonDataFromUrl();
-		
+
 		try {
-			conn = dataBaseConfig.getConnection();
-			
-			List<Person>personsLs = jsonObjet.persons;
+
+			Class.forName(JDBC_DRIVER);
+
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, "root", "rootroot");
+			List<Person> personsLs = jsonObjet.persons;
 			System.out.println(personsLs);
-		
-			PreparedStatement prepSt = conn.prepareStatement("INSERT INTO person (id, firstName, lastName, adress, city, zip, phone, email) "
-					+ " VALUE (?,?,?,?,?,?,?,?) ");
+
+			PreparedStatement prepSt = conn
+					.prepareStatement("INSERT INTO person (id, first_Name, last_Name, address, city, zip, phone, email) "
+							+ " VALUE (?,?,?,?,?,?,?,?) ");
 
 			for (Object object : personsLs) {
 				JSONObject record = (JSONObject) object;
@@ -80,6 +72,5 @@ public class PersonDao  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		dataBaseConfig.closeConnection(conn);
 	}
 }
