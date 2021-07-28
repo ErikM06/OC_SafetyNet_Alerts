@@ -15,15 +15,16 @@ import java.sql.SQLException;
 import com.safetyNet.safetyNetAlerts.config.DataBaseConfig;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
+import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
-@Repository
-public class PersonDao implements ApplicationRunner {
+
+public class PersonDao  {
 	
-	private IPersonDAO IPersonDAO;
+	private PersonRepository IPersonDAO;
 	
 	
 	@Autowired
-	public PersonDao (IPersonDAO IPersonDao) {
+	public PersonDao (PersonRepository IPersonDao) {
 		this.IPersonDAO=IPersonDAO;
 		
 	}
@@ -31,7 +32,7 @@ public class PersonDao implements ApplicationRunner {
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;
 	
-	public void run(ApplicationArguments args) throws Exception {
+	public void personToTable(){
 		
 		
 		int id = 0;
