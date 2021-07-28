@@ -10,6 +10,10 @@ import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
 
@@ -38,13 +42,17 @@ class PersonDaoTest {
 			conn = DriverManager.getConnection(DB_URL, "root", "rootroot");
 
 			List<Person> personsLs = jsonObjet.persons;
+			
 			System.out.println(personsLs);
-
+			//List<Person> to JsonArray
+			JsonArray result = (JsonArray) new Gson().toJsonTree(personsLs,
+		            new TypeToken<List<Person>>() {
+		            }.getType());
 			PreparedStatement prepSt = conn
 					.prepareStatement("INSERT INTO person (id, First_Name, last_Name, address, city, zip, phone, email) "
 							+ " VALUES(?,?,?,?,?,?,?,?)");
 
-			for (Object object : personsLs) {
+			for (Object object : result) {
 				JSONObject record = object;
 
 				int id = 0;
