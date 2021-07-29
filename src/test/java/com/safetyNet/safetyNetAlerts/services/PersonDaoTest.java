@@ -4,15 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
@@ -20,7 +23,6 @@ import com.safetyNet.safetyNetAlerts.models.Root;
 @SpringBootTest
 class PersonDaoTest {
 
-	
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;
 	static final String JDBC_DRIVER = "org.h2.Driver";
@@ -41,18 +43,30 @@ class PersonDaoTest {
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, "root", "rootroot");
 
-			List<Person> personsLs = jsonObjet.persons;
+			ArrayList<Person> personsLs = jsonObjet.persons;
 			
 			System.out.println(personsLs);
 			//List<Person> to JsonArray
-			JsonArray result = (JsonArray) new Gson().toJsonTree(personsLs,
+		    /* JsonArray result = (JsonArray) new Gson().toJsonTree(personsLs,
 		            new TypeToken<List<Person>>() {
-		            }.getType());
+		            }.getType()); */
+		   String resultStr = personsLs.toString();
 			PreparedStatement prepSt = conn
 					.prepareStatement("INSERT INTO person (id, First_Name, last_Name, address, city, zip, phone, email) "
 							+ " VALUES(?,?,?,?,?,?,?,?)");
-
-			for (Object object : result) {
+		
+			JSONObject record = new JSONObject(resultStr);
+			
+			
+			int id = record.getInt("id");
+			String firstName = record.getString("firstName");
+			String lastName = record.getString("lastName");
+			String address = record.getString("address");
+			String city = record.getString("city");
+			int zip = record.getInt("zip");
+			int phone = record.getInt("phone");
+			String email = record.getString("email");
+		/*	for (Object object : result) {
 				JSONObject record = object;
 
 				int id = 0;
@@ -64,26 +78,35 @@ class PersonDaoTest {
 				String zip = (String) record.get("zip");
 				String phone = (String) record.get("phone");
 				String email = (String) record.get("email");
-				prepSt.setInt(1, id);
+				*/ prepSt.setLong(1,id);
+						
 				prepSt.setString(2, firstName);
 				prepSt.setString(3, lastName);
 				prepSt.setString(4, address);
 				prepSt.setString(5, city);
-				prepSt.setString(6, zip);
-				prepSt.setString(7, phone);
+				prepSt.setLong(6, zip);
+				prepSt.setLong(7, phone);
 				prepSt.setString(8, email);
 
 				prepSt.executeUpdate();
 				
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+		}catch(
 
+	ClassNotFoundException e)
+	{
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}catch(
+	SQLException e)
+	{
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+
+}
 
 }
