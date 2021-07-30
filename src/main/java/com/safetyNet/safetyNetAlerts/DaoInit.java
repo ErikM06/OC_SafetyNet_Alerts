@@ -1,13 +1,13 @@
-package com.safetyNet.safetyNetAlerts.controllers;
+package com.safetyNet.safetyNetAlerts;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
-import com.safetyNet.safetyNetAlerts.services.PersonDao;
-import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
+import com.safetyNet.safetyNetAlerts.controllers.FirestationDao;
+import com.safetyNet.safetyNetAlerts.controllers.MedicalRecordDao;
+import com.safetyNet.safetyNetAlerts.controllers.PersonDao;
 
 @Component
 
@@ -19,6 +19,10 @@ public class DaoInit {
 	
 	@Autowired
 	PersonDao personDao;
+	@Autowired
+	FirestationDao firestationDao;
+	@Autowired
+	MedicalRecordDao medicalRecordDao;
 	
 	
 	
@@ -28,9 +32,10 @@ public class DaoInit {
 		personDao.personToTable();
 		
 		//init medicalRecord table
+		medicalRecordDao.medicalRecordToTable();
 		
-		//init Firestation table
-	
+		//init fireStation table
+		firestationDao.fireStationTable();
 	}
 
 }

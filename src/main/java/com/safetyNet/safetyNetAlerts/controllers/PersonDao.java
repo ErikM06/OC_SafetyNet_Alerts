@@ -1,4 +1,4 @@
-package com.safetyNet.safetyNetAlerts.services;
+package com.safetyNet.safetyNetAlerts.controllers;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
+import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
 @Component
 public class PersonDao {
@@ -34,9 +35,9 @@ public class PersonDao {
 	
 
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
-		Root jsonObject = safetyNetAlertsFileReader.jsonDataFromUrl();
+		Root personObject = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
-		personRepository.saveAll(jsonObject.persons);
+		personRepository.saveAll(personObject.persons);
 		
 
 	}
