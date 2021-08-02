@@ -13,10 +13,6 @@ import com.safetyNet.safetyNetAlerts.controllers.PersonDao;
 
 public class DaoInit {
 	
-	static final String JDBC_DRIVER = "org.h2.Driver";
-	static final String DB_URL = "jdbc:h2:mem:testdb";
-	
-	
 	@Autowired
 	PersonDao personDao;
 	@Autowired
