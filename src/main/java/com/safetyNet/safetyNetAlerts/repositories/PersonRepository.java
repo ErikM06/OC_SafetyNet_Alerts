@@ -8,7 +8,7 @@ import com.safetyNet.safetyNetAlerts.models.Person;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Integer>{
 
-	//Person getLastName(String lastname);
+	public Person findByFirstName(String firstname);
 	
 
 }
