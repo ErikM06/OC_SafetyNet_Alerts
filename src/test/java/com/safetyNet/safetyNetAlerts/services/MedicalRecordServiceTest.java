@@ -32,9 +32,9 @@ class MedicalRecordServiceTest {
 
 	@Test
 	void testSaveMedicalRecord() {
-		List<String> medication = Arrays.asList("medicationTest");
-		List<String> allergies = Arrays.asList("allergiesTest");
-		MedicalRecord medicalRecord = new MedicalRecord(62, "test", "test", "test", medication, allergies);
+		List<String> medication = Arrays.asList("medicationTest","medicationTest");
+		List<String> allergies = Arrays.asList("allergiesTest","allergiTest");
+		MedicalRecord medicalRecord = new MedicalRecord(60, "test", "test", "test", medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		MedicalRecord checkByFirstName= medicalRecordRepository.findByFirstName("test");
 		assertEquals(medicalRecord.getId(), checkByFirstName.getId());
@@ -42,12 +42,12 @@ class MedicalRecordServiceTest {
 
 	@Test
 	void testDeleteMedicalRecord() {
-		List<String> medication = Arrays.asList("medicationTest");
-		List<String> allergies = Arrays.asList("allergiesTest");
-		MedicalRecord medicalRecord = new MedicalRecord(62, "test", "test", "test", medication, allergies);
+		List<String> medication = Arrays.asList("medicationTest","medicationTest");
+		List<String> allergies = Arrays.asList("allergiesTest","allergiestest");
+		MedicalRecord medicalRecord = new MedicalRecord(60, "test", "test", "test", medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
-		medicalRecordService.deleteMedicalRecord(62);
-		assertFalse(medicalRecordRepository.existsById(62));
+		medicalRecordService.deleteMedicalRecord(60);
+		assertFalse(medicalRecordRepository.existsById(60));
 	}
 
 }

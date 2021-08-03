@@ -15,8 +15,6 @@ public class MedicalRecordService {
 	@Autowired
 	private MedicalRecordRepository medicalRecordRepository;
 
-	@Autowired
-	private MedicalRecord medicalRecord;
 
 	public List<MedicalRecord> getAllMedicalRecord() {
 		List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
@@ -25,7 +23,7 @@ public class MedicalRecordService {
 		return medicalRecords;
 	}
 
-	public void saveMedicalRecord(MedicalRecord medicalrecord) {
+	public void saveMedicalRecord(MedicalRecord medicalRecord) {
 		medicalRecordRepository.save(medicalRecord);
 	}
 
