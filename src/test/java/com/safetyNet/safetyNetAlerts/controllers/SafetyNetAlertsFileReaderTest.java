@@ -11,7 +11,6 @@ import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 class SafetyNetAlertsFileReaderTest {
 
 
-	@SuppressWarnings("unchecked")
 	@Test
 	 void testjsonDataFromUrlToMap() {
 		

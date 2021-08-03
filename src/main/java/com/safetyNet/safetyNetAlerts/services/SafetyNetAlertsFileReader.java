@@ -5,21 +5,10 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetyNet.safetyNetAlerts.models.Root;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 /*
  * A terme HttpRequest de la liste Json
@@ -30,7 +19,6 @@ import java.util.Map;
 @Component
 public class SafetyNetAlertsFileReader {
 
-	@SuppressWarnings("unchecked")
 	public Root jsonDataFromUrl() {
 
 		HttpURLConnection connection;

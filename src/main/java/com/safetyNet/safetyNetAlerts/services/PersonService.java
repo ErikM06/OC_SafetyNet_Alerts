@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.safetyNetAlerts.models.Person;
-import com.safetyNet.safetyNetAlerts.models.Root;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
 @Service
 public class PersonService {
 
-	private SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 
 	@Autowired
 	private PersonRepository personRepository;
