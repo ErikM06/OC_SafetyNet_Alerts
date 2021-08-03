@@ -8,4 +8,5 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 @Repository
 public interface FiresationRepository extends CrudRepository<Firestation, Integer> {
 
+	public Firestation findByAddress (String address);
 }
