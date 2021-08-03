@@ -4,12 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-
+@Table
 @ Entity
 public class Firestation {
 
-	public Firestation () {
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	private String address;
+    private String station;
+    
+    public Firestation () {
 		super();
 	}
 	public Firestation(int id, String address, String station) {
@@ -18,11 +26,6 @@ public class Firestation {
 		this.address = address;
 		this.station = station;
 	}
-	@Id
-	@GeneratedValue
-	private int id;
-	private String address;
-    private String station;
     
     @Column (name="Id", nullable = false, length = 512)
     public int getId() {

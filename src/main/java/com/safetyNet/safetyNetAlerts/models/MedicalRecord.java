@@ -8,15 +8,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table
 @Entity
-public class Medicalrecord {
+public class MedicalRecord {
 	
-	public Medicalrecord() {
+	
+
+	@Id
+	@GeneratedValue
+
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String birthdate;
+	
+	
+	
+	@Column(name = "medication")
+	@ElementCollection(targetClass = String.class)
+	private List<String> medications;
+	@Column(name = "allergies")
+	@ElementCollection(targetClass = String.class)
+	private List<String> allergies;
+	
+	public MedicalRecord() {
 		super();
 	}
 
-	public Medicalrecord(int id, String firstName, String lastName, String birthdate, List<String> medications,
+	public MedicalRecord(int id, String firstName, String lastName, String birthdate, List<String> medications,
 			List<String> allergies) {
 		this.id = id;
 		this.firstName = firstName;
@@ -25,21 +46,6 @@ public class Medicalrecord {
 		this.medications = medications;
 		this.allergies = allergies;
 	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-
-	private int id;
-	private String firstName;
-	private String lastName;
-	private String birthdate;
-	
-	@Column(name = "medication")
-	@ElementCollection(targetClass = String.class)
-	private List<String> medications;
-	@Column(name = "allergies")
-	@ElementCollection(targetClass = String.class)
-	private List<String> allergies;
 
 	@Column(name = "Id", nullable = false, length = 512)
 	public int getId() {

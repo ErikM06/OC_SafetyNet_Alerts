@@ -25,7 +25,7 @@ class PersonServiceTest {
 	void testGetAllPerson() {
 		List<Person>personList = personService
 				.getAllPerson();
-		assertTrue(personList.size() == personRepository.count());
+		assertEquals(personList.size(),personRepository.count());
 	}
 	
 	
@@ -34,7 +34,7 @@ class PersonServiceTest {
 		Person person = new Person(60,"test" , "test", "test", "test", "test", "test", "test");
 				personService.savePerson(person);
 		Person checkSavedPerson = personRepository.findByFirstName("test");
-		assertTrue(person.getId() == checkSavedPerson.getId());
+		assertEquals(person.getId(),checkSavedPerson.getId());
 	}
 	
 	@Test
