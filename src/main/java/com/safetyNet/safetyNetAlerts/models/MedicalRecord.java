@@ -37,9 +37,9 @@ public class MedicalRecord {
 		super();
 	}
 
-	public MedicalRecord(int id, String firstName, String lastName, String birthdate, List<String> medications,
+	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> medications,
 			List<String> allergies) {
-		this.id = id;
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
@@ -47,7 +47,6 @@ public class MedicalRecord {
 		this.allergies = allergies;
 	}
 
-	@Column(name = "Id", nullable = false, length = 512)
 	public int getId() {
 		return id;
 	}

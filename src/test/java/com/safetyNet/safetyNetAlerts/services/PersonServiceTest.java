@@ -31,7 +31,7 @@ class PersonServiceTest {
 	
 	@Test
 	void testSavePerson() {
-		Person person = new Person(60,"test" , "test", "test", "test", "test", "test", "test");
+		Person person = new Person("test" , "test", "test", "test", "test", "test", "test");
 				personService.savePerson(person);
 		Person checkSavedPerson = personRepository.findByFirstName("test");
 		assertEquals(person.getId(),checkSavedPerson.getId());
@@ -39,10 +39,10 @@ class PersonServiceTest {
 	
 	@Test
 	void testDelete() {
-		Person person = new Person(60,"test" , "test", "test", "test", "test", "test", "test");
+		Person person = new Person("test" , "test", "test", "test", "test", "test", "test");
 		personService.savePerson(person);
-		personService.delete(60);
-		assertFalse(personRepository.existsById(60));
+		personService.delete(person.getId());
+		assertFalse(personRepository.existsById(person.getId()));
 	}
 
 }

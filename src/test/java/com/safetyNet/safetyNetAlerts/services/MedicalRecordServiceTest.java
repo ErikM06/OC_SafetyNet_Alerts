@@ -34,7 +34,7 @@ class MedicalRecordServiceTest {
 	void testSaveMedicalRecord() {
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiTest");
-		MedicalRecord medicalRecord = new MedicalRecord(60, "test", "test", "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		MedicalRecord checkByFirstName= medicalRecordRepository.findByFirstName("test");
 		assertEquals(medicalRecord.getId(), checkByFirstName.getId());
@@ -44,10 +44,10 @@ class MedicalRecordServiceTest {
 	void testDeleteMedicalRecord() {
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiestest");
-		MedicalRecord medicalRecord = new MedicalRecord(60, "test", "test", "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
-		medicalRecordService.deleteMedicalRecord(60);
-		assertFalse(medicalRecordRepository.existsById(60));
+		medicalRecordService.deleteMedicalRecord(medicalRecord.getId());
+		assertFalse(medicalRecordRepository.existsById(medicalRecord.getId()));
 	}
 
 }

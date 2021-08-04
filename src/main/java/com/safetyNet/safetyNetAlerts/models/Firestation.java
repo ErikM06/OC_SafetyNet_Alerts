@@ -20,14 +20,13 @@ public class Firestation {
     public Firestation () {
 		super();
 	}
-	public Firestation(int id, String address, String station) {
+	public Firestation( String address, String station) {
 		
-		this.id = id;
+		
 		this.address = address;
 		this.station = station;
 	}
     
-    @Column (name="Id", nullable = false, length = 512)
     public int getId() {
  		return id;
  	}

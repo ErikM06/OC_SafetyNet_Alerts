@@ -27,9 +27,9 @@ public class Person {
 	public Person() {
 		super();
 	}
-	public Person(int id, String firstName, String lastName, String address, String city, String zip, String phone,
+	public Person( String firstName, String lastName, String address, String city, String zip, String phone,
 			String email) {
-		this.id = id;
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -39,14 +39,12 @@ public class Person {
 		this.email = email;
 	}
     
-	@Column (name = "id")
-    public int getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 	@Column (name = "First name")
 	public String getFirstName() {
 		return firstName;
@@ -103,7 +101,7 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
 				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
 	}
 }
