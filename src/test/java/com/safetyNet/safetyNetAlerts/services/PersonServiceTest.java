@@ -36,9 +36,11 @@ class PersonServiceTest {
 
 	@Test
 	void testDelete() {
-		Person person = new Person("test", "test", "test", "test", "test", "test", "test");
+		String firstName = "firstName test";
+		String lastName = "lastName test";
+		Person person = new Person(firstName, lastName, "test", "test", "test", "test", "test");
 		personService.savePerson(person);
-		personService.delete(person.getId());
+		personService.delete(firstName,lastName);
 		assertFalse(personRepository.existsById(person.getId()));
 	}
 

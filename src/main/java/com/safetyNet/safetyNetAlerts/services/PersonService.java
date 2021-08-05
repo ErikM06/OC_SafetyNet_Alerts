@@ -25,17 +25,13 @@ public class PersonService {
 		return persons;
 	}
 
-	/*
-	 * public Person getPersonLastName(String lastname) { return
-	 * personRepository.getLastName(lastname); }
-	 */
-
 	public void savePerson(Person person) {
 		personRepository.save(person);
 	}
 
-	public void delete(int id) {
-		personRepository.deleteById(id);
+	public void delete(String firstName, String lastName) {
+	Person person =	personRepository.findByFirstNameAndLastName(firstName, lastName);
+	personRepository.delete(person);
 
 	}
 	public Optional<Person> modifyPerson(Person newPerson, int id) {
