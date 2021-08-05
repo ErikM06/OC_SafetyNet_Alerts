@@ -27,8 +27,18 @@ public class MedicalRecordService {
 		medicalRecordRepository.save(medicalRecord);
 	}
 
-	public void deleteMedicalRecord(int id) {
-		medicalRecordRepository.deleteById(id);
-
+	public void deleteMedicalRecord(String firstName , String lastName) {
+		MedicalRecord medicalRecord = medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
+		medicalRecordRepository.delete(medicalRecord);
+	}
+	public void modifyMedicalRecord(MedicalRecord medicalRecord, int id) {
+		
+		    medicalRecordRepository.findById(id).map(modifiedInfo -> { 
+			modifiedInfo.setBirthdate(medicalRecord.getBirthdate());
+			modifiedInfo.setAllergies(medicalRecord.getAllergies());
+			modifiedInfo.setMedications(medicalRecord.getMedications());
+			return medicalRecordRepository.save(medicalRecord);
+			});
+		
 	}
 }

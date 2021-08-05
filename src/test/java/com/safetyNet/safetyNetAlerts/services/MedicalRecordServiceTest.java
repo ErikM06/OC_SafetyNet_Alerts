@@ -42,11 +42,13 @@ class MedicalRecordServiceTest {
 
 	@Test
 	void testDeleteMedicalRecord() {
+		String firstName = "test";
+		String lastName = "test";
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiestest");
-		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord(firstName, lastName, "test", medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
-		medicalRecordService.deleteMedicalRecord(medicalRecord.getId());
+		medicalRecordService.deleteMedicalRecord(firstName, lastName);
 		assertFalse(medicalRecordRepository.existsById(medicalRecord.getId()));
 	}
 

@@ -34,9 +34,9 @@ public class PersonService {
 	personRepository.delete(person);
 
 	}
-	public Optional<Person> modifyPerson(Person newPerson, int id) {
+	public void modifyPerson(Person newPerson, int id) {
 		
-		return personRepository.findById(id).map(person -> {
+		    personRepository.findById(id).map(person -> {
 			person.setAddress(newPerson.getAddress());
 			person.setCity(newPerson.getCity());
 			person.setEmail(newPerson.getEmail());

@@ -9,5 +9,7 @@ import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, Integer>{
 	
 	public MedicalRecord findByFirstName (String firstname);
+	
+	public MedicalRecord findByFirstNameAndLastName (String firstName, String lastName);
 
 }
