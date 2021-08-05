@@ -19,7 +19,7 @@ class PersonServiceTest {
 
 	@Autowired
 	PersonService personService;
-
+	
 	@Test
 	void testGetAllPerson() {
 		List<Person> personList = personService.getAllPerson();
@@ -43,14 +43,15 @@ class PersonServiceTest {
 	}
 
 	@Test
-	void testModifyPerson() { //error isn't a assert error, need to work on this
+	void testModifyPerson() { 
 		Person lastPerson = new Person("test", "test", "test", "test", "test", "test", "test");
-		lastPerson.setId(1);
 		personService.savePerson(lastPerson);
+		
 		Person modifiedPerson = new Person ("test","test","modifiedTest","modifiedTest","modifiedTest","modifiedTest", "modifiedTest");
-		personService.modifyPerson(modifiedPerson, 1);
-		Person checkModifiedPerson = personRepository.findByFirstName("test");
-		assertFalse(lastPerson != checkModifiedPerson);
+		personService.modifyPerson(modifiedPerson, lastPerson.getId());
+		Optional<Person> checkModif = personRepository.findById(lastPerson.getId());
+		
+		assertFalse(modifiedPerson.toString().equals(checkModif.toString()));
 		
 
 	}
