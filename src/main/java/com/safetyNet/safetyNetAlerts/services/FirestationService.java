@@ -30,4 +30,14 @@ public class FirestationService {
 		firesationRepository.deleteById(id);
 
 	}
+	
+	public void modifyFirestation (Firestation firestation, int id) {
+	firesationRepository.findById(id).map( carsern -> {
+		carsern.setStation(firestation.getStation());
+		return firesationRepository.save(firestation);
+	});
+	
+		
+		
+	}
 }
