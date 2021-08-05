@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.safetyNet.safetyNetAlerts.models.Root;
-import com.safetyNet.safetyNetAlerts.repositories.FiresationRepository;
+import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
 @Repository
@@ -14,7 +14,7 @@ public class FirestationDao {
 	Root root;
 	
 	@Autowired
-	FiresationRepository firesationRepository;
+	FirestationRepository firesationRepository;
 	
 	public void fireStationTable () {
 		

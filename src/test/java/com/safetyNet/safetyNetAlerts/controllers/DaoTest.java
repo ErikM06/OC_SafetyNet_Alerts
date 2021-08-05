@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.safetyNet.safetyNetAlerts.repositories.FiresationRepository;
+import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
@@ -21,7 +21,7 @@ class DaoTest {
 	 @Autowired
 	 PersonRepository personRepository;
 	 @Autowired
-	 FiresationRepository firesationRepository;
+	 FirestationRepository firesationRepository;
 	 @Autowired
 	 MedicalRecordRepository medicalRecordRepository;
 	 

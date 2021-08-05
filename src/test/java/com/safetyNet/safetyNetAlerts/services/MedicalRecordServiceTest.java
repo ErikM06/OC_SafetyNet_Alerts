@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,17 @@ class MedicalRecordServiceTest {
 		medicalRecordService.deleteMedicalRecord(firstName, lastName);
 		assertFalse(medicalRecordRepository.existsById(medicalRecord.getId()));
 	}
-
+	@Test
+	void testModifyMedicalRecord () {
+		List<String> medication = Arrays.asList("medicationTest","medicationTest");
+		List<String> allergies = Arrays.asList("allergiesTest","allergiTest");
+		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
+		medicalRecordService.saveMedicalRecord(medicalRecord);
+		List<String> modifiedMed = Arrays.asList("modifiedMedTest");
+		List<String>modifiedAll = Arrays.asList("modifiedAlltest");
+		MedicalRecord modifiedMedicalRecord = new MedicalRecord("test","test","modifiedtest", modifiedMed, modifiedAll);
+		medicalRecordService.modifyMedicalRecord(modifiedMedicalRecord, medicalRecord.getId());
+		Optional<MedicalRecord> checkModif = medicalRecordRepository.findById(medicalRecord.getId());
+		assertFalse(medicalRecord.toString().equals(checkModif.toString()));
+	}
 }

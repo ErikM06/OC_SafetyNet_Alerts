@@ -3,19 +3,20 @@ package com.safetyNet.safetyNetAlerts.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.safetyNet.safetyNetAlerts.models.Firestation;
-import com.safetyNet.safetyNetAlerts.repositories.FiresationRepository;
+import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @SpringBootTest
 class FirestationServiceTest {
 	
 	@Autowired
-	FiresationRepository firesationRepository;
+	FirestationRepository firestationRepository;
 	
 	@Autowired
 	FirestationService firestationService;
@@ -24,14 +25,14 @@ class FirestationServiceTest {
 	void testGetAllFirestation() {
 		List<Firestation>firestations = firestationService
 				.getAllFirestation();
-		assertEquals(firestations.size(), firesationRepository.count());
+		assertEquals(firestations.size(), firestationRepository.count());
 	}
 
 	@Test
 	void testSaveFirestation() {
 		Firestation firestation = new Firestation("test", "test");
 		firestationService.saveFirestation(firestation);
-		Firestation checkSavedFirestation = firesationRepository.findByAddress("test");
+		Firestation checkSavedFirestation = firestationRepository.findByAddress("test");
 		assertEquals(firestation.getId(), checkSavedFirestation.getId());
 	}
 
@@ -40,7 +41,15 @@ class FirestationServiceTest {
 		Firestation firestation = new Firestation("test", "test");
 		firestationService.saveFirestation(firestation);
 		firestationService.deleteFirestation(firestation.getId());
-		assertFalse(firesationRepository.existsById(firestation.getId()));
+		assertFalse(firestationRepository.existsById(firestation.getId()));
 	}
-
+	@Test 
+	void testModifyFirestation () {
+		Firestation firestation = new Firestation("test", "test");
+		firestationService.saveFirestation(firestation);
+		Firestation modifiedfirestation = new Firestation("test", "changedNumbertest");
+		firestationService.modifyFirestation(modifiedfirestation, firestation.getId());
+		Optional<Firestation> checkModif = firestationRepository.findById(firestation.getId());
+		assertFalse(firestation.toString().equals(checkModif.toString()));
+	}
 }

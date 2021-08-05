@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 
 @Repository
-public interface FiresationRepository extends CrudRepository<Firestation, Integer> {
+public interface FirestationRepository extends CrudRepository<Firestation, Integer> {
 
 	public Firestation findByAddress (String address);
 }

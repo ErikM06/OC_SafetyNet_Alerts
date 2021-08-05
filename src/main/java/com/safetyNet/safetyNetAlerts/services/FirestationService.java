@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.safetyNetAlerts.models.Firestation;
-import com.safetyNet.safetyNetAlerts.repositories.FiresationRepository;
+import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
 public class FirestationService {
 
 	@Autowired
-	private FiresationRepository firesationRepository;
+	private FirestationRepository firesationRepository;
 
 	public List<Firestation> getAllFirestation() {
 		List<Firestation> firestation = new ArrayList<Firestation>();
