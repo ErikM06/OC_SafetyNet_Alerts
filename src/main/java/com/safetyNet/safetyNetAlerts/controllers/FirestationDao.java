@@ -19,10 +19,13 @@ public class FirestationDao {
 	
 	public void fireStationTable () {
 		
+		long checkIfTableEmpty = firesationRepository.count();
+		if (checkIfTableEmpty <= 0) {
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root fireStationObject = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
 		firesationRepository.saveAll(fireStationObject.firestations);
+		}
 	
 	}
 

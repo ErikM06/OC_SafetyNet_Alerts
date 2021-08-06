@@ -17,11 +17,13 @@ public class MedicalRecordDao {
 	MedicalRecordRepository medicalRecordRepository;
 	
 	public void medicalRecordToTable() {
-		
+		long checkIfTableEmpty = medicalRecordRepository.count();
+		if (checkIfTableEmpty <= 0) {
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root medicalRecordObject = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
 		medicalRecordRepository.saveAll(medicalRecordObject.medicalrecords);
+		}
 		
 	}
 	

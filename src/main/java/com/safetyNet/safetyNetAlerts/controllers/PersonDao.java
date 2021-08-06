@@ -25,8 +25,8 @@ public class PersonDao {
 	public void personToTable() {
 		
 	
-		long listPerson = personRepository.count();
-		if (listPerson <=0) {
+		long checkIfTableEmpty = personRepository.count();
+		if (checkIfTableEmpty <=0) {
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root personObject = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
