@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
+@Table (schema = "DropIfExist")
 @Entity
 public class Person {
 	

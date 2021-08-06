@@ -2,16 +2,26 @@ package com.safetyNet.safetyNetAlerts.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
-@SpringBootTest
+
+@RunWith(SpringRunner.class)
+@SpringBootTest 
+@TestPropertySource (locations = "classpath:application.properties")
 class PersonServiceTest {
 
 	@Autowired
@@ -30,8 +40,7 @@ class PersonServiceTest {
 	void testSavePerson() {
 		Person person = new Person("test", "test", "test", "test", "test", "test", "test");
 		personService.savePerson(person);
-		Person checkSavedPerson = personRepository.findByFirstName("test");
-		assertEquals(person.getId(), checkSavedPerson.getId());
+		assertTrue(personRepository.existsById(person.getId()));
 	}
 
 	@Test

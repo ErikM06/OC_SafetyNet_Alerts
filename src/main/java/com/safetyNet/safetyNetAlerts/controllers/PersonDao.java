@@ -1,8 +1,11 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.Root;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
@@ -22,12 +25,13 @@ public class PersonDao {
 	public void personToTable() {
 		
 	
-
+		long listPerson = personRepository.count();
+		if (listPerson <=0) {
 		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Root personObject = safetyNetAlertsFileReader.jsonDataFromUrl();
 		
 		personRepository.saveAll(personObject.persons);
-		
+		}
 
 	}
 

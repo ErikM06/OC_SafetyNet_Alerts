@@ -7,7 +7,8 @@ import com.safetyNet.safetyNetAlerts.models.Root;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
-@Repository
+@Repository 
+
 public class FirestationDao {
 	
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
