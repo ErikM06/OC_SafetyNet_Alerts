@@ -12,5 +12,7 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 	
 	public Person findByFirstNameAndLastName (String firstName, String lastName);
 	
+	public Person findByAddress (String address);
+	
 
 }

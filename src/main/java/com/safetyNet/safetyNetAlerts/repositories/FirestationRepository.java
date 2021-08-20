@@ -1,5 +1,7 @@
 package com.safetyNet.safetyNetAlerts.repositories;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,5 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 public interface FirestationRepository extends CrudRepository<Firestation, Integer> {
 
 	public Firestation findByAddress (String address);
+	public List<Firestation> findAllByStation (int station);
 }

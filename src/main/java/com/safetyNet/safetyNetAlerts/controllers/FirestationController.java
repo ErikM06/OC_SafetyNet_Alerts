@@ -20,7 +20,7 @@ public class FirestationController {
 	@Autowired 
 	FirestationService firestationService;
 	
-	@GetMapping ("/firestation")
+	@GetMapping (value ="/firestation")
 	private List<Firestation> getAllFirestations () {
 		return firestationService.getAllFirestation();
 	}

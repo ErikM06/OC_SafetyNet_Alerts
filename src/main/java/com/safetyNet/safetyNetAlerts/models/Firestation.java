@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table
-@ Entity
+@Entity
 public class Firestation {
 
 	
@@ -15,13 +15,12 @@ public class Firestation {
 	@GeneratedValue
 	private int id;
 	private String address;
-    private String station;
+    private int station;
     
     public Firestation () {
 		super();
 	}
-	public Firestation( String address, String station) {
-		
+	public Firestation( String address, int station) {
 		
 		this.address = address;
 		this.station = station;
@@ -34,7 +33,7 @@ public class Firestation {
  		this.id = id;
  	}
  	
-    @Column (name="Adresse", nullable =  false, length = 512)
+    @Column (name="Address", nullable =  false, length = 512)
 	public String getAddress() {
 		return address;
 	}
@@ -42,10 +41,10 @@ public class Firestation {
 		this.address = address;
 	}
 	@Column(name="Station", nullable = false, length = 512)
-	public String getStation() {
+	public int getStation() {
 		return station;
 	}
-	public void setStation(String station) {
+	public void setStation(int station) {
 		this.station = station;
 	}
 	

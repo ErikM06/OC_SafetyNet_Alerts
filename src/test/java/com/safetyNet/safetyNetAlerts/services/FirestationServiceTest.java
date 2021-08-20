@@ -30,7 +30,7 @@ class FirestationServiceTest {
 
 	@Test
 	void testSaveFirestation() {
-		Firestation firestation = new Firestation("test", "test");
+		Firestation firestation = new Firestation("test", 1);
 		firestationService.saveFirestation(firestation);
 		Firestation checkSavedFirestation = firestationRepository.findByAddress("test");
 		assertEquals(firestation.getId(), checkSavedFirestation.getId());
@@ -38,16 +38,16 @@ class FirestationServiceTest {
 
 	@Test
 	void testDeleteFirestation() {
-		Firestation firestation = new Firestation("test", "test");
+		Firestation firestation = new Firestation("test", 2);
 		firestationService.saveFirestation(firestation);
 		firestationService.deleteFirestation(firestation.getId());
 		assertFalse(firestationRepository.existsById(firestation.getId()));
 	}
 	@Test 
 	void testModifyFirestation () {
-		Firestation firestation = new Firestation("test", "test");
+		Firestation firestation = new Firestation("test", 3);
 		firestationService.saveFirestation(firestation);
-		Firestation modifiedfirestation = new Firestation("test", "changedNumbertest");
+		Firestation modifiedfirestation = new Firestation("test", 1);
 		firestationService.modifyFirestation(modifiedfirestation, firestation.getId());
 		Optional<Firestation> checkModif = firestationRepository.findById(firestation.getId());
 		assertFalse(firestation.toString().equals(checkModif.toString()));
