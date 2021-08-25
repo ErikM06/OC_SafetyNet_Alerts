@@ -30,29 +30,29 @@ public class StationNumberPerHabitantService {
 	PersonRepository personRepository;
 
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
-	public String findClosestStationPerHabitant(@PathVariable int station) {
+	public List<String> findClosestStationPerHabitant(@PathVariable int station) {
 		String jsonStr = null;
-		List<Person> personsCoveredByFirestation = new ArrayList<>();
 		List<String> personsInfo = new ArrayList<>();
-		List<Firestation> firestationList = new ArrayList<>();
-		
-		
-		for (Firestation firestation : firestationRepository.findAllByStation(station)) {
-			String firestationAddress = firestation.getAddress();
-			personsCoveredByFirestation.add(personRepository.findByAddress(firestationAddress));}
 
-			for (Person person : personsCoveredByFirestation) {
-				personsInfo.add(person.getFirstName());
-				personsInfo.add(person.getLastName());
-				personsInfo.add(person.getAddress());
-				personsInfo.add(person.getPhone());
+		Iterable<Firestation> firestationIte = firestationRepository.findAllByStation(station);
+		Iterable<Person> personIte = personRepository.findAll();
 
+		for (Firestation firestation : firestationIte) {
+			for (Person person : personIte) {
+				if (firestation.getAddress().equals(person.getAddress())) {
+
+					personsInfo.add(person.getFirstName());
+					personsInfo.add(person.getLastName());
+					personsInfo.add(person.getAddress());
+					personsInfo.add(person.getPhone());
+
+				}
 			}
-		
-			jsonStr = JSONArray.toJSONString(personsInfo);
-		
+		}
+	//	jsonStr = JSONArray.toJSONString(personsInfo);
+		return personsInfo;
 
-		return jsonStr;
+		
 
 	}
 
