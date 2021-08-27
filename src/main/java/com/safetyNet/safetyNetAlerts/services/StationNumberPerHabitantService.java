@@ -1,6 +1,7 @@
 package com.safetyNet.safetyNetAlerts.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
@@ -30,30 +32,34 @@ public class StationNumberPerHabitantService {
 	PersonRepository personRepository;
 
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
-	public List<String> findClosestStationPerHabitant(@PathVariable int station) {
-		String jsonStr = null;
-		List<String> personsInfo = new ArrayList<>();
-
+	public List<Person> findClosestStationPerHabitant(@PathVariable int station) {
+	
+		List<String> firestationLs = new ArrayList<>();
+		List<Person> personLs = null;
+		List<String> personInfo = new ArrayList<>();
 		Iterable<Firestation> firestationIte = firestationRepository.findAllByStation(station);
-		Iterable<Person> personIte = personRepository.findAll();
-
-		for (Firestation firestation : firestationIte) {
-			for (Person person : personIte) {
-				if (firestation.getAddress().equals(person.getAddress())) {
-
-					personsInfo.add(person.getFirstName());
-					personsInfo.add(person.getLastName());
-					personsInfo.add(person.getAddress());
-					personsInfo.add(person.getPhone());
-
+		
+		for (Firestation firestationToLs : firestationIte) {
+			
+			String firestationAddress =firestationToLs.getAddress();
+			firestationLs.add(firestationAddress);
+			//personLs = personRepository.getFnLnAddressPhoneByAddress(address);
+		}
+		
+		 /* Iterable<Person> personIte = personRepository.findAll();
+		
+		}
+		for (int i = 0; i < firestationLs.size(); i++) {
+			Firestation firestation = firestationLs.get(i);
+			for (Person personToLs : personIte) {
+				if (firestation.getAddress().equals(personToLs.getAddress())) {
+					personLs.add(personToLs);
 				}
 			}
-		}
-	//	jsonStr = JSONArray.toJSONString(personsInfo);
-		return personsInfo;
+			String json = new Gson().toJson(personInfo);
+			// jsonStr = JSONArray.toJSONString(personsInfo);
 
-		
-
+		} */
+		return personLs;
 	}
-
 }

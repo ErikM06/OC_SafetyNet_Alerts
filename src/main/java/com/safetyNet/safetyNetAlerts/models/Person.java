@@ -45,7 +45,7 @@ public class Person {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Column (name = "First name")
+	@Column (name = "first_name")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -53,7 +53,7 @@ public class Person {
 		this.firstName = firstName;
 	}
 	
-	@Column (name = "Last name")
+	@Column (name = "last_name")
 	public String getLastName() {
 		return lastName;
 	}
@@ -61,14 +61,14 @@ public class Person {
 		this.lastName = lastName;
 	}
 	
-	@Column (name = "Adress")
+	@Column (name = "address")
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Column (name = "City")
+	@Column (name = "city")
 	public String getCity() {
 		return city;
 	}
@@ -76,14 +76,14 @@ public class Person {
 		this.city = city;
 	}
 	
-	@Column (name = "Zip")
+	@Column (name = "zip")
 	public String getZip() {
 		return zip;
 	}
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	@Column (name = "Phone")
+	@Column (name = "phone")
 	public String getPhone() {
 		return phone;
 	}
@@ -91,7 +91,7 @@ public class Person {
 		this.phone = phone;
 	}
 	
-	@Column (name = "Email")
+	@Column (name = "email")
 	public String getEmail() {
 		return email;
 	}
