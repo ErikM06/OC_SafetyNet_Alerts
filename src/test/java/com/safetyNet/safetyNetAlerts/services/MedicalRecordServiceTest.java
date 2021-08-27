@@ -35,7 +35,7 @@ class MedicalRecordServiceTest {
 	void testSaveMedicalRecord() {
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiTest");
-		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord("test", "test", null, medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		MedicalRecord checkByFirstName= medicalRecordRepository.findByFirstName("test");
 		assertEquals(medicalRecord.getId(), checkByFirstName.getId());
@@ -47,7 +47,7 @@ class MedicalRecordServiceTest {
 		String lastName = "test";
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiestest");
-		MedicalRecord medicalRecord = new MedicalRecord(firstName, lastName, "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord(firstName, lastName,  null, medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		medicalRecordService.deleteMedicalRecord(firstName, lastName);
 		assertFalse(medicalRecordRepository.existsById(medicalRecord.getId()));
@@ -56,11 +56,11 @@ class MedicalRecordServiceTest {
 	void testModifyMedicalRecord () {
 		List<String> medication = Arrays.asList("medicationTest","medicationTest");
 		List<String> allergies = Arrays.asList("allergiesTest","allergiTest");
-		MedicalRecord medicalRecord = new MedicalRecord("test", "test", "test", medication, allergies);
+		MedicalRecord medicalRecord = new MedicalRecord("test", "test", null, medication, allergies);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		List<String> modifiedMed = Arrays.asList("modifiedMedTest");
 		List<String>modifiedAll = Arrays.asList("modifiedAlltest");
-		MedicalRecord modifiedMedicalRecord = new MedicalRecord("test","test","modifiedtest", modifiedMed, modifiedAll);
+		MedicalRecord modifiedMedicalRecord = new MedicalRecord("test","test", null, modifiedMed, modifiedAll);
 		medicalRecordService.modifyMedicalRecord(modifiedMedicalRecord, medicalRecord.getId());
 		Optional<MedicalRecord> checkModif = medicalRecordRepository.findById(medicalRecord.getId());
 		assertFalse(medicalRecord.toString().equals(checkModif.toString()));

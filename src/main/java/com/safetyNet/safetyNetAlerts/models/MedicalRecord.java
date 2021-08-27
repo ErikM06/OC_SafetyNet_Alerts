@@ -1,5 +1,6 @@
 package com.safetyNet.safetyNetAlerts.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class MedicalRecord {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String birthdate;
+	private Date birthdate;
 	
 	
 	
@@ -37,7 +38,7 @@ public class MedicalRecord {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> medications,
+	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
 			List<String> allergies) {
 		
 		this.firstName = firstName;
@@ -55,7 +56,7 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	@Column(name = "First Name")
+	@Column(name = "firstName")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -64,7 +65,7 @@ public class MedicalRecord {
 		this.firstName = firstName;
 	}
 
-	@Column(name = "Last Name")
+	@Column(name = "fastName")
 	public String getLastName() {
 		return lastName;
 	}
@@ -73,12 +74,12 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "BirthDate")
-	public String getBirthdate() {
+	@Column(name = "birthDate")
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 

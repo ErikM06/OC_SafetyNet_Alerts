@@ -1,5 +1,9 @@
 package com.safetyNet.safetyNetAlerts.repositories;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +15,8 @@ public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, I
 	public MedicalRecord findByFirstName (String firstname);
 	
 	public MedicalRecord findByFirstNameAndLastName (String firstName, String lastName);
+	
+	@Query (value ="SELECT m.birthdate FROM MedicalRecord m WHERE m.firstName = ?1" )
+	public List<Date> getBirthDateBylastName (String lastName);
 
 }
