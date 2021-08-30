@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,7 +22,7 @@ public class MedicalRecord {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private Date birthdate;
+	private String birthdate;
 	
 	
 	
@@ -38,7 +37,7 @@ public class MedicalRecord {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
+	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> medications,
 			List<String> allergies) {
 		
 		this.firstName = firstName;
@@ -75,11 +74,11 @@ public class MedicalRecord {
 	}
 
 	@Column(name = "birthDate")
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 

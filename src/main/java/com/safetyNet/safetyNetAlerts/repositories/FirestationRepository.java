@@ -11,5 +11,7 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 public interface FirestationRepository extends CrudRepository<Firestation, Integer> {
 
 	public Firestation findByAddress (String address);
+	
+	
 	public Iterable<Firestation> findAllByStation (int station);
 }

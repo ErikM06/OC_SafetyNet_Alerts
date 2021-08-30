@@ -1,6 +1,6 @@
 package com.safetyNet.safetyNetAlerts.services;
 
-import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,42 +34,49 @@ public class StationNumberPerHabitantService {
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
 	public List<String> findClosestStationPerHabitant(@PathVariable int station) {
 
-		List<String> firestationLs = new ArrayList<>();
-		List<String> firestationAddress = new ArrayList<>();
-		List<String> personLs = null;
-		/*List<Date> getBirthdate = null;
-		String personLastName = null;
-		long millis = System.currentTimeMillis();
-		Date date = new Date(millis); */
-		Iterable<Firestation> firestationIte = firestationRepository.findAllByStation(station);
+		List<String> personLs = new ArrayList<>();
+		List<String> personLastName = new ArrayList<>();
+
+		List<Date> getAllBirthDate = new ArrayList<>();
+		List<Date> peopleUnderEighteen = new ArrayList<>();
+
+		long millis = System.currentTimeMillis() / 1000; // current time in seconds
+		// Calculate 18 years as milli from a TimesTamp calculator
+		long eightyYearsAsMillis = 568024668;
+
+		Date eightyYearsLessThanCurrentTime = new Date(millis - eightyYearsAsMillis);
+
+		Iterable<Firestation> firestationIte = firestationRepository.findAll();
 
 		try {
-			for (Firestation firestationToLs : firestationIte) {
-				String firestationAddress1 = firestationToLs.getAddress();
-				 firestationAddress.add(firestationToLs.getAddress());
-				personLs = personRepository.getFnLnAddressPhoneByAddress(firestationAddress1);
 
+			for (Firestation firestation : firestationIte) {
+				if (firestation.getStation() == station) {
+					personLastName.addAll(personRepository.getLastNameByAddress(firestation.getAddress()));
+					personLs.addAll(personRepository.getFnLnAddressPhoneByAddress(firestation.getAddress()));
+				}
 			}
-			for (int i = 0; i <= firestationLs.size(); i++) {
-				String address = firestationLs.get(i);
-				
-				
-				/* personLastName = personRepository.getLastNameByAddress(address);
-				 *
-				 * getBirthdate =
-				 * medicalRecordRepository.getBirthDateBylastName(personLastName); if
-				 * (getBirthdate.get(i) date) {
-				 * 
-				 * }
-				 */
+			for (String lastName : personLastName) {
+				List<String> getBirthdate = new ArrayList<>();
+				getBirthdate.addAll(medicalRecordRepository.getBirthDateWithLastName(lastName));
 
-				String personInfo = personLs.get(i);
-				i++;
+				// Date in db are Str, this convert to Date
+				for (String convertToDate : getBirthdate) {
+					Date birthdateToDate = new SimpleDateFormat("dd/MM/yyyy").parse(convertToDate);
+					getAllBirthDate.add(birthdateToDate);
+				}
 			}
-
+			for (Date d : getAllBirthDate) {
+				if (d.after(eightyYearsLessThanCurrentTime)) {
+					peopleUnderEighteen.add(d);
+				}
+			}
+			int count = peopleUnderEighteen.size();
+			String valueOfCount = String.valueOf(count);
+			personLs.add(valueOfCount);
 
 		} catch (Exception e) {
-			
+
 		}
 		return personLs;
 	}

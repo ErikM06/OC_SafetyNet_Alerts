@@ -19,8 +19,8 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 	@Query(value = "SELECT  p.firstName ,p.lastName ,p.address ,p.phone FROM Person p  WHERE p.address = ?1 ")
 	public List<String> getFnLnAddressPhoneByAddress (String address);
 	
-	@Query(value = "SELECT p.firstName FROM Person p WHERE p.address = ?1")
-	public String getLastNameByAddress (String address);
+	@Query(value = "SELECT p.lastName FROM Person p WHERE p.address = ?1")
+	public List<String> getLastNameByAddress (String address);
 	
 
 }
