@@ -9,7 +9,7 @@ import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
 @Repository 
 
-public class FirestationDao {
+public class FirestationToDb {
 	
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;

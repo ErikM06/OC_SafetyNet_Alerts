@@ -8,7 +8,7 @@ import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
 @Repository
-public class MedicalRecordDao {
+public class MedicalRecordToDb {
 	
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;

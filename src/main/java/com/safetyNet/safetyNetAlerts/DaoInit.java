@@ -7,9 +7,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.safetyNet.safetyNetAlerts.controllers.FirestationDao;
-import com.safetyNet.safetyNetAlerts.controllers.MedicalRecordDao;
-import com.safetyNet.safetyNetAlerts.controllers.PersonDao;
+import com.safetyNet.safetyNetAlerts.controllers.FirestationToDb;
+import com.safetyNet.safetyNetAlerts.controllers.MedicalRecordToDb;
+import com.safetyNet.safetyNetAlerts.controllers.PersonToDb;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 @Component
@@ -17,11 +17,11 @@ import com.safetyNet.safetyNetAlerts.models.Person;
 public class DaoInit {
 	
 	@Autowired
-	PersonDao personDao;
+	PersonToDb personDao;
 	@Autowired
-	FirestationDao firestationDao;
+	FirestationToDb firestationDao;
 	@Autowired
-	MedicalRecordDao medicalRecordDao;
+	MedicalRecordToDb medicalRecordDao;
 	
 	
 	

@@ -11,7 +11,7 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
 @Component
-public class PersonDao {
+public class PersonToDb {
 
 	SafetyNetAlertsFileReader safetyNetAlertsFileReader;
 	Root root;
