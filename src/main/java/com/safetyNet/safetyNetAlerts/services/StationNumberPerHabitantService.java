@@ -39,46 +39,19 @@ public class StationNumberPerHabitantService {
 
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
 	public FirestationDTO findClosestStationPerHabitant(@PathVariable int station) {
-		
+
+		List<Date> peopleUnder18 = personRepository.getBirthdateByStation(station);
+
 		FirestationDTO firestationDTO = new FirestationDTO();
-		List<Person> personLs = firestationRepository.findAllByStation(station);
-		firestationDTO.setPersons(personLs);
 		
-		try {
-			for (Person person : personLs) {
+		List<Person> personLs = firestationRepository.findAllByStation(station);
+		
+		
+		firestationDTO.setPersons(personLs);
+		firestationDTO.setNbChildren(peopleUnder18.size());
 
-				List<String> personBirthdate = personRepository.getBirthdateByFnLn(person);
 				
-				for (String s : personBirthdate) {
-
-				Date birthdateToDate = new SimpleDateFormat("dd/MM/yyyy").parse(s);
-					
-					LocalDateTime ldt = LocalDateTime.ofInstant(birthdateToDate.toInstant(), ZoneId.systemDefault());
-					
-					Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
-					
-					LocalDate date = LocalDate.now().minusYears(18);
-					
-					if (birthdateToDate.after(out)) {
-					
-						List<Date> peopleLessThan18 = new ArrayList<Date>();
-					
-						peopleLessThan18.add(birthdateToDate);
-					
-						int numberOfChildren = peopleLessThan18.size();
-						firestationDTO.setNbChildren(numberOfChildren);
-						}
-
-				}
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		List<Date> getAllBirthDate = new ArrayList<>();
-		List<Date> peopleUnderEighteen = new ArrayList<>();
-
-		return firestationDTO;
+				return firestationDTO;
+			
 	}
 }
