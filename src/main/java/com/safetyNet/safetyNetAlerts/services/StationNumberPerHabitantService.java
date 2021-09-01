@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,15 +41,22 @@ public class StationNumberPerHabitantService {
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
 	public FirestationDTO findClosestStationPerHabitant(@PathVariable int station) {
 
-		List<Date> peopleUnder18 = personRepository.getBirthdateByStation(station);
+		
+		LocalDate currentDate = LocalDate.now().minusYears(18);
+		
+		Date ageLimit = java.util.Date.from(currentDate.atStartOfDay()
+			      .atZone(ZoneId.systemDefault())
+			      .toInstant());
+		
 
 		FirestationDTO firestationDTO = new FirestationDTO();
 		
+		List<Date> peopleUnderEighteen = personRepository.getBirthdateByStation(station, ageLimit);
 		List<Person> personLs = firestationRepository.findAllByStation(station);
 		
 		
 		firestationDTO.setPersons(personLs);
-		firestationDTO.setNbChildren(peopleUnder18.size());
+		firestationDTO.setNbChildren(peopleUnderEighteen.size());
 
 				
 				return firestationDTO;

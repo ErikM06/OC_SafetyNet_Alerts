@@ -32,10 +32,6 @@ public class FirestationDTO {
 		return nbAdults;
 	}
 
-	public void setNbAdults(Integer nbAdults) {
-		this.nbAdults = nbAdults;
-	}
-
 	public List<Person> getPersons() {
 		return persons;
 	}

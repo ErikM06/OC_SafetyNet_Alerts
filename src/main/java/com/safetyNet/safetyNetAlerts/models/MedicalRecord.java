@@ -22,7 +22,7 @@ public class MedicalRecord {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String birthdate;
+	private Date birthdate;
 	
 	
 	
@@ -37,7 +37,7 @@ public class MedicalRecord {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> medications,
+	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
 			List<String> allergies) {
 		
 		this.firstName = firstName;
@@ -74,11 +74,11 @@ public class MedicalRecord {
 	}
 
 	@Column(name = "birthDate")
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
