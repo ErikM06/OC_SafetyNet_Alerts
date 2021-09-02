@@ -34,7 +34,7 @@ public class MedicalRecordService {
 	public void modifyMedicalRecord(MedicalRecord medicalRecord, int id) {
 		
 		    medicalRecordRepository.findById(id).map(modifiedInfo -> { 
-			modifiedInfo.setBirthdate(medicalRecord.getBirthdate());
+			modifiedInfo.setBirthdate(medicalRecord.getBirthdate().toString());
 			modifiedInfo.setAllergies(medicalRecord.getAllergies());
 			modifiedInfo.setMedications(medicalRecord.getMedications());
 			return medicalRecordRepository.save(medicalRecord);

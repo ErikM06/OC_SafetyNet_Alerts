@@ -1,5 +1,7 @@
 package com.safetyNet.safetyNetAlerts.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -78,8 +80,13 @@ public class MedicalRecord {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+	public void setBirthdate(String birthdate) {
+		try {
+			this.birthdate = new SimpleDateFormat("MM/dd/yyyy").parse(birthdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 	}
 
 	@Column(name = "medication")
