@@ -1,5 +1,8 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriUtils;
+
+import com.safetyNet.safetyNetAlerts.DTO.PersonDTO;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
+import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
 import com.safetyNet.safetyNetAlerts.services.PersonService;
 
 @RestController
@@ -20,6 +27,10 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
+	
+	@Autowired
+	ChildAlertService childAlertService;
+	
 	@GetMapping("/person")
 
 	public List<Person> getAllPerson() {
@@ -45,5 +56,12 @@ public class PersonController {
 	void modifyPerson(@RequestBody Person person, @PathVariable int id) {
 		personService.modifyPerson(person, id);
 		personService.savePerson(person);
+	}
+	
+	
+	@GetMapping(value = "/childAlert/address=/{address}")
+	private PersonDTO childAltert (@PathVariable("address") String address) {
+		return childAlertService.childAlterService(address);
+		
 	}
 }
