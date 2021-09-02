@@ -58,9 +58,9 @@ public class PersonController {
 		personService.savePerson(person);
 	}
 	
-	
+	// ChildAltertSerivce
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private PersonDTO childAltert (@PathVariable("address") String address) {
+	private PersonDTO childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 		
 	}

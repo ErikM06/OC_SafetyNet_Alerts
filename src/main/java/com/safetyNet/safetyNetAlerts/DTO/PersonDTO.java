@@ -23,14 +23,14 @@ public class PersonDTO {
 	}
 	
 	@JsonView(View.Public.class)
-	List<Person>PersonByAddress;
+	List<Person>personByAddress;
 
 	public List<Person> getPersonByAddress() {
-		return PersonByAddress;
+		return personByAddress;
 	}
 
 	public void setPersonByAddress(List<Person> personByAddress) {
-		PersonByAddress = personByAddress;
+		this.personByAddress = personByAddress;
 	}
 	
 	
