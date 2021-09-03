@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.safetyNet.safetyNetAlerts.models.Child;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 @Repository
@@ -36,9 +37,10 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 ")
 	public List<Person> getPersonByAddress (String address);
 	
-	@Query(value = "SELECT p FROM Person p INNER JOIN MedicalRecord m  "
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.models.Child (p.firstName as firstName ,p.lastName as lastName , "
+			+ " m.birthdate as birthdate) FROM MedicalRecord m  INNER JOIN Person p  "
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
-	public List<Person> getChildrenByAddress (String address, Date ageLimit);
+	public List<Child> getChildrenByAddress (String address, Date ageLimit);
 	
 
 

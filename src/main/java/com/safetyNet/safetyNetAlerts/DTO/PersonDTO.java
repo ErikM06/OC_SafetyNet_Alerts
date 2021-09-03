@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.models.Child;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.View;
 
@@ -12,13 +13,13 @@ import com.safetyNet.safetyNetAlerts.models.View;
 public class PersonDTO {
 	
 	@JsonView(View.Public.class)
-	List<Person>childrenByAddress;
+	List<Child>childrenByAddress;
 
-	public List<Person> getChildrenByAddress() {
+	public List<Child> getChildrenByAddress() {
 		return childrenByAddress;
 	}
 
-	public void setChildrenByAddress(List<Person> childrenByAddress) {
+	public void setChildrenByAddress(List<Child> childrenByAddress) {
 		this.childrenByAddress = childrenByAddress;
 	}
 	
