@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetyNet.safetyNetAlerts.DTO.FirestationDTO;
+import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
+import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
 import com.safetyNet.safetyNetAlerts.services.FirestationService;
 import com.safetyNet.safetyNetAlerts.services.StationNumberPerHabitantService;
 
@@ -24,6 +26,9 @@ public class FirestationController {
 	
 	@Autowired
 	StationNumberPerHabitantService stationNumberPerHabitantService;
+	
+	@Autowired
+	FirestationNumber firestationNumber;
 	
 	@GetMapping (value ="/firestation")
 	private List<Firestation> getAllFirestations () {
@@ -51,7 +56,14 @@ public class FirestationController {
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
 	public FirestationDTO findClosestStationPerHabitant(@PathVariable int station) {
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
-		
+	}
+	
+	// return phone and address for a firestation
+	@GetMapping(value = "/phoneAlert/firestation=/{station}")
+	public PhoneAddressDTO firestationNumber (@PathVariable int station) {
+		return firestationNumber.firestationNumberPhone(station);
 		
 	}
+		
+	
 }
