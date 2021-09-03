@@ -12,11 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.MapKeyType;
+
 @Table
 @Entity
 public class MedicalRecord {
-	
-	
 
 	@Id
 	@GeneratedValue
@@ -28,7 +28,7 @@ public class MedicalRecord {
 	
 	
 	
-	@Column(name = "medication")
+	@Column(name = "medications")
 	@ElementCollection(targetClass = String.class)
 	private List<String> medications;
 	@Column(name = "allergies")
@@ -89,7 +89,7 @@ public class MedicalRecord {
 		}  
 	}
 
-	@Column(name = "medication")
+	@Column(name = "medications")
 	@ElementCollection(targetClass = String.class)
 	public List<String> getMedications() {
 		return medications;

@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriUtils;
 
+import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonDTO;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
+import com.safetyNet.safetyNetAlerts.services.FireAddressService;
 import com.safetyNet.safetyNetAlerts.services.PersonService;
 
 @RestController
@@ -30,6 +32,9 @@ public class PersonController {
 	
 	@Autowired
 	ChildAlertService childAlertService;
+	
+	@Autowired
+	FireAddressService fireAddressService;
 	
 	@GetMapping("/person")
 
@@ -58,10 +63,16 @@ public class PersonController {
 		personService.savePerson(person);
 	}
 	
-	// ChildAltertSerivce
+	// ChildAltertService
 	@GetMapping(value = "/childAlert/address=/{address}")
 	private PersonDTO childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
-		
+	}
+	
+	// FireAddressService
+	@GetMapping(value ="/fire/address=/{address}")
+	private FireAddressDTO fireAddress (@PathVariable String address) {
+		return fireAddressService.fireAddressServiceByAddress(address);
+	
 	}
 }
