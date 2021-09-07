@@ -10,12 +10,17 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.MapKeyType;
 
-@Table
+
 @Entity
+@Table (name ="MedicalRecord")
+@SecondaryTable (name = "medications_table", pkJoinColumns = @PrimaryKeyJoinColumn (  name  ="MedicalRecord_id"))
+@SecondaryTable (name = "allergies_table", pkJoinColumns = @PrimaryKeyJoinColumn (name = "MedicalRecord_id"))
 public class MedicalRecord {
 
 	@Id
@@ -27,11 +32,10 @@ public class MedicalRecord {
 	private Date birthdate;
 	
 	
-	
-	@Column(name = "medications")
+	@Column(name = "medications", table ="medications_table")
 	@ElementCollection(targetClass = String.class)
 	private List<String> medications;
-	@Column(name = "allergies")
+	@Column(name = "allergies", table ="allergies_table")
 	@ElementCollection(targetClass = String.class)
 	private List<String> allergies;
 	
@@ -89,7 +93,7 @@ public class MedicalRecord {
 		}  
 	}
 
-	@Column(name = "medications")
+	@Column(name = "medications", table ="medications_table")
 	@ElementCollection(targetClass = String.class)
 	public List<String> getMedications() {
 		return medications;
@@ -99,7 +103,7 @@ public class MedicalRecord {
 		this.medications = medications;
 	}
 
-	@Column(name = "allergies")
+	@Column(name = "allergies", table ="allergies_table")
 	@ElementCollection(targetClass = String.class)
 	public List<String> getAllergies() {
 		return allergies;
