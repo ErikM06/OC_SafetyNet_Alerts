@@ -18,7 +18,7 @@ public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, I
 	@Query (value ="SELECT m.birthdate FROM MedicalRecord m WHERE m.lastName = ?1" )
 	public List<String> getBirthDateWithLastName(String lastName);
 	
-	/* @Query (value ="SELECT mm.medications, ma.allergies FROM medical_record_medications mm INNER JOIN medical_record_allergies ma "
+	@Query (value ="SELECT mm.medications, ma.allergies FROM medical_record_medications mm INNER JOIN medical_record_allergies ma "
 	 		+ "ON mm.id = ma.id INNER JOIN MedicalRecord m ON m.id = ma.id WHERE m.firstName = ?1 AND m.lastName = ?2")
-	public List<String> getFireMedicationAndAllergie (String firstName, String lastName);  */
+	public List<String> getFireMedicationAndAllergie (String firstName, String lastName);  
 } 

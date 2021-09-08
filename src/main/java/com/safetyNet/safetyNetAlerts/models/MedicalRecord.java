@@ -10,32 +10,30 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.MapKeyType;
 
 
 @Entity
 @Table (name ="MedicalRecord")
-@SecondaryTable (name = "medications_table", pkJoinColumns = @PrimaryKeyJoinColumn (  name  ="MedicalRecord_id"))
-@SecondaryTable (name = "allergies_table", pkJoinColumns = @PrimaryKeyJoinColumn (name = "MedicalRecord_id"))
+
 public class MedicalRecord {
 
 	@Id
 	@GeneratedValue
 
 	private int id;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "fastName")
 	private String lastName;
+	@Column(name = "birthDate")
 	private Date birthdate;
 	
 	
-	@Column(name = "medications", table ="medications_table")
+	@Column(name = "medications")
 	@ElementCollection(targetClass = String.class)
 	private List<String> medications;
-	@Column(name = "allergies", table ="allergies_table")
+	@Column(name="allergies")
 	@ElementCollection(targetClass = String.class)
 	private List<String> allergies;
 	
@@ -61,7 +59,7 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	@Column(name = "firstName")
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,7 +68,7 @@ public class MedicalRecord {
 		this.firstName = firstName;
 	}
 
-	@Column(name = "fastName")
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -79,8 +77,7 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "birthDate")
-	public Date getBirthdate() {
+		public Date getBirthdate() {
 		return birthdate;
 	}
 
@@ -93,8 +90,7 @@ public class MedicalRecord {
 		}  
 	}
 
-	@Column(name = "medications", table ="medications_table")
-	@ElementCollection(targetClass = String.class)
+	@Column(name = "medications")
 	public List<String> getMedications() {
 		return medications;
 	}
@@ -103,8 +99,7 @@ public class MedicalRecord {
 		this.medications = medications;
 	}
 
-	@Column(name = "allergies", table ="allergies_table")
-	@ElementCollection(targetClass = String.class)
+	
 	public List<String> getAllergies() {
 		return allergies;
 	}

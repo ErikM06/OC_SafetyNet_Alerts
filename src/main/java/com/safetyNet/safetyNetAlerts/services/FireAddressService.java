@@ -20,11 +20,14 @@ public class FireAddressService {
 	@Autowired
 	FireAddressDTO fireAddressDTO;
 	
+	@Autowired
+	FireAddress fireAddress;
+	
 	public FireAddressDTO fireAddressServiceByAddress (String address) {
 	
 		fireAddressDTO.setFnLnPhoneAddressBirthdate(personRepository.getFnLnPhoneStationBirthdateByStation(address));
-		//fireAddressDTO.setMedications(medicalRecordRepository.getFireMedicationAndAllergie(
-		//		fireAddress.getFistName(), fireAddress.getLastName()));
+		fireAddressDTO.setMedications(medicalRecordRepository.getFireMedicationAndAllergie(
+				fireAddress.getFirstName(), fireAddress.getLastName()));
 		
 		
 		return fireAddressDTO;
