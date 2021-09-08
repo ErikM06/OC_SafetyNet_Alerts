@@ -8,8 +8,10 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,19 +32,19 @@ public class MedicalRecord {
 	private Date birthdate;
 	
 	
-	@Column(name = "medications")
-	@ElementCollection(targetClass = String.class)
-	private List<String> medications;
-	@Column(name="allergies")
-	@ElementCollection(targetClass = String.class)
-	private List<String> allergies;
+	
+	@OneToMany
+	private List<Medications> medications;
+	
+	@OneToMany
+	private List<Allergies> allergies;
 	
 	public MedicalRecord() {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
-			List<String> allergies) {
+	public MedicalRecord(String firstName, String lastName, Date birthdate, List<Medications> medications,
+			List<Allergies> allergies) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -90,21 +92,21 @@ public class MedicalRecord {
 		}  
 	}
 
-	@Column(name = "medications")
-	public List<String> getMedications() {
+	@OneToMany (targetEntity = Medications.class, mappedBy = "id", fetch = FetchType.LAZY)
+	public List<Medications> getMedications() {
 		return medications;
 	}
 
-	public void setMedications(List<String> medications) {
+	public void setMedications(List<Medications> medications) {
 		this.medications = medications;
 	}
 
-	
-	public List<String> getAllergies() {
+	@OneToMany
+	public List<Allergies> getAllergies() {
 		return allergies;
 	}
 
-	public void setAllergies(List<String> allergies) {
+	public void setAllergies(List<Allergies> allergies) {
 		this.allergies = allergies;
 	}
 
