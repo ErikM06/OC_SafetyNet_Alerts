@@ -5,14 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -32,19 +36,18 @@ public class MedicalRecord {
 	private Date birthdate;
 	
 	
+	@ElementCollection(targetClass = String.class)
+	private List<String> medications;
 	
-	@OneToMany
-	private List<Medications> medications;
-	
-	@OneToMany
-	private List<Allergies> allergies;
+	@ElementCollection(targetClass = String.class)
+	private List<String> allergies;
 	
 	public MedicalRecord() {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, List<Medications> medications,
-			List<Allergies> allergies) {
+	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
+			List<String> allergies) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -92,21 +95,21 @@ public class MedicalRecord {
 		}  
 	}
 
-	@OneToMany (targetEntity = Medications.class, mappedBy = "id", fetch = FetchType.LAZY)
-	public List<Medications> getMedications() {
+	
+	public List<String> getMedications() {
 		return medications;
 	}
-
-	public void setMedications(List<Medications> medications) {
+	
+	public void setMedications(List<String> medications) {
 		this.medications = medications;
 	}
 
-	@OneToMany
-	public List<Allergies> getAllergies() {
+	
+	public List<String> getAllergies() {
 		return allergies;
 	}
 
-	public void setAllergies(List<Allergies> allergies) {
+	public void setAllergies(List<String> allergies) {
 		this.allergies = allergies;
 	}
 

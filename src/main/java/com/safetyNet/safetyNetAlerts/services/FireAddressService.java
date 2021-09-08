@@ -13,25 +13,24 @@ public class FireAddressService {
 
 	@Autowired
 	PersonRepository personRepository;
-	
+
 	@Autowired
 	MedicalRecordRepository medicalRecordRepository;
-	
+
 	@Autowired
 	FireAddressDTO fireAddressDTO;
-	
+
 	@Autowired
 	FireAddress fireAddress;
-	
-	public FireAddressDTO fireAddressServiceByAddress (String address) {
-	
+
+	public FireAddressDTO fireAddressServiceByAddress(String address) {
+
 		fireAddressDTO.setFnLnPhoneAddressBirthdate(personRepository.getFnLnPhoneStationBirthdateByStation(address));
-	/*	fireAddressDTO.setMedications(medicalRecordRepository.getFireMedicationAndAllergie(
-				fireAddress.getFirstName(), fireAddress.getLastName())); */
-		
-		
+		fireAddressDTO.setMedications(medicalRecordRepository.getFireMedicationAndAllergie(fireAddress.getFirstName(),
+				fireAddress.getLastName()));
+
 		return fireAddressDTO;
-		
-	} 
+
+	}
 
 }
