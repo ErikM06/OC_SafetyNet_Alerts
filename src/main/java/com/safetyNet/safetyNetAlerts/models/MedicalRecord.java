@@ -2,6 +2,8 @@ package com.safetyNet.safetyNetAlerts.models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class MedicalRecord {
 
 	@Id
 	@GeneratedValue
-
+	
+	@Column (name = "id")
 	private int id;
 	@Column(name = "firstName")
 	private String firstName;
@@ -36,18 +39,20 @@ public class MedicalRecord {
 	private Date birthdate;
 	
 	
-	@ElementCollection(targetClass = String.class)
-	private List<String> medications;
+	@ElementCollection()
+	@Column(name = "medicalRecord_medications")
+	private Collection<String> medications = new ArrayList<String>();
 	
-	@ElementCollection(targetClass = String.class)
-	private List<String> allergies;
+	@ElementCollection()
+	@Column (name = "medicalRecord_allergies")
+	private Collection<String> allergies = new ArrayList<String>();
 	
 	public MedicalRecord() {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
-			List<String> allergies) {
+	public MedicalRecord(String firstName, String lastName, Date birthdate, Collection<String> medications,
+			Collection<String> allergies) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -96,20 +101,20 @@ public class MedicalRecord {
 	}
 
 	
-	public List<String> getMedications() {
+	public Collection<String> getMedications() {
 		return medications;
 	}
 	
-	public void setMedications(List<String> medications) {
+	public void setMedications(Collection<String>medications) {
 		this.medications = medications;
 	}
 
 	
-	public List<String> getAllergies() {
+	public Collection<String> getAllergies() {
 		return allergies;
 	}
 
-	public void setAllergies(List<String> allergies) {
+	public void setAllergies(Collection<String> allergies) {
 		this.allergies = allergies;
 	}
 
