@@ -39,10 +39,10 @@ class DaoTest {
 		assertNotNull(fireStation);
 	}
 	
-	@Test
+	 @Test
 	public void testMedicalRecordToTable () {
 		Long medicalRecord = medicalRecordRepository
 				.count();
 		assertNotNull(medicalRecord);
-	}
+	} 
 }

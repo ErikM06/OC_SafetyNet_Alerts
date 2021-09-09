@@ -13,47 +13,59 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
 
 @Entity
-@Table (name ="MedicalRecord")
-
+@Table(name = "MedicalRecord")
+@Data
+@NoArgsConstructor
 public class MedicalRecord {
 
 	@Id
-	@GeneratedValue
-	
-	@Column (name = "id")
+	@GeneratedValue ( strategy = GenerationType.IDENTITY)
+
+	@Column(name = "id")
 	private int id;
 	@Column(name = "firstName")
 	private String firstName;
-	@Column(name = "fastName")
+	@Column(name = "lastName")
 	private String lastName;
 	@Column(name = "birthDate")
 	private Date birthdate;
-	
-	
-	@ElementCollection()
-	@Column(name = "medicalRecord_medications")
-	private Collection<String> medications = new ArrayList<String>();
-	
-	@ElementCollection()
-	@Column (name = "medicalRecord_allergies")
-	private Collection<String> allergies = new ArrayList<String>();
-	
+
+	@ElementCollection(targetClass = String.class)
+	@CollectionTable(name = "medications_list", joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
+	@Column(name = "medications")
+	private List<String> medications = new ArrayList<String>();
+
+	@ElementCollection(targetClass = String.class)
+	@CollectionTable(name = "allergies_list", joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
+	@Column(name = "allergies")
+	private List<String> allergies = new ArrayList<String>();
+
 	public MedicalRecord() {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, Collection<String> medications,
-			Collection<String> allergies) {
-		
+	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
+			List<String> allergies) {
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
@@ -69,7 +81,6 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -78,7 +89,6 @@ public class MedicalRecord {
 		this.firstName = firstName;
 	}
 
-	
 	public String getLastName() {
 		return lastName;
 	}
@@ -87,7 +97,7 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-		public Date getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
@@ -97,24 +107,23 @@ public class MedicalRecord {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}  
+		}
 	}
 
-	
-	public Collection<String> getMedications() {
+	public List<String> getMedications() {
 		return medications;
 	}
-	
-	public void setMedications(Collection<String>medications) {
+
+	public void setMedications(List<String> medications) {
+
 		this.medications = medications;
 	}
 
-	
-	public Collection<String> getAllergies() {
+	public List<String> getAllergies() {
 		return allergies;
 	}
 
-	public void setAllergies(Collection<String> allergies) {
+	public void setAllergies(List<String> allergies) {
 		this.allergies = allergies;
 	}
 
