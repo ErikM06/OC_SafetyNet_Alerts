@@ -2,45 +2,57 @@ package com.safetyNet.safetyNetAlerts.models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.MapKeyType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Table
+
 @Entity
+@Table (name ="MedicalRecord")
+
 public class MedicalRecord {
 
 	@Id
 	@GeneratedValue
-
+	
+	@Column (name = "id")
 	private int id;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "fastName")
 	private String lastName;
+	@Column(name = "birthDate")
 	private Date birthdate;
 	
 	
+	@ElementCollection()
+	@Column(name = "medicalRecord_medications")
+	private Collection<String> medications = new ArrayList<String>();
 	
-	@Column(name = "medications")
-	@ElementCollection(targetClass = String.class)
-	private List<String> medications;
-	@Column(name = "allergies")
-	@ElementCollection(targetClass = String.class)
-	private List<String> allergies;
+	@ElementCollection()
+	@Column (name = "medicalRecord_allergies")
+	private Collection<String> allergies = new ArrayList<String>();
 	
 	public MedicalRecord() {
 		super();
 	}
 
-	public MedicalRecord(String firstName, String lastName, Date birthdate, List<String> medications,
-			List<String> allergies) {
+	public MedicalRecord(String firstName, String lastName, Date birthdate, Collection<String> medications,
+			Collection<String> allergies) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -57,7 +69,7 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	@Column(name = "firstName")
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -66,7 +78,7 @@ public class MedicalRecord {
 		this.firstName = firstName;
 	}
 
-	@Column(name = "fastName")
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -75,8 +87,7 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "birthDate")
-	public Date getBirthdate() {
+		public Date getBirthdate() {
 		return birthdate;
 	}
 
@@ -89,23 +100,21 @@ public class MedicalRecord {
 		}  
 	}
 
-	@Column(name = "medications")
-	@ElementCollection(targetClass = String.class)
-	public List<String> getMedications() {
+	
+	public Collection<String> getMedications() {
 		return medications;
 	}
-
-	public void setMedications(List<String> medications) {
+	
+	public void setMedications(Collection<String>medications) {
 		this.medications = medications;
 	}
 
-	@Column(name = "allergies")
-	@ElementCollection(targetClass = String.class)
-	public List<String> getAllergies() {
+	
+	public Collection<String> getAllergies() {
 		return allergies;
 	}
 
-	public void setAllergies(List<String> allergies) {
+	public void setAllergies(Collection<String> allergies) {
 		this.allergies = allergies;
 	}
 
