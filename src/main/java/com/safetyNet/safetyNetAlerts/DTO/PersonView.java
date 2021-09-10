@@ -9,7 +9,7 @@ import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.View;
 
 @Component
-public class PersonDTO {
+public class PersonView {
 	
 	@JsonView(View.Public.class)
 	List<ChildAlertDTO>childrenByAddress;
@@ -32,7 +32,5 @@ public class PersonDTO {
 	public void setPersonByAddress(List<Person> personByAddress) {
 		this.personByAddress = personByAddress;
 	}
-	
-	
-
+		
 }

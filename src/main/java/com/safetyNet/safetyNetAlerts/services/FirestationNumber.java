@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetyNet.safetyNetAlerts.DTO.PhoneAddress;
 import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
+import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
@@ -16,12 +16,12 @@ public class FirestationNumber {
 	FirestationRepository firestationRepository;
 	
 	@Autowired
-	PhoneAddressDTO phoneAddressDTO;
+	PhoneAddressView phoneAddressDTO;
 	
 	
-	public PhoneAddressDTO firestationNumberPhone(int station) {
+	public PhoneAddressView firestationNumberPhone(int station) {
 		
-		List<PhoneAddress> phoneAddressByStation = firestationRepository.findPhoneByStation(station);
+		List<PhoneAddressDTO> phoneAddressByStation = firestationRepository.findPhoneByStation(station);
 		
 		phoneAddressDTO.setPhoneAddress(phoneAddressByStation);
 		

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetyNet.safetyNetAlerts.DTO.FirestationDTO;
-import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
+import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
 import com.safetyNet.safetyNetAlerts.services.FirestationService;
@@ -60,7 +60,7 @@ public class FirestationController {
 	
 	// return phone and address for a firestation
 	@GetMapping(value = "/phoneAlert/firestation=/{station}")
-	public PhoneAddressDTO firestationNumber (@PathVariable int station) {
+	public PhoneAddressView firestationNumber (@PathVariable int station) {
 		return firestationNumber.firestationNumberPhone(station);
 		
 	}

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriUtils;
 
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
-import com.safetyNet.safetyNetAlerts.DTO.PersonDTO;
+import com.safetyNet.safetyNetAlerts.DTO.PersonView;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
@@ -65,7 +65,7 @@ public class PersonController {
 	
 	// ChildAltertService
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private PersonDTO childAltert (@PathVariable String address) {
+	private PersonView childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 	}
 	
