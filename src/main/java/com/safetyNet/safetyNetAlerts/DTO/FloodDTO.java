@@ -13,17 +13,17 @@ public class FloodDTO {
 	private int id;
 	private String address;
 	private String phone;
-	private MedicalRecord medicalRecordLs;
+	private MedicalRecord medicalRecord;
 	
 	public FloodDTO () {
 		
 	}
 	
-	public FloodDTO(String address, String phone, MedicalRecord medicalRecordLs) {
+	public FloodDTO(String address, String phone, MedicalRecord medicalRecord) {
 		super();
 		this.address = address;
 		this.phone = phone;
-		this.medicalRecordLs = medicalRecordLs;
+		this.medicalRecord = medicalRecord;
 	}
 	
 	
@@ -39,11 +39,11 @@ public class FloodDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public MedicalRecord getMedicalRecordLs() {
-		return medicalRecordLs;
+	public MedicalRecord getMedicalRecord() {
+		return medicalRecord;
 	}
-	public void setMedicalRecordLs(MedicalRecord medicalRecordLs) {
-		this.medicalRecordLs = medicalRecordLs;
+	public void setMedicalRecord(MedicalRecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
 	}
 
 }

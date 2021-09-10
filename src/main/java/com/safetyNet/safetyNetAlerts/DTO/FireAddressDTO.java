@@ -11,7 +11,7 @@ public class FireAddressDTO {
 	
 	@Id
 	private int id;
-	private MedicalRecord medicalRecordLs;
+	private MedicalRecord medicalRecord;
 	private String address;
 	private String phone;
 	private int station;
@@ -20,21 +20,21 @@ public class FireAddressDTO {
 	
 	}
 
-	public FireAddressDTO(MedicalRecord medicalRecordLs, String address, String phone,int station) {
+	public FireAddressDTO(MedicalRecord medicalRecord, String address, String phone,int station) {
 		super();
-		this.medicalRecordLs = medicalRecordLs;
+		this.medicalRecord = medicalRecord;
 		this.address = address;
 		this.phone = phone;
 		this.station = station;
 	}
 	
 	
-	public MedicalRecord getMedicalRecordLs() {
-		return medicalRecordLs;
+	public MedicalRecord getMedicalRecord() {
+		return medicalRecord;
 	}
 
-	public void setMedicalRecordLs(MedicalRecord medicalRecordLs) {
-		this.medicalRecordLs = medicalRecordLs;
+	public void setMedicalRecord(MedicalRecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
 	}
 
 	public String getAddress() {
