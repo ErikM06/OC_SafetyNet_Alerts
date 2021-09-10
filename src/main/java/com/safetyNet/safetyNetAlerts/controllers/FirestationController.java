@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.safetyNetAlerts.DTO.FirestationDTO;
+import com.safetyNet.safetyNetAlerts.DTO.FirestationView;
 import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
@@ -54,7 +54,7 @@ public class FirestationController {
 	
 	// return person info and nb of children by station area
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
-	public FirestationDTO findClosestStationPerHabitant(@PathVariable int station) {
+	public FirestationView findClosestStationPerHabitant(@PathVariable int station) {
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
 	

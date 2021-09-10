@@ -11,7 +11,7 @@ import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.View;
 
 @Component
-public class FirestationDTO {
+public class FirestationView {
 
 	
 	@JsonView (View.Public.class)

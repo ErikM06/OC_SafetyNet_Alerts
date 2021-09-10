@@ -21,6 +21,4 @@ public class PhoneAddressView {
 		this.phoneAddress = phoneAddress;
 	}
 	
-	
-
 }

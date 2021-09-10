@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.safetyNetAlerts.DTO.FirestationDTO;
+import com.safetyNet.safetyNetAlerts.DTO.FirestationView;
 import com.safetyNet.safetyNetAlerts.controllers.FirestationController;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
@@ -35,7 +35,7 @@ public class StationNumberPerHabitantService {
 	MedicalRecordRepository medicalRecordRepository;
 
 	
-	public FirestationDTO findClosestStationPerHabitant(int station) {
+	public FirestationView findClosestStationPerHabitant(int station) {
 
 		
 		LocalDate currentDate = LocalDate.now().minusYears(18);
@@ -45,7 +45,7 @@ public class StationNumberPerHabitantService {
 			      .toInstant());
 		
 
-		FirestationDTO firestationDTO = new FirestationDTO();
+		FirestationView firestationDTO = new FirestationView();
 		
 		List<Date> peopleUnderEighteen = personRepository.getChildrenByStation(station, ageLimit);
 		List<Date> peopleOverEighteen = personRepository.getAdultByStation(station, ageLimit);
