@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriUtils;
 
-import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
+import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
 import com.safetyNet.safetyNetAlerts.DTO.PersonDTO;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
@@ -71,7 +71,7 @@ public class PersonController {
 	
 	// FireAddressService
 	@GetMapping(value ="/fire/address=/{address}")
-	private FireAddressDTO fireAddress (@PathVariable String address) {
+	private FireAddressView fireAddress (@PathVariable String address) {
 		return fireAddressService.fireAddressServiceByAddress(address);
 	
 	}

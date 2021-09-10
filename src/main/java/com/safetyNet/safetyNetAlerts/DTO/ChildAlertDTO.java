@@ -1,4 +1,4 @@
-package com.safetyNet.safetyNetAlerts.models;
+package com.safetyNet.safetyNetAlerts.DTO;
 
 import java.util.Date;
 
@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 
 
 
+@SuppressWarnings("unused")
 @Component
-public class Child {
+public class ChildAlertDTO {
 	
 	@Id
 	
@@ -20,11 +21,11 @@ public class Child {
 	Date birthdate;
 	
 	
-	public Child() {
+	public ChildAlertDTO() {
 		super();
 	}
 
-	public Child(String firstName, String lastName, Date birthdate) {
+	public ChildAlertDTO(String firstName, String lastName, Date birthdate) {
 		super();
 		
 		this.firstName = firstName;

@@ -3,11 +3,12 @@ package com.safetyNet.safetyNetAlerts.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetyNet.safetyNetAlerts.DTO.FireAddress;
-import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
+
+import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
 import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
+@SuppressWarnings("unused")
 @Service
 public class FireAddressService {
 
@@ -18,19 +19,14 @@ public class FireAddressService {
 	MedicalRecordRepository medicalRecordRepository;
 
 	@Autowired
-	FireAddressDTO fireAddressDTO;
+	FireAddressView fireAddressView;
 
-	 /* @Autowired
-	FireAddress fireAddress; */
 
-	public FireAddressDTO fireAddressServiceByAddress(String address) {
+	 public FireAddressView fireAddressServiceByAddress(String address) {
 
-		fireAddressDTO.setFnLnPhoneAddressBirthdate(personRepository.getFnLnPhoneStationBirthdateByStation(address));
-		/* fireAddressDTO.setMedications(medicalRecordRepository.getFireMedicationAndAllergie(fireAddress.getFirstName(),
-				fireAddress.getLastName())); */
+		 fireAddressView.setMedicalRecordLs(medicalRecordRepository.getMedicalRecordByAddress(address));		
+		return fireAddressView;
 
-		return fireAddressDTO;
+	} 
 
-	}
-
-}
+} 

@@ -3,33 +3,18 @@ package com.safetyNet.safetyNetAlerts.models;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.jackson.Jacksonized;
 
 @Entity
 @Table(name = "MedicalRecord")
@@ -38,7 +23,7 @@ import lombok.extern.jackson.Jacksonized;
 public class MedicalRecord {
 
 	@Id
-	@GeneratedValue ( strategy = GenerationType.IDENTITY)
+	@GeneratedValue 
 
 	@Column(name = "id")
 	private int id;
@@ -50,12 +35,10 @@ public class MedicalRecord {
 	private Date birthdate;
 
 	@ElementCollection(targetClass = String.class)
-	@CollectionTable(name = "medications_list", joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
 	@Column(name = "medications")
 	private List<String> medications = new ArrayList<String>();
 
 	@ElementCollection(targetClass = String.class)
-	@CollectionTable(name = "allergies_list", joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"))
 	@Column(name = "allergies")
 	private List<String> allergies = new ArrayList<String>();
 
@@ -109,7 +92,7 @@ public class MedicalRecord {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public List<String> getMedications() {
 		return medications;
 	}
