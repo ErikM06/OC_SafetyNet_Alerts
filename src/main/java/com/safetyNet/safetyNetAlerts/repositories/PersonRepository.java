@@ -42,7 +42,7 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 	/*
 	 * @Query for childAlertService get the age (need to work on this)
 	 */
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.models.Child (p.firstName as firstName ,p.lastName as lastName , "
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p.firstName as firstName ,p.lastName as lastName , "
 			+ " m.birthdate as birthdate) FROM MedicalRecord m  INNER JOIN Person p  "
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
 	public List<ChildAlertDTO> getChildrenByAddress (String address, Date ageLimit);
