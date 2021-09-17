@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
+import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
@@ -46,6 +47,12 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 			+ " m.birthdate as birthdate) FROM MedicalRecord m  INNER JOIN Person p  "
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
 	public List<ChildAlertDTO> getChildrenByAddress (String address, Date ageLimit);
+
+	@Query (value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p.lastName as lastname, p.address as address,"
+			+ "m.birthdate as birthdate, p.email as email, m as medicalRecord) "
+			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
+			+ " WHERE p.firstName =?1 AND p.lastName =?2 GROUP BY p.lastName")
+	public List<PersonInfoDTO> getPersonInfoByFirstnameAndLastname(String firstname, String lastname);
 	
 	
 	
