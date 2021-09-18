@@ -70,7 +70,7 @@ public class FirestationController {
 	}
 	
 	@GetMapping(value ="/flood/stations/stations=/{station}")
-	public FloodView personAndMedicalInfoByListOfStation (@PathVariable int station) {
+	public FloodView personAndMedicalInfoByListOfStation (@PathVariable List<Integer> station) {
 		return floodService.getPersonAndMedicalInfoByListOfStation(station);
 		
 	}

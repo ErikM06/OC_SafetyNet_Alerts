@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -34,12 +35,10 @@ public class MedicalRecord {
 	@Column(name = "birthDate")
 	private Date birthdate;
 
-	@ElementCollection(targetClass = String.class)
-	@Column(name = "medications")
+	@ElementCollection()
 	private List<String> medications = new ArrayList<String>();
 
-	@ElementCollection(targetClass = String.class)
-	@Column(name = "allergies")
+	@ElementCollection()
 	private List<String> allergies = new ArrayList<String>();
 
 	public MedicalRecord() {

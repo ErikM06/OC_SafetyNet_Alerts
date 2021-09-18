@@ -28,7 +28,7 @@ public interface FirestationRepository extends CrudRepository<Firestation, Integ
 			+ " FROM Person p "
 			+ "INNER JOIN MedicalRecord m ON p.firstName = m.firstName AND p.lastName = m.lastName "
 			+ "INNER JOIN Firestation f ON f.address = p.address  WHERE f.station = ?1 ORDER BY p.address")
-	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation (int station);
+	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation (List<Integer> station);
 	
 	
 }

@@ -1,5 +1,7 @@
 package com.safetyNet.safetyNetAlerts.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class FloodService {
 	@Autowired
 	FloodView floodView;
 
-	public FloodView getPersonAndMedicalInfoByListOfStation(int station) {
+	public FloodView getPersonAndMedicalInfoByListOfStation(List<Integer> station) {
 		
 		floodView.setPersonAndMedicalInfoByListOfStation(firestationRepository.getPersonAndMedicalInfoByListOfStation(station));
 		
