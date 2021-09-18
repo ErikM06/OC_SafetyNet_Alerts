@@ -18,6 +18,7 @@ public class PersonInfoService {
 	public PersonInfoView getPersonInfo(String firstname, String lastname) {
 		
 		personInfoView.setPersonInfoLs(personRepository.getPersonInfoByFirstnameAndLastname(firstname, lastname));
+		personInfoView.setPersonWithSameLastName(personRepository.getPersonByLastName(lastname));
 		return personInfoView ;
 		
 	}

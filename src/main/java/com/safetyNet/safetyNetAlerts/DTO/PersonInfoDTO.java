@@ -12,61 +12,51 @@ import com.safetyNet.safetyNetAlerts.models.View;
 
 @Component
 public class PersonInfoDTO {
-	
+
 	@Id
-	
+
 	int id;
-	@JsonView (View.Public.class)
-	String lastname;
-	@JsonView (View.Public.class)
-	String address;
-	@JsonView (View.Internal.class)
-	Date birthdate;
-	@JsonView (View.Public.class)
+
+	@JsonView(View.Public.class)
 	String email;
-	
-	public PersonInfoDTO () {
-		
+	@JsonView(View.Public.class)
+	String address;
+	@JsonView(View.Internal.class)
+	MedicalRecord medicalRecord;
+
+	public PersonInfoDTO() {
+
 	}
 
-	public PersonInfoDTO(String lastname, String address, Date birthdate, String email, MedicalRecord medicalRecord) {
+	public PersonInfoDTO(MedicalRecord medicalRecord, String address, String email) {
 		super();
-		this.lastname = lastname;
-		this.address = address;
-		this.birthdate = birthdate;
-		this.email = email;
+
 		this.medicalRecord = medicalRecord;
+		this.address = address;
+		this.email = email;
 	}
-	MedicalRecord medicalRecord;
-	
-	public String getName() {
-		return lastname;
-	}
-	public void setName(String name) {
-		this.lastname = name;
-	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Date getAge() {
-		return birthdate;
-	}
-	public void setAge(Date age) {
-		this.birthdate = age;
-	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public MedicalRecord getMedicalRecord() {
 		return medicalRecord;
 	}
+
 	public void setMedicalRecord(MedicalRecord medicalRecord) {
 		this.medicalRecord = medicalRecord;
 	}
-	}
+}

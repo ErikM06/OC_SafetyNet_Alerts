@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.DTO.EmailView;
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoView;
 import com.safetyNet.safetyNetAlerts.DTO.PersonView;
 import com.safetyNet.safetyNetAlerts.models.Person;
+import com.safetyNet.safetyNetAlerts.models.View;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
+import com.safetyNet.safetyNetAlerts.services.EmailService;
 import com.safetyNet.safetyNetAlerts.services.FireAddressService;
 import com.safetyNet.safetyNetAlerts.services.PersonInfoService;
 import com.safetyNet.safetyNetAlerts.services.PersonService;
@@ -32,6 +37,9 @@ public class PersonController {
 	
 	@Autowired
 	PersonInfoService personInfoService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@GetMapping("/person")
 
@@ -79,6 +87,10 @@ public class PersonController {
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
 	
+	@GetMapping (value ="communityEmail/city={city}")
+	private EmailView communityEmail (@PathVariable String city) {
+		return emailService.getCommunityEmail(city);
+	}
 	
 	
 }
