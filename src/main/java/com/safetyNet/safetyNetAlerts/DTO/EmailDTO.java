@@ -1,15 +1,18 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
-import javax.persistence.Id;
-
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Component
 public class EmailDTO {
 	
 	
+	@JsonView(EmailView.ViewOnlyEmail.class)
 	String email;
+	@JsonView(EmailView.ViewAllInfo.class)
 	String firstname;
+	@JsonView(EmailView.ViewAllInfo.class)
 	String lastname;
 	
 	public EmailDTO() {

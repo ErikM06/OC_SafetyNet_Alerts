@@ -1,7 +1,5 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
-import java.util.Date;
-
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;

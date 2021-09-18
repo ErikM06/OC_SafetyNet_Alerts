@@ -2,11 +2,11 @@ package com.safetyNet.safetyNetAlerts.models;
 
 public class View {
 	
-	public static class Public {
+	 public interface Public {
 		
 	}
 	
-	public static class Internal extends Public {
+	public  interface Internal extends Public {
 		
 	}
 	
