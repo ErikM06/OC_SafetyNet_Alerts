@@ -1,25 +1,15 @@
 package com.safetyNet.safetyNetAlerts.Views;
 
-import java.util.List;
+import com.safetyNet.safetyNetAlerts.Views.PersonView.PersonContactDetails;
+import com.safetyNet.safetyNetAlerts.Views.PersonView.PersonFirstNameLastname;
 
-import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
-import com.safetyNet.safetyNetAlerts.models.View;
-
-@Component
 public class PhoneAddressView {
 	
-	@JsonView(View.Public.class)
-	public List<PhoneAddressDTO> phoneAddress;
-
-	public List<PhoneAddressDTO> getPhoneAddress() {
-		return phoneAddress;
+	public interface PhoneAddressViewForPerson extends PersonFirstNameLastname, PersonContactDetails {
+		
 	}
 
-	public void setPhoneAddress(List<PhoneAddressDTO> phoneAddress) {
-		this.phoneAddress = phoneAddress;
-	}
+	
 	
 }

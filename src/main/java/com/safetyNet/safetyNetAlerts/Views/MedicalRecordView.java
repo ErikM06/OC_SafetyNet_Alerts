@@ -2,13 +2,13 @@ package com.safetyNet.safetyNetAlerts.Views;
 
 public class MedicalRecordView {
 	
-	public interface firstNameLastName {
+	public interface MedicalRecordfirstNameLastName {
 		
 	}
-	 public interface birthdate {
+	 public interface Birthdate {
 		 
 	}
-	 public interface medicationAndAllergie {
+	 public interface MedicationAndAllergie {
 		 
 	 }
 }

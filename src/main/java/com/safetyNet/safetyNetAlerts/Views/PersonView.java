@@ -2,15 +2,15 @@ package com.safetyNet.safetyNetAlerts.Views;
 
 public class PersonView {
 	
-	public interface personFirstNameLastname {
+	public interface PersonFirstNameLastname {
 		
 	}
 	
-	public interface personAddress {
+	public interface PersonAddress {
 		
 	}
 	
-	public interface personContactDetails {
+	public interface PersonContactDetails {
 		
 	}
 

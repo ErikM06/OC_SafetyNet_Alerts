@@ -31,19 +31,19 @@ public class MedicalRecord {
 	
 	@Column(name = "id")
 	private int id;
-	@JsonView(MedicalRecordView.firstNameLastName.class)
+	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
 	@Column(name = "firstName")
 	private String firstName;
-	@JsonView(MedicalRecordView.firstNameLastName.class)
+	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
 	@Column(name = "lastName")
 	private String lastName;
-	@JsonView(MedicalRecordView.birthdate.class)
+	@JsonView(MedicalRecordView.Birthdate.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
-	@JsonView(MedicalRecordView.medicationAndAllergie.class)
+	@JsonView(MedicalRecordView.MedicationAndAllergie.class)
 	@ElementCollection()
 	private List<String> medications = new ArrayList<String>();
-	@JsonView(MedicalRecordView.medicationAndAllergie.class)
+	@JsonView(MedicalRecordView.MedicationAndAllergie.class)
 	@ElementCollection()
 	private List<String> allergies = new ArrayList<String>();
 

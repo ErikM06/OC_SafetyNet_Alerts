@@ -15,17 +15,16 @@ public class FirestationNumber {
 	@Autowired
 	FirestationRepository firestationRepository;
 	
-	@Autowired
-	PhoneAddressView phoneAddressDTO;
 	
 	
-	public PhoneAddressView firestationNumberPhone(int station) {
+	
+	public List<PhoneAddressDTO>firestationNumberPhone(int station) {
 		
 		List<PhoneAddressDTO> phoneAddressByStation = firestationRepository.findPhoneByStation(station);
 		
-		phoneAddressDTO.setPhoneAddress(phoneAddressByStation);
 		
-		return phoneAddressDTO;
+		
+		return phoneAddressByStation;
 		
 		
 	}

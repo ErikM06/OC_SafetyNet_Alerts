@@ -18,17 +18,17 @@ public class Person {
 	@GeneratedValue
 	
 	private int id;
-	@JsonView(PersonView.personFirstNameLastname.class)
+	@JsonView(PersonView.PersonFirstNameLastname.class)
 	private String firstName;
-	@JsonView(PersonView.personFirstNameLastname.class)
+	@JsonView(PersonView.PersonFirstNameLastname.class)
 	private String lastName;
-	@JsonView(PersonView.personAddress.class)
+	@JsonView(PersonView.PersonAddress.class)
 	private String address;
 	private String city;
 	private String zip;
-	@JsonView(PersonView.personContactDetails.class)
+	@JsonView(PersonView.PersonContactDetails.class)
 	private String phone;
-	@JsonView(PersonView.personContactDetails.class)
+	@JsonView(PersonView.PersonContactDetails.class)
 	private String email;
 	
 	//added a default constructeur bc Jackson looking for POJO (which is a class without restriction)

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.DTO.FloodDTO;
-import com.safetyNet.safetyNetAlerts.Views.FirestationView;
+import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
+import com.safetyNet.safetyNetAlerts.Views.FirestationNumberView;
 import com.safetyNet.safetyNetAlerts.Views.FloodView;
 import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
@@ -61,13 +62,14 @@ public class FirestationController {
 	
 	// return person info and nb of children by station area
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
-	public FirestationView findClosestStationPerHabitant(@PathVariable int station) {
+	public FirestationNumberView findClosestStationPerHabitant(@PathVariable int station) {
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
 	
 	// return phone and address for a firestation
+	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
 	@GetMapping(value = "/phoneAlert/firestation=/{station}")
-	public PhoneAddressView firestationNumber (@PathVariable int station) {
+	public List<PhoneAddressDTO> firestationNumber (@PathVariable int station) {
 		return firestationNumber.firestationNumberPhone(station);	
 	}
 	

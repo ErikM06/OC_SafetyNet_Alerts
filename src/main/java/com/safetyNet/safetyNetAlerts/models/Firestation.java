@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
+import com.safetyNet.safetyNetAlerts.Views.FirestationView;
+
 @Table
 @Entity
 public class Firestation {
@@ -14,7 +18,9 @@ public class Firestation {
 	@Id
 	@GeneratedValue
 	private int id;
+	@JsonView(FirestationView.firestationAddress.class)
 	private String address;
+	@JsonView(FirestationView.firestationNumber.class)
     private int station;
     
     public Firestation () {
