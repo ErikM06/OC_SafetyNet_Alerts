@@ -83,7 +83,7 @@ public class PersonController {
 		
 	//PersoInfoService
 	
-	@JsonView(View.Public.class)
+	@JsonView(PersonInfoView.personInfoView.class)
 	@GetMapping (value ="personInfo/firstName={firstname}&lastName={lastname}")
 	private PersonInfoView personInfo (@PathVariable String firstname, @PathVariable String lastname) {
 		return personInfoService.getPersonInfo(firstname, lastname);

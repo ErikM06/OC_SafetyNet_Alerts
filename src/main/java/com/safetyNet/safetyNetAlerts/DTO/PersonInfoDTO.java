@@ -1,6 +1,6 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Id;
 
@@ -11,22 +11,20 @@ import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 
 @Component
 public class PersonInfoDTO {
-
 	@Id
+	private int id;
+	@JsonView(PersonInfoView.personInfoView.class)
+	private String lastName;
+	@JsonView(PersonInfoView.personInfoView.class)
+	private Date birthdate;
+	@JsonView(PersonInfoView.personInfoView.class)
+	private String email;
+	@JsonView(PersonInfoView.personInfoView.class)
+	private String address;
+	@JsonView(PersonInfoView.personInfoView.class)
+	private MedicalRecord medicalRecord;
 
-	int id;
-
-	@JsonView(PersonInfoView.personInfoView.class)
-	String lastName;
-	@JsonView(PersonInfoView.personInfoView.class)
-	Date birthdate;
-	@JsonView(PersonInfoView.personInfoView.class)
-	String email;
-	@JsonView(PersonInfoView.personInfoView.class)
-	String address;
 	
-	MedicalRecord medicalRecord;
-
 	public PersonInfoDTO(String lastName, Date birthdate, String email, String address, MedicalRecord medicalRecord) {
 		super();
 		this.lastName = lastName;

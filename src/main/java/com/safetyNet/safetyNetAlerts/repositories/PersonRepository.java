@@ -10,10 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
-import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
-@SuppressWarnings("unused")
+
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Integer> {
 
@@ -52,7 +51,7 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p.lastName as lastName, m.birthdate as birthdate, p.email as email, "
 			+ " p.address as address, m as medicalRecord) "
 			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
-			+ " WHERE p.firstName =?1 AND p.lastName =?2 GROUP BY p.lastName")
+			+ " WHERE p.firstName =?1 AND p.lastName =?2 ")
 	public List<PersonInfoDTO> getPersonInfoByFirstnameAndLastname(String firstname, String lastname);
 
 	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p.lastName as lastName , m.birthdate as birthdate, p.email as email, "
