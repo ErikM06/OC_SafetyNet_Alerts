@@ -6,7 +6,9 @@ import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
+import com.safetyNet.safetyNetAlerts.models.View;
 
 @Component
 public class PersonInfoDTO {
@@ -14,9 +16,13 @@ public class PersonInfoDTO {
 	@Id
 	
 	int id;
+	@JsonView (View.Public.class)
 	String lastname;
+	@JsonView (View.Public.class)
 	String address;
+	@JsonView (View.Internal.class)
 	Date birthdate;
+	@JsonView (View.Public.class)
 	String email;
 	
 	public PersonInfoDTO () {

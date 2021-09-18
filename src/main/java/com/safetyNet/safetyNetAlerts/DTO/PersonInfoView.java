@@ -10,7 +10,7 @@ import com.safetyNet.safetyNetAlerts.models.View;
 @Component
 public class PersonInfoView {
 	
-	@JsonView (View.Public.class)
+	
 	public List<PersonInfoDTO>personInfoLs;
 
 	public List<PersonInfoDTO> getPersonInfoLs() {

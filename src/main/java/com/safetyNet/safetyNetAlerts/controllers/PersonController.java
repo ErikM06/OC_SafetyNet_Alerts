@@ -1,11 +1,6 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriUtils;
-
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoView;
 import com.safetyNet.safetyNetAlerts.DTO.PersonView;
 import com.safetyNet.safetyNetAlerts.models.Person;
-import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
 import com.safetyNet.safetyNetAlerts.services.FireAddressService;
 import com.safetyNet.safetyNetAlerts.services.PersonInfoService;
@@ -81,6 +73,7 @@ public class PersonController {
 	}
 		
 	//PersoInfoService
+	
 	@GetMapping (value ="personInfo/firstName={firstname}&lastName={lastname}")
 	private PersonInfoView personInfo (@PathVariable String firstname, @PathVariable String lastname) {
 		return personInfoService.getPersonInfo(firstname, lastname);
