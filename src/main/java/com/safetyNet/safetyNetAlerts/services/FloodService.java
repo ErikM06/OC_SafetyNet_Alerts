@@ -5,22 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetyNet.safetyNetAlerts.DTO.FloodView;
+import com.safetyNet.safetyNetAlerts.DTO.FloodDTO;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
 public class FloodService {
+	
 	@Autowired
 	FirestationRepository firestationRepository;
 	
-	@Autowired
-	FloodView floodView;
 
-	public FloodView getPersonAndMedicalInfoByListOfStation(List<Integer> station) {
+	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(List<Integer> station) {
 		
-		floodView.setPersonAndMedicalInfoByListOfStation(firestationRepository.getPersonAndMedicalInfoByListOfStation(station));
+		List<FloodDTO> floodDTOLs = firestationRepository.getPersonAndMedicalInfoByListOfStation(station);
 		
-		return floodView;
+		return floodDTOLs;
 	}
 
 	

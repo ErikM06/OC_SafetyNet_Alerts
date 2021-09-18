@@ -17,9 +17,8 @@ import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
 import com.safetyNet.safetyNetAlerts.Views.EmailView;
 import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.Views.PersonInfoView;
-import com.safetyNet.safetyNetAlerts.Views.PersonView;
+import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
 import com.safetyNet.safetyNetAlerts.models.Person;
-import com.safetyNet.safetyNetAlerts.models.View;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
 import com.safetyNet.safetyNetAlerts.services.EmailService;
 import com.safetyNet.safetyNetAlerts.services.FireAddressService;
@@ -73,7 +72,7 @@ public class PersonController {
 	
 	// ChildAltertService
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private PersonView childAltert (@PathVariable String address) {
+	private ChildAlertView childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 	}
 	

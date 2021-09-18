@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.safetyNetAlerts.DTO.FloodView;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.DTO.FloodDTO;
 import com.safetyNet.safetyNetAlerts.Views.FirestationView;
+import com.safetyNet.safetyNetAlerts.Views.FloodView;
 import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
@@ -69,8 +71,9 @@ public class FirestationController {
 		return firestationNumber.firestationNumberPhone(station);	
 	}
 	
+	@JsonView(FloodView.floodView.class)
 	@GetMapping(value ="/flood/stations/stations=/{station}")
-	public FloodView personAndMedicalInfoByListOfStation (@PathVariable List<Integer> station) {
+	public List<FloodDTO> personAndMedicalInfoByListOfStation (@PathVariable List<Integer> station) {
 		return floodService.getPersonAndMedicalInfoByListOfStation(station);
 		
 	}

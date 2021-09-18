@@ -4,41 +4,41 @@ import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.FloodView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
+import com.safetyNet.safetyNetAlerts.models.Person;
 
 @Component
 public class FloodDTO {
 
 	@Id
 	private int id;
-	private String address;
-	private String phone;
+	@JsonView(FloodView.floodView.class)
+	private Person person;
+	@JsonView(FloodView.floodView.class)
 	private MedicalRecord medicalRecord;
 	
 	public FloodDTO () {
 		
 	}
 	
-	public FloodDTO(String address, String phone, MedicalRecord medicalRecord) {
+	public FloodDTO(Person person, MedicalRecord medicalRecord) {
 		super();
-		this.address = address;
-		this.phone = phone;
+		this.person = person;
 		this.medicalRecord = medicalRecord;
 	}
 	
 	
-	public String getAddress() {
-		return address;
+	
+	public Person getPerson() {
+		return person;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+
 	public MedicalRecord getMedicalRecord() {
 		return medicalRecord;
 	}

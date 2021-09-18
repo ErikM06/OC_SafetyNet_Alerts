@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.MedicalRecordView;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,19 +31,19 @@ public class MedicalRecord {
 	
 	@Column(name = "id")
 	private int id;
-	@JsonView(View.Internal.class)
+	@JsonView(MedicalRecordView.firstNameLastName.class)
 	@Column(name = "firstName")
 	private String firstName;
-	@JsonView(View.Internal.class)
+	@JsonView(MedicalRecordView.firstNameLastName.class)
 	@Column(name = "lastName")
 	private String lastName;
-	@JsonView(View.Internal.class)
+	@JsonView(MedicalRecordView.birthdate.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
-	@JsonView(View.Public.class)
+	@JsonView(MedicalRecordView.medicationAndAllergie.class)
 	@ElementCollection()
 	private List<String> medications = new ArrayList<String>();
-	@JsonView(View.Public.class)
+	@JsonView(MedicalRecordView.medicationAndAllergie.class)
 	@ElementCollection()
 	private List<String> allergies = new ArrayList<String>();
 

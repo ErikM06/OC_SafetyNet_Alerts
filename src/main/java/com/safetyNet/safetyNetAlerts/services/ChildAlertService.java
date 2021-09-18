@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
-import com.safetyNet.safetyNetAlerts.Views.PersonView;
+import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
@@ -20,9 +20,9 @@ public class ChildAlertService {
 	PersonRepository personRepository;
 
 	@Autowired
-	PersonView personDTO;
+	ChildAlertView personDTO;
 
-	public PersonView childAlterService(String address) {
+	public ChildAlertView childAlterService(String address) {
 
 		LocalDate currentDate = LocalDate.now().minusYears(18);
 

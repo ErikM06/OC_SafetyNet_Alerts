@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.PersonView;
+
 @Table 
 @Entity
 public class Person {
@@ -15,12 +18,17 @@ public class Person {
 	@GeneratedValue
 	
 	private int id;
+	@JsonView(PersonView.personFirstNameLastname.class)
 	private String firstName;
+	@JsonView(PersonView.personFirstNameLastname.class)
 	private String lastName;
+	@JsonView(PersonView.personAddress.class)
 	private String address;
 	private String city;
 	private String zip;
+	@JsonView(PersonView.personContactDetails.class)
 	private String phone;
+	@JsonView(PersonView.personContactDetails.class)
 	private String email;
 	
 	//added a default constructeur bc Jackson looking for POJO (which is a class without restriction)
