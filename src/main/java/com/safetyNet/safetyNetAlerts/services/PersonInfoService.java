@@ -15,6 +15,7 @@ public class PersonInfoService {
 	@Autowired
 	PersonInfoView personInfoView;
 	
+	
 	public PersonInfoView getPersonInfo(String firstname, String lastname) {
 		
 		personInfoView.setPersonInfoLs(personRepository.getPersonInfoByFirstnameAndLastname(firstname, lastname));
