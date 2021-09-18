@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
-import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
+import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 
 @Repository

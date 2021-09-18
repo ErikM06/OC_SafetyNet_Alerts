@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
-import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressView;
+import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service

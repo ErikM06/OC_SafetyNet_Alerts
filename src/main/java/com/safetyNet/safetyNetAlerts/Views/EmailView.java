@@ -1,4 +1,4 @@
-package com.safetyNet.safetyNetAlerts.DTO;
+package com.safetyNet.safetyNetAlerts.Views;
 
 public class EmailView {
 

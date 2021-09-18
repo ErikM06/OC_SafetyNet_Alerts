@@ -3,6 +3,7 @@ package com.safetyNet.safetyNetAlerts.DTO;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.EmailView;
 
 @Component
 public class EmailDTO {

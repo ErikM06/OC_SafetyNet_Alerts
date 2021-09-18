@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
-import com.safetyNet.safetyNetAlerts.DTO.EmailView;
-import com.safetyNet.safetyNetAlerts.DTO.FireAddressView;
-import com.safetyNet.safetyNetAlerts.DTO.PersonInfoView;
-import com.safetyNet.safetyNetAlerts.DTO.PersonView;
+import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
+import com.safetyNet.safetyNetAlerts.Views.EmailView;
+import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
+import com.safetyNet.safetyNetAlerts.Views.PersonInfoView;
+import com.safetyNet.safetyNetAlerts.Views.PersonView;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.models.View;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
@@ -85,7 +86,7 @@ public class PersonController {
 	
 	@JsonView(PersonInfoView.personInfoView.class)
 	@GetMapping (value ="personInfo/firstName={firstname}&lastName={lastname}")
-	private PersonInfoView personInfo (@PathVariable String firstname, @PathVariable String lastname) {
+	private List<PersonInfoDTO> personInfo (@PathVariable String firstname, @PathVariable String lastname) {
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
 	

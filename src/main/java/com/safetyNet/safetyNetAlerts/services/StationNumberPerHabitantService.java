@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.safetyNetAlerts.DTO.FirestationView;
+import com.safetyNet.safetyNetAlerts.Views.FirestationView;
 import com.safetyNet.safetyNetAlerts.controllers.FirestationController;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;

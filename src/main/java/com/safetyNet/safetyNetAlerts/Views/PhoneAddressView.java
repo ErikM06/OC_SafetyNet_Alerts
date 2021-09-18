@@ -1,10 +1,11 @@
-package com.safetyNet.safetyNetAlerts.DTO;
+package com.safetyNet.safetyNetAlerts.Views;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
 import com.safetyNet.safetyNetAlerts.models.View;
 
 @Component

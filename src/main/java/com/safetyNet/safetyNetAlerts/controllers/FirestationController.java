@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.safetyNetAlerts.DTO.FirestationView;
 import com.safetyNet.safetyNetAlerts.DTO.FloodView;
-import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressView;
+import com.safetyNet.safetyNetAlerts.Views.FirestationView;
+import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
 import com.safetyNet.safetyNetAlerts.services.FirestationService;
