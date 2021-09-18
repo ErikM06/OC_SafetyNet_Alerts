@@ -4,6 +4,8 @@ import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 
 @Component
@@ -11,9 +13,13 @@ public class FireAddressDTO {
 	
 	@Id
 	private int id;
+	@JsonView(FireAddressView.fireAddressView.class)
 	private MedicalRecord medicalRecord;
+	@JsonView(FireAddressView.fireAddressView.class)
 	private String address;
+	@JsonView(FireAddressView.fireAddressView.class)
 	private String phone;
+	@JsonView(FireAddressView.fireAddressView.class)
 	private int station;
 	
 	public FireAddressDTO() {

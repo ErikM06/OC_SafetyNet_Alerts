@@ -8,22 +8,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.View;
+import com.safetyNet.safetyNetAlerts.models.View.Internal;
+import com.safetyNet.safetyNetAlerts.models.View.Public;
 
 @Component
 public class FireAddressView {
 	
-	@JsonView(View.Public.class)
-	List<FireAddressDTO> medicalRecordLs;
-	
-	
-	
-	
-	public List<FireAddressDTO> getMedicalRecordLs() {
-		return medicalRecordLs;
+	public interface fireAddressView extends Internal {
+		
 	}
-
-	public void setMedicalRecordLs(List<FireAddressDTO> medicalRecordLs) {
-		this.medicalRecordLs = medicalRecordLs;
-	}
+	
 
 }

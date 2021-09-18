@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
+import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
 import com.safetyNet.safetyNetAlerts.Views.EmailView;
 import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
@@ -77,8 +78,9 @@ public class PersonController {
 	}
 	
 	// FireAddressService
+	@JsonView(FireAddressView.fireAddressView.class)
 	@GetMapping(value ="/fire/address=/{address}")
-	private FireAddressView fireAddress (@PathVariable String address) {
+	private List<FireAddressDTO> fireAddress (@PathVariable String address) {
 		return fireAddressService.fireAddressServiceByAddress(address);
 	}
 		

@@ -28,12 +28,16 @@ public class MedicalRecord {
 	@Id
 	@GeneratedValue 
 	
+	
 	@Column(name = "id")
 	private int id;
+	@JsonView(View.Internal.class)
 	@Column(name = "firstName")
 	private String firstName;
+	@JsonView(View.Internal.class)
 	@Column(name = "lastName")
 	private String lastName;
+	@JsonView(View.Internal.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
 	@JsonView(View.Public.class)
