@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.models.Person;
-import com.safetyNet.safetyNetAlerts.models.View;
+
 
 @Component
 public class FirestationNumberView {
 
 	
-	@JsonView (View.Public.class)
+	@JsonView 
 	Integer nbChildren;
 	
 	public Integer getNbChildren() {
@@ -25,7 +25,7 @@ public class FirestationNumberView {
 		this.nbChildren = nbChildren;
 	}
 	
-	@JsonView (View.Public.class)
+	@JsonView 
 	Integer nbAdults;
 	
 	public Integer getNbAdults () {
@@ -36,7 +36,7 @@ public class FirestationNumberView {
 		this.nbAdults = nbAdults;
 	}
 
-	@JsonView (View.Public.class)
+	@JsonView 
 	List<Person>persons;
 	
 	public List<Person> getPersons() {

@@ -84,7 +84,6 @@ public class PersonController {
 	}
 		
 	//PersoInfoService
-	
 	@JsonView(PersonInfoView.personInfoView.class)
 	@GetMapping (value ="personInfo/firstName={firstname}&lastName={lastname}")
 	private List<PersonInfoDTO> personInfo (@PathVariable String firstname, @PathVariable String lastname) {

@@ -25,8 +25,7 @@ public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, I
 	 * @Query for fireAddress
 	 */
 	
-	  @Query (value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO (m as medicalRecordLs, p.address as address,"
-			+ "p.phone as phone, f.station as station )"
+	  @Query (value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO (p as personLs ,m as medicalRecordLs )"
 			+ "	 FROM MedicalRecord m "
      		+ " INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
      		+ " INNER JOIN Firestation f ON p.address = f.address"
