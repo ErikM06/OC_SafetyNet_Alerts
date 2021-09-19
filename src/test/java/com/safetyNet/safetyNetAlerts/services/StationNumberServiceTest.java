@@ -12,13 +12,13 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
 
-class StationNumberPerHabitantServiceTest {
+class StationNumberServiceTest {
 	
 	@Autowired
 	FirestationRepository firestationRepository;
 	
 	@Autowired
-	StationNumberPerHabitantService stationNumberPerHabitantService ;
+	StationNumberService stationNumberPerHabitantService ;
 	
 	@Autowired
 	PersonRepository personRepository;

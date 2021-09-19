@@ -22,7 +22,7 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
 import com.safetyNet.safetyNetAlerts.services.FirestationService;
 import com.safetyNet.safetyNetAlerts.services.FloodService;
-import com.safetyNet.safetyNetAlerts.services.StationNumberPerHabitantService;
+import com.safetyNet.safetyNetAlerts.services.StationNumberService;
 
 @RestController
 public class FirestationController {
@@ -31,7 +31,7 @@ public class FirestationController {
 	FirestationService firestationService;
 	
 	@Autowired
-	StationNumberPerHabitantService stationNumberPerHabitantService;
+	StationNumberService stationNumberPerHabitantService;
 	
 	@Autowired
 	FirestationNumber firestationNumber;

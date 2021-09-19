@@ -23,7 +23,7 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 	 * 
 	 */
 @Service
-public class StationNumberPerHabitantService {
+public class StationNumberService {
 
 	@Autowired
 	FirestationRepository firestationRepository;
