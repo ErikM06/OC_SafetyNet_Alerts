@@ -48,15 +48,13 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
 	public List<ChildAlertDTO> getChildrenByAddress(String address, Date ageLimit);
 
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p.firstName as firstName, p.lastName as lastName, m.birthdate as birthdate, p.email as email, "
-			+ " p.address as address, m as medicalRecord) "
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Person, m as medicalRecord) "
 			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE p.firstName =?1 AND p.lastName =?2  ")
 			
 	public List<PersonInfoDTO> getPersonInfoByFirstnameAndLastname(String firstname, String lastname);
 
-	 @Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p.firstName as firstName, p.lastName as lastName , m.birthdate as birthdate, p.email as email, "
-			+ " p.address as address, m as medicalRecord)"
+	 @Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Person, m as medicalRecord)"
 			+ " FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE  p.lastName =?1 ")
 	public List<PersonInfoDTO> getPersonByLastName(String lastname); 
