@@ -7,9 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
+import com.safetyNet.safetyNetAlerts.Views.EmailView;
+import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 
@@ -36,18 +39,19 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	/*
 	 * @Query for ChildAlertService
 	 */
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p as person, m as medicalRecord )"
+	
+	@Query(value = "SELECT p "
 			+ "FROM Person p INNER JOIN MedicalRecord m"
-			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 ")
-	public List<ChildAlertDTO> getFamilyByAddress(String address);
+			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 AND m.birthdate < ?2 ORDER BY m.birthdate DESC ")
+	public List<Person> getFamilyByAddress(String address, Date ageLimit);
 
 	/*
 	 * @Query for childAlertService get the age (need to work on this)
 	 */
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p as person, m as medicalRecord)"
+	@Query(value = "SELECT  m "
 			+ " FROM MedicalRecord m  INNER JOIN Person p  "
-			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
-	public List<ChildAlertDTO> getChildrenByAddress(String address, Date ageLimit);
+			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 AND m.birthdate > ?2 ORDER BY m.birthdate DESC")
+	public List<MedicalRecord> getChildrenByAddress(String address, Date ageLimit);
 
 	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as person, m as medicalRecord) "
 			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"

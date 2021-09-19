@@ -74,7 +74,7 @@ public class PersonController {
 	// ChildAltertService
 	@JsonView(ChildAlertView.View.class)
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private List<ChildAlertDTO> childAltert (@PathVariable String address) {
+	private ChildAlertDTO childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 	}
 	

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
 import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
+import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
@@ -20,25 +21,22 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 public class ChildAlertService {
 	@Autowired
 	PersonRepository personRepository;
+	
+	@Autowired
+	ChildAlertDTO childAlertDTO;
 
 
-	public List<ChildAlertDTO> childAlterService(String address) {
+	public ChildAlertDTO childAlterService(String address) {
 
 		LocalDate currentDate = LocalDate.now().minusYears(18);
 
 		Date ageLimit = Date.from(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 		
-		List<ChildAlertDTO> getPersonByAddress = personRepository.getFamilyByAddress(address);
-		List<ChildAlertDTO> getChildrenByAddress = personRepository.getChildrenByAddress(address, ageLimit);
-		List<ChildAlertDTO> childAlertLs = Stream
-				.concat(getChildrenByAddress.stream(), getPersonByAddress.stream())
-				.collect(Collectors.toList());
-		
-		
+		childAlertDTO.setPersonLs(personRepository.getFamilyByAddress(address, ageLimit));
+		childAlertDTO.setMedicalRecordLs(personRepository.getChildrenByAddress(address, ageLimit));
+			
 
-		
-
-		return childAlertLs ;
+		return childAlertDTO ;
 
 	}
 }

@@ -1,6 +1,6 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
 
@@ -11,30 +11,32 @@ import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
-import lombok.Data;
-
 
 @Component
-@Data
+
 public class ChildAlertDTO {
 	
 	@Id
 	private int id;
-	@JsonView (ChildAlertView.ViewForFamily.class)
-	private Person personLs;
+	
 	@JsonView (ChildAlertView.View.class)
-	private MedicalRecord medicalRecordLs;
-
-	public ChildAlertDTO() {
-		super();
+	private List<MedicalRecord> medicalRecordLs;
+	
+	@JsonView (ChildAlertView.ViewForFamily.class)
+	private List<Person>personLs;
+	
+	public List<Person> getPersonLs() {
+		return personLs;
 	}
-
-	public ChildAlertDTO(Person personLs, MedicalRecord medicalRecordLs) {
-		super();
+	public void setPersonLs(List<Person> personLs) {
 		this.personLs = personLs;
+	}
+	public List<MedicalRecord> getMedicalRecordLs() {
+		return medicalRecordLs;
+	}
+	public void setMedicalRecordLs(List<MedicalRecord> medicalRecordLs) {
 		this.medicalRecordLs = medicalRecordLs;
 	}
-	
 	
 	
 }
