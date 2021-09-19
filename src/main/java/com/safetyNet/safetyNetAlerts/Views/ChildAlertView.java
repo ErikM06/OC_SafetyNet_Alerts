@@ -11,7 +11,7 @@ public class ChildAlertView {
 		
 	}
 	
-	public interface View extends  ViewForFamily,MedicalRecordfirstNameLastName, Birthdate {
+	public interface View extends  ViewForFamily,MedicalRecordfirstNameLastName,Birthdate {
 		
 	}
 }
