@@ -59,7 +59,7 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 			+ " WHERE  p.lastName =?1 ")
 	public List<PersonInfoDTO> getPersonByLastName(String lastname); 
 	
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.EmailDTO (p.email as email, p.firstName as firstname, p.lastName as lastname)"
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.EmailDTO (p as Person)"
 			+ "FROM Person p WHERE p.city = ?1")
 	public List<EmailDTO> getAllEmailFromCity (String city);
 
