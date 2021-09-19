@@ -1,5 +1,7 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
+import javax.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -12,8 +14,9 @@ import lombok.Data;
 @Data
 public class EmailDTO {
 	
-	
-	@JsonView(EmailView.ViewOnlyEmail.class)
+	@Id
+	private int id;
+	@JsonView(EmailView.View.class)
 	private Person person;
 	
 	public EmailDTO() {

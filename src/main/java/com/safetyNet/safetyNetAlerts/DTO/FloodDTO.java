@@ -9,7 +9,10 @@ import com.safetyNet.safetyNetAlerts.Views.FloodView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
+import lombok.Data;
+
 @Component
+@Data
 public class FloodDTO {
 
 	@Id
@@ -26,23 +29,6 @@ public class FloodDTO {
 	public FloodDTO(Person person, MedicalRecord medicalRecord) {
 		super();
 		this.person = person;
-		this.medicalRecord = medicalRecord;
-	}
-	
-	
-	
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public MedicalRecord getMedicalRecord() {
-		return medicalRecord;
-	}
-	public void setMedicalRecord(MedicalRecord medicalRecord) {
 		this.medicalRecord = medicalRecord;
 	}
 

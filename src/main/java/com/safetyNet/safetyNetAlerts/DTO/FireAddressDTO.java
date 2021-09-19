@@ -9,7 +9,10 @@ import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
+import lombok.Data;
+
 @Component
+@Data
 public class FireAddressDTO {
 
 	@Id
@@ -29,22 +32,6 @@ public class FireAddressDTO {
 		this.personLs = personLs;
 		this.medicalRecordLs = medicalRecordLs;
 
-	}
-
-	public Person getPersonLs() {
-		return personLs;
-	}
-
-	public void setPersonLs(Person personLs) {
-		this.personLs = personLs;
-	}
-
-	public MedicalRecord getMedicalRecord() {
-		return medicalRecordLs;
-	}
-
-	public void setMedicalRecord(MedicalRecord medicalRecordLs) {
-		this.medicalRecordLs = medicalRecordLs;
 	}
 
 }

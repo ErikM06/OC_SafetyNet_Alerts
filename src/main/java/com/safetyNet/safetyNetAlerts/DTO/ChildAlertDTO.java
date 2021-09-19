@@ -2,60 +2,39 @@ package com.safetyNet.safetyNetAlerts.DTO;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
+import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
+import com.safetyNet.safetyNetAlerts.models.Person;
+
+import lombok.Data;
 
 
-@SuppressWarnings("unused")
 @Component
+@Data
 public class ChildAlertDTO {
 	
 	@Id
-	
-	int id;
-	String firstName;
-	String lastName;
-	Date birthdate;
-	
-	
+	private int id;
+	@JsonView (ChildAlertView.ViewForFamily.class)
+	private Person personLs;
+	@JsonView (ChildAlertView.View.class)
+	private MedicalRecord medicalRecordLs;
+
 	public ChildAlertDTO() {
 		super();
 	}
 
-	public ChildAlertDTO(String firstName, String lastName, Date birthdate) {
+	public ChildAlertDTO(Person personLs, MedicalRecord medicalRecordLs) {
 		super();
-		
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthdate = birthdate;
-		
+		this.personLs = personLs;
+		this.medicalRecordLs = medicalRecordLs;
 	}
-
-	public Date getBirthdate() {
-		return birthdate;
-	}
-
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
+	
+	
+	
 }

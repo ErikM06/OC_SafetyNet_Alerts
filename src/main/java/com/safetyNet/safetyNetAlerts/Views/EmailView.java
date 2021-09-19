@@ -5,7 +5,7 @@ import com.safetyNet.safetyNetAlerts.Views.PersonView.PersonFirstNameLastname;
 
 public class EmailView {
 
-	public interface ViewOnlyEmail extends PersonFirstNameLastname, PersonContactDetails{
+	public interface View extends PersonFirstNameLastname, PersonContactDetails{
 
 	}
 

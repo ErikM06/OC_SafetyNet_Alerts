@@ -9,7 +9,10 @@ import com.safetyNet.safetyNetAlerts.Views.PersonInfoView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
+import lombok.Data;
+
 @Component
+@Data
 public class PersonInfoDTO {
 	@Id
 	private int id;
@@ -26,17 +29,4 @@ public class PersonInfoDTO {
 		this.personLs = personLs;
 		this.medicalRecordLs = medicalRecordLs;
 	}
-	public Person getPersonLs() {
-		return personLs;
-	}
-	public void setPersonLs(Person personLs) {
-		this.personLs = personLs;
-	}
-	public MedicalRecord getMedicalRecordLs() {
-		return medicalRecordLs;
-	}
-	public void setMedicalRecordLs(MedicalRecord medicalRecordLs) {
-		this.medicalRecordLs = medicalRecordLs;
-	}
-	
 }

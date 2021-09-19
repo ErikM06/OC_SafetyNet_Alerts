@@ -1,36 +1,16 @@
 package com.safetyNet.safetyNetAlerts.Views;
 
-import java.util.List;
+import com.safetyNet.safetyNetAlerts.Views.MedicalRecordView.Birthdate;
+import com.safetyNet.safetyNetAlerts.Views.PersonView.PersonFirstNameLastname;
 
-import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
-import com.safetyNet.safetyNetAlerts.models.Person;
-
-@Component
 public class ChildAlertView {
 	
-	@JsonView
-	List<ChildAlertDTO>childrenByAddress;
-
-	public List<ChildAlertDTO> getChildrenByAddress() {
-		return childrenByAddress;
-	}
-
-	public void setChildrenByAddress(List<ChildAlertDTO> childrenByAddress) {
-		this.childrenByAddress = childrenByAddress;
+	public interface ViewForFamily extends PersonFirstNameLastname {
+		
 	}
 	
-	@JsonView
-	List<Person>personByAddress;
-
-	public List<Person> getPersonByAddress() {
-		return personByAddress;
-	}
-
-	public void setPersonByAddress(List<Person> personByAddress) {
-		this.personByAddress = personByAddress;
-	}
+	public interface View extends  ViewForFamily, Birthdate {
 		
+	}
 }

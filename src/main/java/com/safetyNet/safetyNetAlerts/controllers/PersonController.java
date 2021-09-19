@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
 import com.safetyNet.safetyNetAlerts.DTO.FireAddressDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
@@ -71,8 +72,9 @@ public class PersonController {
 	}
 	
 	// ChildAltertService
+	@JsonView(ChildAlertView.View.class)
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private ChildAlertView childAltert (@PathVariable String address) {
+	private List<ChildAlertDTO> childAltert (@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 	}
 	
@@ -90,7 +92,7 @@ public class PersonController {
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
 	
-	@JsonView(EmailView.ViewOnlyEmail.class)
+	@JsonView(EmailView.View.class)
 	@GetMapping (value ="communityEmail/city={city}")
 	private List<EmailDTO> communityEmail (@PathVariable String city) {
 		return emailService.getCommunityEmail(city);

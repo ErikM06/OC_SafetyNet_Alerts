@@ -36,25 +36,26 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	/*
 	 * @Query for ChildAlertService
 	 */
-	@Query(value = "SELECT p FROM Person p INNER JOIN MedicalRecord m"
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p as person, m as medicalRecord )"
+			+ "FROM Person p INNER JOIN MedicalRecord m"
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 ")
-	public List<Person> getPersonByAddress(String address);
+	public List<ChildAlertDTO> getFamilyByAddress(String address);
 
 	/*
 	 * @Query for childAlertService get the age (need to work on this)
 	 */
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p.firstName as firstName ,p.lastName as lastName , "
-			+ " m.birthdate as birthdate) FROM MedicalRecord m  INNER JOIN Person p  "
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO (p as person, m as medicalRecord)"
+			+ " FROM MedicalRecord m  INNER JOIN Person p  "
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 and m.birthdate > ?2")
 	public List<ChildAlertDTO> getChildrenByAddress(String address, Date ageLimit);
 
-	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Person, m as medicalRecord) "
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as person, m as medicalRecord) "
 			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE p.firstName =?1 AND p.lastName =?2  ")
 			
 	public List<PersonInfoDTO> getPersonInfoByFirstnameAndLastname(String firstname, String lastname);
 
-	 @Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Person, m as medicalRecord)"
+	 @Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Pperson, m as medicalRecord)"
 			+ " FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE  p.lastName =?1 ")
 	public List<PersonInfoDTO> getPersonByLastName(String lastname); 

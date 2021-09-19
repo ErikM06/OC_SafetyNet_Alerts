@@ -5,6 +5,8 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +21,24 @@ public class ChildAlertService {
 	@Autowired
 	PersonRepository personRepository;
 
-	@Autowired
-	ChildAlertView personDTO;
 
-	public ChildAlertView childAlterService(String address) {
+	public List<ChildAlertDTO> childAlterService(String address) {
 
 		LocalDate currentDate = LocalDate.now().minusYears(18);
 
 		Date ageLimit = Date.from(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-		List<Person> getPersonByAddress = personRepository.getPersonByAddress(address);
+		
+		List<ChildAlertDTO> getPersonByAddress = personRepository.getFamilyByAddress(address);
 		List<ChildAlertDTO> getChildrenByAddress = personRepository.getChildrenByAddress(address, ageLimit);
+		List<ChildAlertDTO> childAlertLs = Stream
+				.concat(getChildrenByAddress.stream(), getPersonByAddress.stream())
+				.collect(Collectors.toList());
 		
 		
 
-		personDTO.setPersonByAddress(getPersonByAddress);
-		personDTO.setChildrenByAddress(getChildrenByAddress);
+		
 
-		return personDTO;
+		return childAlertLs ;
 
 	}
 }
