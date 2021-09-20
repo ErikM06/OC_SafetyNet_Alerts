@@ -5,15 +5,16 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/* @Configuration
-@EnableJpaRepositories (basePackages = "com.safetyNet.safetyNetAlerts")
-@PropertySource( "classpath:h2-test.properties")
+@Configuration
+@EnableJpaRepositories 
+@PropertySource("h2-test.properties")
 @EnableTransactionManagement
 public class H2JpaConfig {
 
@@ -21,6 +22,7 @@ public class H2JpaConfig {
 	private Environment env;
 
 	@Bean
+	@Profile("test")
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("org.h2.Driver"));
@@ -32,4 +34,3 @@ public class H2JpaConfig {
 	}
 
 }
-*/
