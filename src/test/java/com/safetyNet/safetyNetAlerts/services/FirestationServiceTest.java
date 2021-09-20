@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.safetyNet.safetyNetAlerts.H2JpaConfig;
+import com.safetyNet.safetyNetAlerts.SafetyNetAlertsApplication;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
-@SpringBootTest
+@RunWith (SpringRunner.class)
+@SpringBootTest (classes = {SafetyNetAlertsApplication.class,H2JpaConfig.class})
 class FirestationServiceTest {
 	
 	@Autowired
