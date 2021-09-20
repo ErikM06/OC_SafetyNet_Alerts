@@ -8,10 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 @SpringBootApplication
-@PropertySources({
-	@PropertySource ("classpath:application.properties"),
-	@PropertySource ("classpath:h2-test.properties")
-})
+
 public class SafetyNetAlertsApplication {
 	
 	private static final Logger logger = LogManager.getLogger(SafetyNetAlertsApplication.class);

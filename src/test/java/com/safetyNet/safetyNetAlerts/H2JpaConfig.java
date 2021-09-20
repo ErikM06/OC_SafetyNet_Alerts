@@ -12,17 +12,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
+ @Configuration
 @EnableJpaRepositories 
-@PropertySource("h2-test.properties")
+@PropertySource("classpath:h2Test.properties")
 @EnableTransactionManagement
 public class H2JpaConfig {
 
-	@Autowired
+/*	@Autowired
 	private Environment env;
 
 	@Bean
-	@Profile("test")
+	
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(env.getProperty("org.h2.Driver"));
@@ -32,5 +32,5 @@ public class H2JpaConfig {
 
 		return dataSource;
 	}
-
-}
+*/
+} 
