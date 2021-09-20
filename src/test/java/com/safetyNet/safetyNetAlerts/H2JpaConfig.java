@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableJpaRepositories
-@PropertySource("h2-test.properties")
+/* @Configuration
+@EnableJpaRepositories (basePackages = "com.safetyNet.safetyNetAlerts")
+@PropertySource( "classpath:h2-test.properties")
 @EnableTransactionManagement
 public class H2JpaConfig {
 
@@ -32,3 +32,4 @@ public class H2JpaConfig {
 	}
 
 }
+*/
