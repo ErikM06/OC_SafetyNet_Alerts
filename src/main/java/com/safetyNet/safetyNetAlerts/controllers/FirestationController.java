@@ -1,8 +1,11 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import com.safetyNet.safetyNetAlerts.Views.FirestationNumberView;
 import com.safetyNet.safetyNetAlerts.Views.FloodView;
 import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
+import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.services.FirestationNumber;
 import com.safetyNet.safetyNetAlerts.services.FirestationService;
 import com.safetyNet.safetyNetAlerts.services.FloodService;
@@ -26,61 +30,71 @@ import com.safetyNet.safetyNetAlerts.services.StationNumberService;
 
 @RestController
 public class FirestationController {
-	
-	@Autowired 
+
+	@Autowired
 	FirestationService firestationService;
-	
+
 	@Autowired
 	StationNumberService stationNumberPerHabitantService;
-	
+
 	@Autowired
 	FirestationNumber firestationNumber;
-	
+
 	@Autowired
 	FloodService floodService;
-	
-	@GetMapping (value ="/firestation")
-	private List<Firestation> getAllFirestations () {
+
+	@Autowired
+	FirestationRepository firestationRepository;
+
+	@GetMapping(value = "/firestation")
+	private List<Firestation> getAllFirestations() {
 		return firestationService.getAllFirestation();
 	}
-	
-	@PostMapping (value = "/firestation")
-	private Firestation saveFirestation (@RequestBody Firestation firestation) {
-		 return firestationService.saveFirestation(firestation);
-		
+
+	@PostMapping(value = "/firestation")
+	private ResponseEntity<Firestation> saveFirestation(@RequestBody Firestation firestation) {
+		firestationService.saveFirestation(firestation);
+		return new ResponseEntity<Firestation>(firestation, HttpStatus.CREATED);
+
 	}
-	
-	@DeleteMapping (value ="/firestation/{id}")
-	private void deleteFirestation (@PathVariable int id) {
+
+	@DeleteMapping(value = "/firestation/{id}")
+	private void deleteFirestation(@PathVariable int id) {
 		firestationService.deleteFirestation(id);
 	}
-	
-	@PutMapping ("/firestation/{id}")
-	private void modifyFirestationNumber (@RequestBody Firestation firestation, @PathVariable int id) {
+
+	@PutMapping("/firestation/update/{id}")
+	private ResponseEntity<Firestation> modifyFirestationNumber(@RequestBody Firestation firestation,
+			@PathVariable int id) {
+		Optional<Firestation> firestationOptional = firestationRepository.findById(id);
+		if (!firestationOptional.isPresent())
+			return ResponseEntity.notFound().build();
 		firestationService.modifyFirestation(firestation, id);
 		firestationService.saveFirestation(firestation);
+
+		return ResponseEntity.noContent().build();
+
 	}
-	
+
 	// return person info and nb of children by station area
 	@JsonView(FirestationNumberView.personInfoView.class)
 	@GetMapping(value = "/firestation/stationNumber=/{station}")
 	public FirestationNumberDTO findClosestStationPerHabitant(@PathVariable int station) {
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
-	
+
 	// return phone and address for a firestation
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
 	@GetMapping(value = "/phoneAlert/firestation=/{station}")
-	public List<PhoneAddressDTO> firestationNumber (@PathVariable int station) {
-		return firestationNumber.firestationNumberPhone(station);	
+	public List<PhoneAddressDTO> firestationNumber(@PathVariable int station) {
+		return firestationNumber.firestationNumberPhone(station);
 	}
-	
+
 	@JsonView(FloodView.floodView.class)
-	@GetMapping(value ="/flood/stations/stations=/{station}")
-	public List<FloodDTO> personAndMedicalInfoByListOfStation (@PathVariable List<Integer> station) {
+	@GetMapping(value = "/flood/stations/stations=/{station}")
+	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathVariable List<Integer> station) {
 		return floodService.getPersonAndMedicalInfoByListOfStation(station);
-		
+
 	}
-		
 
 }

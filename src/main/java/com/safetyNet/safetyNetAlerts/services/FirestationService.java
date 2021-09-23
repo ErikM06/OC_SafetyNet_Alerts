@@ -2,6 +2,7 @@ package com.safetyNet.safetyNetAlerts.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +33,12 @@ public class FirestationService {
 
 	}
 	
-	public void modifyFirestation (Firestation firestation, int id) {
-	firesationRepository.findById(id).map( carsern -> {
+	public Optional<Firestation> modifyFirestation (Firestation firestation, int id) {
+	Optional<Firestation> modifiedFirestation = firesationRepository.findById(id).map( carsern -> {
 		carsern.setStation(firestation.getStation());
 		return firesationRepository.save(firestation);
 	});
+	return modifiedFirestation;
 	
 		
 		
