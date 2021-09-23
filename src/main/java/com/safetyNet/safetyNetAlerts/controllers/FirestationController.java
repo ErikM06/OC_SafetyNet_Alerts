@@ -45,9 +45,9 @@ public class FirestationController {
 	}
 	
 	@PostMapping (value = "/firestation")
-	private int saveFirestation (@RequestBody Firestation firestation) {
-		firestationService.saveFirestation(firestation);
-		return firestation.getId();
+	private Firestation saveFirestation (@RequestBody Firestation firestation) {
+		 return firestationService.saveFirestation(firestation);
+		
 	}
 	
 	@DeleteMapping (value ="/firestation/{id}")

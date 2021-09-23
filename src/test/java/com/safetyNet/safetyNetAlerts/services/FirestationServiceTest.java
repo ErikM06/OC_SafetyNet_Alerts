@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -21,6 +22,7 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @RunWith (SpringRunner.class)
+@TestPropertySource("/test.properties")
 @SpringBootTest 
 
 class FirestationServiceTest {

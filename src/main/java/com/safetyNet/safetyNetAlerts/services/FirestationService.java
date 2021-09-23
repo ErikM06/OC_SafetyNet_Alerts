@@ -22,8 +22,9 @@ public class FirestationService {
 		return firestation;
 	}
 
-	public void saveFirestation(Firestation firestation) {
+	public Firestation saveFirestation(Firestation firestation) {
 		firesationRepository.save(firestation);
+		return firestation;
 	}
 
 	public void deleteFirestation(int id) {

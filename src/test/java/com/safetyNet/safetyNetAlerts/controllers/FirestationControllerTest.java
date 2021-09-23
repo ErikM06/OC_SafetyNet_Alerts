@@ -1,0 +1,96 @@
+package com.safetyNet.safetyNetAlerts.controllers;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.safetyNet.safetyNetAlerts.models.Firestation;
+
+@RunWith(SpringRunner.class)
+@TestPropertySource("/test.properties")
+@SpringBootTest
+@AutoConfigureMockMvc
+class FirestationControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@BeforeAll
+	public static String asJsonString(final Object obj) {
+		try {
+			return new ObjectMapper().writeValueAsString(obj);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	@Test
+	public void testGetAllFirestations() throws Exception {
+		mockMvc.perform(get("/firestation"))
+				.andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").isNotEmpty());
+	}
+
+	@Test
+	public void testSaveFirestation() throws Exception {
+		mockMvc.perform(post("/firestation")
+				.content(asJsonString(new Firestation("address1", 1)))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+
+	}
+
+	@Test
+	public void deleteFirestation() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.delete("/firestation/50")
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	public void modifyFirestationNumber() throws Exception {
+		 mockMvc.perform( MockMvcRequestBuilders
+			      .put("/firestation/50")
+			      .content(asJsonString(new Firestation("800 Culver St", 8)))
+			      .contentType(MediaType.APPLICATION_JSON)
+			      .accept(MediaType.APPLICATION_JSON))
+			      .andExpect(status().isOk());
+	}
+
+	@Test
+	public void testFindClosestStationPerHabitant() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFirestationNumber() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testPersonAndMedicalInfoByListOfStation() {
+		fail("Not yet implemented");
+	}
+
+}
