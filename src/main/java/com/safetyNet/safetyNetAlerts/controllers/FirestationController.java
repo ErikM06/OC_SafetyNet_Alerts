@@ -59,8 +59,9 @@ public class FirestationController {
 	}
 
 	@DeleteMapping(value = "/firestation/{id}")
-	private void deleteFirestation(@PathVariable int id) {
+	private ResponseEntity<HttpStatus> deleteFirestation(@PathVariable int id) {
 		firestationService.deleteFirestation(id);
+		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("/firestation/update/{id}")

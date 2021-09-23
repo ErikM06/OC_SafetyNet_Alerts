@@ -1,13 +1,9 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +28,7 @@ class FirestationControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@BeforeAll
+	
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);
@@ -56,7 +52,7 @@ class FirestationControllerTest {
 				.content(asJsonString(new Firestation("address1", 1)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+				.andExpect(status().isCreated());
 
 	}
 
@@ -65,32 +61,37 @@ class FirestationControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/firestation/50")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+				.andExpect(status().isAccepted());
 	}
 
 	@Test
 	public void modifyFirestationNumber() throws Exception {
 		 mockMvc.perform( MockMvcRequestBuilders
-			      .put("/firestation/50")
-			      .content(asJsonString(new Firestation("800 Culver St", 8)))
+			      .put("/firestation/update/{id}", 49)
+			      .content(asJsonString(new Firestation("644 Gershwin Cir", 8)))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk());
 	}
 
 	@Test
-	public void testFindClosestStationPerHabitant() {
-		fail("Not yet implemented");
+	public void testFindClosestStationPerHabitant() throws Exception {
+		mockMvc.perform(get("/firestation/stationNumber=/1"))
+		.andExpect(status().isOk());
 	}
 
 	@Test
-	public void testFirestationNumber() {
-		fail("Not yet implemented");
+	public void testFirestationNumber() throws Exception {
+		mockMvc.perform(get("/phoneAlert/firestation=/1"))
+		.andExpect(status().isOk());
 	}
+	
 
 	@Test
-	public void testPersonAndMedicalInfoByListOfStation() {
-		fail("Not yet implemented");
+	public void testPersonAndMedicalInfoByListOfStation() throws Exception {
+		mockMvc.perform(get("/flood/stations/stations=/1"))
+		.andExpect(status().isOk());
 	}
+	
 
 }
