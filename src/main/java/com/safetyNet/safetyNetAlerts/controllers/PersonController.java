@@ -65,7 +65,7 @@ public class PersonController {
 	}
 	
 	//Endpoint : modify person (except for firstName and lastName...methods from "https://www.baeldung.com/rest-http-put-vs-post"
-	@PutMapping(value = "/person/{id}")
+	@PutMapping(value = "/person/update/{id}")
 	void modifyPerson(@RequestBody Person person, @PathVariable int id) {
 		personService.modifyPerson(person, id);
 		personService.savePerson(person);

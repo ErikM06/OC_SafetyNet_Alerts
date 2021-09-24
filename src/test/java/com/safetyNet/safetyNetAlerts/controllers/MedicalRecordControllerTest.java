@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,24 +54,37 @@ class MedicalRecordControllerTest {
 	
 	@Test
 	public void saveMedicalRecord() throws Exception {
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyy.MM.dd");
-		Date birthdate = fmt.parse("1990.01.01");
+		String birthdate = "2011-01-18 00:00:00.0";
+		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(birthdate);;
 		List<String> med = Arrays.asList("MedTest");
 		List<String> all = Arrays.asList("Alltest");
 		mockMvc.perform(post("/medicalRecord")
-				.content(asJsonString(new MedicalRecord("firstName1", "lastName1", birthdate, med, all)))
+				.content(asJsonString(new MedicalRecord("firstName1", "lastName1", date, med, all)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());	
 	}
 	
 	@Test
-	public void deleteMedicalRecord() {
+	public void deleteMedicalRecord() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.delete("/medicalRecord/50")
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isAccepted());
 		
 	}
 	@Test
-	public void modifyMedicalRecord() {
-		
+	public void modifyMedicalRecord() throws Exception {
+		String birthdate = "01/08/2011";
+		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(birthdate);
+		List<String> med = Arrays.asList("MedTest");
+		List<String> all = Arrays.asList("Alltest");
+		 mockMvc.perform( MockMvcRequestBuilders
+			      .put("/medicalRecord/update/{id}", 41)
+			      .content(asJsonString(new MedicalRecord("firstnameTest", "lastNameTest", date, med, all)))
+			      .contentType(MediaType.APPLICATION_JSON)
+			      .accept(MediaType.APPLICATION_JSON))
+			      .andExpect(status().isOk());
 	}
 
 }
