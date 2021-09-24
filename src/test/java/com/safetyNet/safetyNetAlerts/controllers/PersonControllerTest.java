@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 @RunWith(SpringRunner.class)
@@ -50,12 +49,10 @@ class PersonControllerTest {
 	
 	@Test
 	public void testDeletePerson() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.delete("/person/1")
+		mockMvc.perform(MockMvcRequestBuilders.delete("/person/John Boyd")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isAccepted());
-		
-
 		
 	}
 	
@@ -79,24 +76,33 @@ class PersonControllerTest {
 			      .andExpect(status().isOk());
 		
 	}
+	
 	@Test
-	 public void testReturnAllEntities() {
-		fail("Not yet implemented");
+	 public void TestChildAltert() throws Exception {
+		mockMvc.perform(get("/childAlert/address=/1509 Culver S"))
+		.andExpect(status().isOk());
 	}
+	
 
 	@Test
-	public void testAddAnEntity() {
-		fail("Not yet implemented");
+	public void TestCommunityEmail() throws Exception {
+		mockMvc.perform(get("communityEmail/city=Culver"))
+		.andExpect(status().isOk());
 	}
+	
 
 	@Test
-	public void testDeleteAnEntity() {
-		fail("Not yet implemented");
+	public void TestFireAddress () throws Exception {
+		mockMvc.perform(get("/fire/address=/1509 Culver S"))
+		.andExpect(status().isOk());
 	}
+	
 
 	@Test
-	public void testSortAllEntities() {
-		fail("Not yet implemented");
+	public void TestPersonInfo() throws Exception {
+		mockMvc.perform(get("personInfo/firstName=John&lastName=Boyd"))
+		.andExpect(status().isOk());
 	}
+	
 
 }

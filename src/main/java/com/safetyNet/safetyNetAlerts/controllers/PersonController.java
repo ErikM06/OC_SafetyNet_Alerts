@@ -23,7 +23,6 @@ import com.safetyNet.safetyNetAlerts.Views.EmailView;
 import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.Views.PersonInfoView;
 import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
-import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 import com.safetyNet.safetyNetAlerts.services.ChildAlertService;
