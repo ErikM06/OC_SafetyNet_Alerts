@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "MedicalRecord")
 @Data
-@NoArgsConstructor
+
 public class MedicalRecord {
 
 	@Id

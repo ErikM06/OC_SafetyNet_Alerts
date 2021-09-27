@@ -3,7 +3,9 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +34,10 @@ import com.safetyNet.safetyNetAlerts.services.PersonInfoService;
 import com.safetyNet.safetyNetAlerts.services.PersonService;
 
 @RestController
+@Endpoint(id = "person")
 public class PersonController {
+	
+	Logger logger = Logger.getLogger(PersonController.class.getName());
 
 	@Autowired
 	PersonService personService;
@@ -101,13 +106,13 @@ public class PersonController {
 		
 	//PersoInfoService
 	@JsonView(PersonInfoView.personInfoView.class)
-	@GetMapping (value ="personInfo/firstName={firstname}&lastName={lastname}")
+	@GetMapping (value ="/personInfo/firstName={firstname}&lastName={lastname}")
 	private List<PersonInfoDTO> personInfo (@PathVariable String firstname, @PathVariable String lastname) {
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
 	
 	@JsonView(EmailView.View.class)
-	@GetMapping (value ="communityEmail/city={city}")
+	@GetMapping (value ="/communityEmail/city={city}")
 	private List<EmailDTO> communityEmail (@PathVariable String city) {
 		return emailService.getCommunityEmail(city);
 	}

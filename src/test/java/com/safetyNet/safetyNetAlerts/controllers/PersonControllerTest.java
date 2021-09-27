@@ -86,7 +86,7 @@ class PersonControllerTest {
 
 	@Test
 	public void TestCommunityEmail() throws Exception {
-		mockMvc.perform(get("communityEmail/city=Culver"))
+		mockMvc.perform(get("/communityEmail/city=Culver"))
 		.andExpect(status().isOk());
 	}
 	
@@ -100,7 +100,7 @@ class PersonControllerTest {
 
 	@Test
 	public void TestPersonInfo() throws Exception {
-		mockMvc.perform(get("personInfo/firstName=John&lastName=Boyd"))
+		mockMvc.perform(get("/personInfo/firstName=John&lastName=Boyd"))
 		.andExpect(status().isOk());
 	}
 	
