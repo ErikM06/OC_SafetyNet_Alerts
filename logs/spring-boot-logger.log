@@ -1,0 +1,15 @@
+2021-09-28 13:30:09,407 INFO org.springframework.boot.StartupInfoLogger [main] Starting SafetyNetAlertsApplication using Java 16.0.2 on DESKTOP-DQ7NQAI with PID 11328 (C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts\target\classes started by leave in C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts)
+2021-09-28 13:30:09,410 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-09-28 13:30:21,761 INFO org.springframework.boot.StartupInfoLogger [main] Started SafetyNetAlertsApplication in 13.606 seconds (JVM running for 15.612)
+2021-09-28 13:30:22,836 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2021-09-28 13:30:22,838 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2021-09-28 13:38:06,480 INFO org.springframework.boot.StartupInfoLogger [main] Starting SafetyNetAlertsApplication using Java 16.0.2 on DESKTOP-DQ7NQAI with PID 13924 (C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts\target\classes started by leave in C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts)
+2021-09-28 13:38:06,505 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-09-28 13:38:13,092 INFO org.springframework.boot.StartupInfoLogger [main] Started SafetyNetAlertsApplication in 7.223 seconds (JVM running for 8.933)
+2021-09-28 13:38:13,856 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2021-09-28 13:38:13,857 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2021-09-28 14:11:05,536 INFO org.springframework.boot.StartupInfoLogger [main] Starting SafetyNetAlertsApplication using Java 16.0.2 on DESKTOP-DQ7NQAI with PID 3608 (C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts\target\classes started by leave in C:\dev\Projets OC\P5\Projet 5\safetyNetAlerts)
+2021-09-28 14:11:05,547 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-09-28 14:11:11,896 INFO org.springframework.boot.StartupInfoLogger [main] Started SafetyNetAlertsApplication in 6.959 seconds (JVM running for 8.53)
+2021-09-28 14:11:12,725 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2021-09-28 14:11:12,727 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
