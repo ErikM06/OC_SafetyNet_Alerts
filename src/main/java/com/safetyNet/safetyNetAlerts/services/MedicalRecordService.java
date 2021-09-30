@@ -1,6 +1,9 @@
 package com.safetyNet.safetyNetAlerts.services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +37,11 @@ public class MedicalRecordService {
 	public void modifyMedicalRecord(MedicalRecord medicalRecord, int id) {
 		
 		    medicalRecordRepository.findById(id).map(modifiedInfo -> { 
-			modifiedInfo.setBirthdate(medicalRecord.getBirthdate().toString());
+		   	Date birthdate = medicalRecord.getBirthdate();
+		    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");  
+		    String strbirthdate = dateFormat.format(birthdate);  
+		    
+			modifiedInfo.setBirthdate(strbirthdate);
 			modifiedInfo.setAllergies(medicalRecord.getAllergies());
 			modifiedInfo.setMedications(medicalRecord.getMedications());
 			return medicalRecordRepository.save(medicalRecord);

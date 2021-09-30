@@ -54,12 +54,14 @@ class MedicalRecordControllerTest {
 	
 	@Test
 	public void saveMedicalRecord() throws Exception {
-		String birthdate = "2011-01-18 00:00:00.0";
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(birthdate);;
+		String birthdate = "03/06/1984";
+		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(birthdate);
 		List<String> med = Arrays.asList("MedTest");
 		List<String> all = Arrays.asList("Alltest");
+		MedicalRecord medicalRecord = new MedicalRecord("firstName1", "lastName1", date, med, all);
+		medicalRecord.setBirthdate(birthdate);
 		mockMvc.perform(post("/medicalRecord")
-				.content(asJsonString(new MedicalRecord("firstName1", "lastName1", date, med, all)))
+				.content(asJsonString(medicalRecord))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());	
