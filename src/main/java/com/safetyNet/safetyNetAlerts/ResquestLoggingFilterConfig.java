@@ -1,10 +1,12 @@
 package com.safetyNet.safetyNetAlerts;
 
+import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
+import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
-@Configuration
+ @Configuration
 public class ResquestLoggingFilterConfig {
 	
 	
@@ -20,6 +22,13 @@ public class ResquestLoggingFilterConfig {
 	        return filter;
 	    }
 
-}
+
+ 
+ @Bean
+ public HttpTraceRepository htttpTraceRepository()
+ {
+   return new InMemoryHttpTraceRepository();
+ }
+ }
 
 

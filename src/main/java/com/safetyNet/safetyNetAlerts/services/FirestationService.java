@@ -12,14 +12,15 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
 public class FirestationService {
-
+	
+	
 	@Autowired
 	private FirestationRepository firesationRepository;
 
 	public List<Firestation> getAllFirestation() {
 		List<Firestation> firestation = new ArrayList<Firestation>();
 		firesationRepository.findAll().forEach(firestations -> firestation.add(firestations));
-
+		
 		return firestation;
 	}
 

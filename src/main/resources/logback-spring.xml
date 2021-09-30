@@ -2,19 +2,48 @@
 
 <configuration>
 
-   <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <logger name="com.safetyNet.safetyNetAlerts" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </logger>
-    <logger name="com.safetyNet.safetyNetAlerts.controller" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </logger>
-    
-    <logger name="com.safetyNet.safetyNetAlerts.repositories" level="INFO" additivity="false">
-    	 <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-       </logger>
+	<property name="LOGS" value="/safetyNetAlerts/logs/spring-boot-logger.log" />
+
+	<appender name="Console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %m%n
+			</pattern>
+		</encoder>
+
+	</appender>
+
+	<appender name="RollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS}</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+		</encoder>
+
+
+	</appender>
+
+	<!-- LOG everything at INFO level -->
+	<root level="info">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="Console" />
+	</root>
+
+
+	<logger name="com.safetyNet.safetyNetAlerts" level="INFO"
+		additivity="false">
+		<appender-ref ref="Console" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+	<logger name="com.safetyNet.safetyNetAlerts.controller"
+		level="ERROR" additivity="false">
+		<appender-ref ref="Console" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+
+
+
+
 
 </configuration>
