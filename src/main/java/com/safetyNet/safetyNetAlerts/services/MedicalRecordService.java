@@ -41,7 +41,7 @@ public class MedicalRecordService {
 		    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");  
 		    String strbirthdate = dateFormat.format(birthdate);  
 		    
-			modifiedInfo.setBirthdate(strbirthdate);
+			modifiedInfo.setBirthdate(medicalRecord.getBirthdate());
 			modifiedInfo.setAllergies(medicalRecord.getAllergies());
 			modifiedInfo.setMedications(medicalRecord.getMedications());
 			return medicalRecordRepository.save(medicalRecord);

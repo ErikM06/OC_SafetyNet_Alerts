@@ -1,52 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <configuration>
-	<include
-		resource="org/springframework/boot/logging/logback/default.xml" />
-	<include
-		resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
 	<appender name="CONSOLE"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-			</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
-	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<File>logs/spring-boot-logger.log</File>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
 
-	<property name="LOG_FILE" value="spring-boot-logger.log" />
-	<appender name="FILE"
+	<appender name="SAVE-TO-FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_FILE}.log</file>
+		<file>${LOG_LOCATION}/spring-boot-logge.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+			</Pattern>
+		</encoder>
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- daily rollover -->
-			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
-
-			<!-- keep 30 days' worth of history capped at 3GB total size -->
-			<maxHistory>30</maxHistory>
-			<totalSizeCap>3GB</totalSizeCap>
+			<fileNamePattern>
+				${LOG_PATH}/archived/log_%d{dd-MM-yyyy}.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>100MB</totalSizeCap>
 		</rollingPolicy>
-		<encoder>
-			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
-			</pattern>
-		</encoder>
 	</appender>
-	
+
 	<root level="INFO">
 		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
 	</root>
 
-	<logger name="org.springframework.web" level="ERROR" />
-
-
-	<logger name="com.safetyNet.safetyNetAlerts.SafetyNetAlerts" level="ERROR"
+	<!-- Application logs at trace level -->
+	<logger name="com.safetyNet.safetyBetALerts" level="INFO"
 		additivity="false">
+
 		<appender-ref ref="CONSOLE" />
 	</logger>
-
-
 
 </configuration>

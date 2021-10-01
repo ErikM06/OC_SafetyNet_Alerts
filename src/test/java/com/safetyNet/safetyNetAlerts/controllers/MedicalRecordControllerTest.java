@@ -1,6 +1,5 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,7 +22,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 
 @RunWith(SpringRunner.class)
@@ -53,19 +51,18 @@ class MedicalRecordControllerTest {
 	}
 	
 	@Test
-	public void saveMedicalRecord() throws Exception {
+	 public void saveMedicalRecord() throws Exception {
 		String birthdate = "03/06/1984";
 		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(birthdate);
 		List<String> med = Arrays.asList("MedTest");
 		List<String> all = Arrays.asList("Alltest");
 		MedicalRecord medicalRecord = new MedicalRecord("firstName1", "lastName1", date, med, all);
-		medicalRecord.setBirthdate(birthdate);
 		mockMvc.perform(post("/medicalRecord")
 				.content(asJsonString(medicalRecord))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());	
-	}
+	} 
 	
 	@Test
 	public void deleteMedicalRecord() throws Exception {
@@ -86,7 +83,7 @@ class MedicalRecordControllerTest {
 			      .content(asJsonString(new MedicalRecord("firstnameTest", "lastNameTest", date, med, all)))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
-			      .andExpect(status().isOk());
+			      .andExpect(status().isNoContent());
 	}
 
 }

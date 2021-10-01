@@ -71,7 +71,7 @@ class FirestationControllerTest {
 			      .content(asJsonString(new Firestation("644 Gershwin Cir", 8)))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
-			      .andExpect(status().isOk());
+			      .andExpect(status().isNoContent());
 	}
 
 	@Test

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.Views.MedicalRecordView;
 
@@ -37,6 +38,7 @@ public class MedicalRecord {
 	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
 	@Column(name = "lastName")
 	private String lastName;
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	@JsonView(MedicalRecordView.Birthdate.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
@@ -89,13 +91,8 @@ public class MedicalRecord {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
-		try {
-			this.birthdate = new SimpleDateFormat("MM/dd/yyyy").parse(birthdate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 	
 	public List<String> getMedications() {
