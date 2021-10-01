@@ -20,8 +20,8 @@ public interface FirestationRepository extends CrudRepository<Firestation, Integ
 	@Query (value = "SELECT p  FROM Person p INNER JOIN Firestation f on p.address = f.address WHERE f.station = ?1 ")
 	public List<Person> findAllByStation (int station);
 	
-	@Query (value = "Select p FROM Person p INNER JOIN Firestation f "
-			+ " ON p.address = f.address  WHERE f.station = ?1 GROUP BY p.address")
+	@Query (value = "Select new com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO (p as person ) FROM Person p INNER JOIN Firestation f "
+			+ " ON p.address = f.address  WHERE f.station = ?1 ORDER BY p.address")
 	public List<PhoneAddressDTO> findPhoneByStation (int station);
 	
 	@Query (value ="Select new com.safetyNet.safetyNetAlerts.DTO.FloodDTO (p as person, m as medicalRecord) "

@@ -58,7 +58,6 @@ public class PersonController {
 	EmailService emailService;
 	
 	@GetMapping("/person")
-
 	public List<Person> getAllPerson() {
 		return personService.getAllPerson();
 	}
@@ -86,7 +85,7 @@ public class PersonController {
 		if (!firestationOptional.isPresent())
 			return ResponseEntity.notFound().build();
 		personService.modifyPerson(person, id);
-		personService.savePerson(person);
+		
 		return ResponseEntity.noContent().build();
 	}
 	

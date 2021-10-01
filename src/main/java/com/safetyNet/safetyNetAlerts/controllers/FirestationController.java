@@ -3,6 +3,7 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,8 @@ public class FirestationController {
 
 	@Autowired
 	FirestationRepository firestationRepository;
+	
+	Logger logger = Logger.getLogger(FirestationController.class);
 
 	@GetMapping(value = "/firestation")
 	private List<Firestation> getAllFirestations() {

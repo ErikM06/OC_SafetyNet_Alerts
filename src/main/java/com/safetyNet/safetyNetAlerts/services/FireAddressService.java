@@ -18,8 +18,7 @@ public class FireAddressService {
 
 	public List<FireAddressDTO> fireAddressServiceByAddress(String address) {
 		
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+		
 		List<FireAddressDTO> fireAddressDTOls = medicalRecordRepository.getMedicalRecordByAddress(address);
 		return fireAddressDTOls;
 

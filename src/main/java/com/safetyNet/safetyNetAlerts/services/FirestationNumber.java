@@ -22,8 +22,6 @@ public class FirestationNumber {
 		
 		List<PhoneAddressDTO> phoneAddressByStation = firestationRepository.findPhoneByStation(station);
 		
-		
-		
 		return phoneAddressByStation;
 		
 		
