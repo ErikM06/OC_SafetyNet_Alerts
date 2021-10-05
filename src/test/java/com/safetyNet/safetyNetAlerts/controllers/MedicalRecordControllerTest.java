@@ -66,7 +66,7 @@ class MedicalRecordControllerTest {
 	
 	@Test
 	public void deleteMedicalRecord() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.delete("/medicalRecord/50")
+		mockMvc.perform(MockMvcRequestBuilders.delete("/medicalRecord/John Boyd")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isAccepted());

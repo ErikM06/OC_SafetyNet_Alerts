@@ -82,8 +82,9 @@ public class PersonController {
 	@PutMapping(value = "/person/update/{id}")
 	private ResponseEntity<Person> modifyPerson(@RequestBody Person person, @PathVariable int id) {
 		Optional<Person> firestationOptional = personRepository.findById(id);
-		if (!firestationOptional.isPresent())
+		if (!firestationOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
+		}
 		personService.modifyPerson(person, id);
 		
 		return ResponseEntity.noContent().build();

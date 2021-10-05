@@ -64,11 +64,13 @@ class PersonControllerTest {
 	@Test
 	public void testModifyPerson() throws Exception {
 
-		Person personUptade = new Person("NEwfirstNameTest", "NewlastNameTest", "addressTest", "cityTest", "zipTest",
-				"phoneTest", "emailTest");
-		mockMvc.perform(MockMvcRequestBuilders.put("/person/update/{id}", personUptade.getId())
-				.content(asJsonString(personUptade)).contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+		mockMvc.perform(MockMvcRequestBuilders
+				.put("/person/update/{id}", 2)
+				.content(asJsonString(new Person("NEwfirstNameTest", "NewlastNameTest", "addressTest", "cityTest", "zipTest",
+						"phoneTest", "emailTest")))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent());
 
 	}
 

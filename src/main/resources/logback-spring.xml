@@ -17,7 +17,7 @@
 
 	<appender name="SAVE-TO-FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_LOCATION}/spring-boot-logge.log</file>
+		<file>logs/spring-rollingFile.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>
@@ -42,7 +42,7 @@
 	<!-- Application logs at trace level -->
 	<logger name="com.safetyNet.safetyBetALerts" level="INFO"
 		additivity="false">
-
+		<appender-ref ref="FILE" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 

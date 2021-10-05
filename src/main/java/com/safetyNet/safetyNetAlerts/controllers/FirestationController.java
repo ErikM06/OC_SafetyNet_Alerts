@@ -71,8 +71,9 @@ public class FirestationController {
 	private ResponseEntity<Firestation> modifyFirestationNumber(@RequestBody Firestation firestation,
 			@PathVariable int id) {
 		Optional<Firestation> firestationOptional = firestationRepository.findById(id);
-		if (!firestationOptional.isPresent())
+		if (!firestationOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
+		}
 		firestationService.modifyFirestation(firestation, id);
 		firestationService.saveFirestation(firestation);
 

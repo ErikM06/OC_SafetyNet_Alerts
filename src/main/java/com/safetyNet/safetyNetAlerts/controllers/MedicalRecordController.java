@@ -47,8 +47,9 @@ public class MedicalRecordController {
 	@PutMapping (value ="/medicalRecord/update/{id}")
 	private ResponseEntity<MedicalRecord> modifyMedicalRecord (@RequestBody MedicalRecord medicalRecord, @PathVariable ("id") int id) {
 		Optional<MedicalRecord> firestationOptional = medicalRecordRepository.findById(id);
-		if (!firestationOptional.isPresent())
+		if (!firestationOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
+		}
 		medicalRecordService.modifyMedicalRecord(medicalRecord, id);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		return ResponseEntity.noContent().build();	

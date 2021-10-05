@@ -1,7 +1,5 @@
 package com.safetyNet.safetyNetAlerts.models;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.Views.MedicalRecordView;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "MedicalRecord")
@@ -38,7 +35,7 @@ public class MedicalRecord {
 	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
 	@Column(name = "lastName")
 	private String lastName;
-	@JsonFormat(pattern = "MM/dd/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM/dd/yyyy")
 	@JsonView(MedicalRecordView.Birthdate.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
