@@ -50,8 +50,9 @@ public class FirestationController {
 	Logger logger = Logger.getLogger(FirestationController.class);
 
 	@GetMapping(value = "/firestation")
-	private List<Firestation> getAllFirestations() {
-		return firestationService.getAllFirestation();
+	private ResponseEntity <List<Firestation>> getAllFirestations() {
+		List<Firestation> firestationLs = firestationService.getAllFirestation();
+		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/firestation")

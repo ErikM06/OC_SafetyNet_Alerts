@@ -58,8 +58,9 @@ public class PersonController {
 	EmailService emailService;
 	
 	@GetMapping("/person")
-	public List<Person> getAllPerson() {
-		return personService.getAllPerson();
+	public ResponseEntity<List<Person>> getAllPerson() {
+		List<Person>personLs = personService.getAllPerson();
+		return new ResponseEntity<>(personLs, HttpStatus.OK);
 	}
 
 	

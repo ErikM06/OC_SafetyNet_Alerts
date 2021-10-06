@@ -28,8 +28,9 @@ public class MedicalRecordController {
 	MedicalRecordRepository medicalRecordRepository;
 	
 	@GetMapping ("/medicalRecord")
-	private List<MedicalRecord>getAllMedicalRecord (){
-		 return medicalRecordService.getAllMedicalRecord();	
+	private ResponseEntity<List<MedicalRecord>> getAllMedicalRecord (){
+		 List<MedicalRecord> medicalRecordLs = medicalRecordService.getAllMedicalRecord();	
+		 return new ResponseEntity<>(medicalRecordLs, HttpStatus.OK);
 	}
 	
 	@PostMapping (value = "/medicalRecord")

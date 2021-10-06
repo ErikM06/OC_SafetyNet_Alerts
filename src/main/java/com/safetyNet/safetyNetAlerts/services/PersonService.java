@@ -21,7 +21,7 @@ public class PersonService {
 	public List<Person> getAllPerson() {
 		List<Person> persons = new ArrayList<Person>();
 		personRepository.findAll().forEach(person -> persons.add(person));
-		System.out.println(persons);
+		
 		return persons;
 	}
 
