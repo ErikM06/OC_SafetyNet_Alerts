@@ -3,7 +3,9 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,12 +49,18 @@ public class FirestationController {
 	@Autowired
 	FirestationRepository firestationRepository;
 	
-	Logger logger = Logger.getLogger(FirestationController.class);
+	private static Logger logger = Logger.getLogger(FirestationController.class);
+	
 
 	@GetMapping(value = "/firestation")
 	private ResponseEntity <List<Firestation>> getAllFirestations() {
 		List<Firestation> firestationLs = firestationService.getAllFirestation();
+		logger.log(Level.INFO, firestationLs);
+		if (firestationLs.isEmpty()) {
+			logger.log(Level.ERROR, "Firestation list is empty");
+		}
 		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
+		
 	}
 
 	@PostMapping(value = "/firestation")

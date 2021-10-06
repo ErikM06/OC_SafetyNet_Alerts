@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,8 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 @Service
 public class PersonService {
 
-
+	private static Logger logger = Logger.getLogger(PersonService.class);
+	
 	@Autowired
 	private PersonRepository personRepository;
 
