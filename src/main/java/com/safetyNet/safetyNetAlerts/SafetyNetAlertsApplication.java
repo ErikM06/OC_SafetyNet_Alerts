@@ -2,6 +2,8 @@ package com.safetyNet.safetyNetAlerts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -15,5 +17,18 @@ public class SafetyNetAlertsApplication {
 		logger.info("Starting the application");
 		SpringApplication.run(SafetyNetAlertsApplication.class, args);
 	}
+	
+	@Bean
+	public CommonsRequestLoggingFilter requestLoggingFilter() {
+	    CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+	    loggingFilter.setIncludeClientInfo(true);
+	    loggingFilter.setIncludeQueryString(true);
+	    loggingFilter.setIncludePayload(true);
+	    loggingFilter.setMaxPayloadLength(64000);
+	    return loggingFilter;
+	}
 
 }
+
+
+

@@ -3,6 +3,9 @@ package com.safetyNet.safetyNetAlerts.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.NullArgumentException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,8 @@ import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 
 @Service
 public class MedicalRecordService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MedicalRecordService.class);
 
 	@Autowired
 	private MedicalRecordRepository medicalRecordRepository;
@@ -18,7 +23,11 @@ public class MedicalRecordService {
 
 	public List<MedicalRecord> getAllMedicalRecord() {
 		List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
+		try {
 		medicalRecordRepository.findAll().forEach(medicalRecord -> medicalRecords.add(medicalRecord));
+		} catch (NullPointerException|NullArgumentException e) {
+			logger.error("Unable to set MedicalRecord", e);
+		}
 
 		return medicalRecords;
 	}

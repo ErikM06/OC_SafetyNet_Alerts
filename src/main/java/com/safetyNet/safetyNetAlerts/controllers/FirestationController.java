@@ -3,11 +3,9 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,9 +55,7 @@ public class FirestationController {
 	@GetMapping(value = "/firestation")
 	private ResponseEntity<List<Firestation>> getAllFirestations() {
 		List<Firestation> firestationLs = firestationService.getAllFirestation();
-		
-		logger.info("GetAllFirestation OK ");
-		
+		logger.info("Firestation list is : {} ", firestationLs);
 		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
 
 	}
