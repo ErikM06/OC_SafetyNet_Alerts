@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,19 +50,18 @@ public class FirestationController {
 
 	@Autowired
 	FirestationRepository firestationRepository;
-	
-	private static Logger logger = Logger.getLogger(FirestationController.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(FirestationController.class);
 	
 
 	@GetMapping(value = "/firestation")
-	private ResponseEntity <List<Firestation>> getAllFirestations() {
+	private ResponseEntity<List<Firestation>> getAllFirestations() {
 		List<Firestation> firestationLs = firestationService.getAllFirestation();
-		logger.log(Level.INFO, firestationLs);
-		if (firestationLs.isEmpty()) {
-			logger.log(Level.ERROR, "Firestation list is empty");
-		}
-		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
 		
+		logger.info("GetAllFirestation OK ");
+		
+		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
+
 	}
 
 	@PostMapping(value = "/firestation")
