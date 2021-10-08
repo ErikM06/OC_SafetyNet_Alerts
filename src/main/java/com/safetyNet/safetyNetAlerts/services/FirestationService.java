@@ -41,7 +41,11 @@ public class FirestationService {
 	}
 
 	public void deleteFirestation(int id) {
+		try {
 		firesationRepository.deleteById(id);
+		} catch (NullArgumentException e) {
+			logger.error("id not found", e);
+		}
 
 	}
 	

@@ -1,5 +1,7 @@
 package com.safetyNet.safetyNetAlerts.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +20,8 @@ import java.net.URL;
  */
 @Component
 public class SafetyNetAlertsFileReader {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SafetyNetAlertsFileReader.class);
 
 	public Root jsonDataFromUrl() {
 
@@ -41,12 +45,12 @@ public class SafetyNetAlertsFileReader {
 				System.out.println(jsonObject);
 			}
 			connection.disconnect();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		} catch (MalformedURLException e) {	
 			e.printStackTrace();
+			logger.error("Unable to reach Url ", e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error("Unable to reach the file ",e);
 		}
 		return jsonObject;
 	}

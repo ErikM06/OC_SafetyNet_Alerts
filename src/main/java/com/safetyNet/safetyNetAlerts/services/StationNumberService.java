@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.NullArgumentException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,8 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 @Service
 public class StationNumberService {
 
+	private static final Logger logger = LoggerFactory.getLogger(StationNumberService.class);
+	
 	@Autowired
 	FirestationRepository firestationRepository;
 
@@ -37,15 +43,14 @@ public class StationNumberService {
 	
 	public FirestationNumberDTO findClosestStationPerHabitant(int station) {
 
+		FirestationNumberDTO firestationDTO = new FirestationNumberDTO();
 		
+		try {
 		LocalDate currentDate = LocalDate.now().minusYears(18);
 		
 		Date ageLimit = Date.from(currentDate.atStartOfDay()
 			      .atZone(ZoneId.systemDefault())
 			      .toInstant());
-		
-
-		FirestationNumberDTO firestationDTO = new FirestationNumberDTO();
 		
 		List<Date> peopleUnderEighteen = personRepository.getChildrenByStation(station, ageLimit);
 		List<Date> peopleOverEighteen = personRepository.getAdultByStation(station, ageLimit);
@@ -55,10 +60,9 @@ public class StationNumberService {
 		firestationDTO.setPersons(personLs);
 		firestationDTO.setNbChildren(peopleUnderEighteen.size());
 		firestationDTO.setNbAdults(peopleOverEighteen.size());
-		
-
-				
-				return firestationDTO;
-			
+		} catch (NullPointerException|NullArgumentException e) {
+			logger.error("Unable to set firestationDTO ", e);
+		}	
+				return firestationDTO;	
 	}
 }
