@@ -16,22 +16,21 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
 @Service
 public class PersonInfoService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PersonInfoService.class);
-	
+
 	@Autowired
 	PersonRepository personRepository;
 
 	public List<PersonInfoDTO> getPersonInfo(String firstname, String lastname) {
 		List<PersonInfoDTO> allPersonInfo = new ArrayList<PersonInfoDTO>();
 		try {
-		List<PersonInfoDTO> personInfoByFirstnameLastname = personRepository
-				.getPersonInfoByFirstnameAndLastname(firstname, lastname);
-		List<PersonInfoDTO> personInfoByLastName = personRepository.getPersonByLastName(lastname);
-		allPersonInfo = Stream
-				.concat(personInfoByFirstnameLastname.stream(), personInfoByLastName.stream())
-				.collect(Collectors.toList());
-		} catch (NullPointerException|NullArgumentException e) {
+			List<PersonInfoDTO> personInfoByFirstnameLastname = personRepository
+					.getPersonInfoByFirstnameAndLastname(firstname, lastname);
+			List<PersonInfoDTO> personInfoByLastName = personRepository.getPersonByLastName(lastname);
+			allPersonInfo = Stream.concat(personInfoByFirstnameLastname.stream(), personInfoByLastName.stream())
+					.collect(Collectors.toList());
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set List<PersonInfoDTO> ", e);
 		}
 

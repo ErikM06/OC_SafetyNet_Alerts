@@ -13,7 +13,7 @@ import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 
 @Service
 public class FireAddressService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FireAddressService.class);
 
 	@Autowired
@@ -22,9 +22,9 @@ public class FireAddressService {
 	public List<FireAddressDTO> fireAddressServiceByAddress(String address) {
 		List<FireAddressDTO> fireAddressDTOls = new ArrayList<>();
 		try {
-		fireAddressDTOls = medicalRecordRepository.getMedicalRecordByAddress(address);
-		} catch (NullPointerException|NullArgumentException e) {
-			logger.error("Unable to set FIreAddressDTO ",e);
+			fireAddressDTOls = medicalRecordRepository.getMedicalRecordByAddress(address);
+		} catch (NullPointerException | NullArgumentException e) {
+			logger.error("Unable to set FIreAddressDTO ", e);
 		}
 		return fireAddressDTOls;
 

@@ -27,8 +27,7 @@ class FirestationControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-	
-	
+
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);
@@ -40,58 +39,45 @@ class FirestationControllerTest {
 
 	@Test
 	public void testGetAllFirestations() throws Exception {
-		mockMvc.perform(get("/firestation"))
-				.andExpect(status().isOk())
+		mockMvc.perform(get("/firestation")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").exists())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").isNotEmpty());
 	}
 
 	@Test
 	public void testSaveFirestation() throws Exception {
-		mockMvc.perform(post("/firestation")
-				.content(asJsonString(new Firestation("address1", 1)))
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(post("/firestation").content(asJsonString(new Firestation("address1", 1)))
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());
 
 	}
 
 	@Test
 	public void deleteFirestation() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.delete("/firestation/50")
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isAccepted());
+		mockMvc.perform(MockMvcRequestBuilders.delete("/firestation/50").contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isAccepted());
 	}
 
 	@Test
 	public void modifyFirestationNumber() throws Exception {
-		 mockMvc.perform( MockMvcRequestBuilders
-			      .put("/firestation/update/{id}", 49)
-			      .content(asJsonString(new Firestation("644 Gershwin Cir", 8)))
-			      .contentType(MediaType.APPLICATION_JSON)
-			      .accept(MediaType.APPLICATION_JSON))
-			      .andExpect(status().isNoContent());
+		mockMvc.perform(MockMvcRequestBuilders.put("/firestation/update/{id}", 49)
+				.content(asJsonString(new Firestation("644 Gershwin Cir", 8))).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
 	}
 
 	@Test
 	public void testFindClosestStationPerHabitant() throws Exception {
-		mockMvc.perform(get("/firestation/stationNumber=/1"))
-		.andExpect(status().isOk());
+		mockMvc.perform(get("/firestation/stationNumber=/1")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void testFirestationNumber() throws Exception {
-		mockMvc.perform(get("/phoneAlert/firestation=/1"))
-		.andExpect(status().isOk());
+		mockMvc.perform(get("/phoneAlert/firestation=/1")).andExpect(status().isOk());
 	}
-	
 
 	@Test
 	public void testPersonAndMedicalInfoByListOfStation() throws Exception {
-		mockMvc.perform(get("/flood/stations/stations=/1"))
-		.andExpect(status().isOk());
+		mockMvc.perform(get("/flood/stations/stations=/1")).andExpect(status().isOk());
 	}
-	
 
 }

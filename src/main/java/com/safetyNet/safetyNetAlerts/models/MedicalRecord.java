@@ -24,9 +24,8 @@ import lombok.Data;
 public class MedicalRecord {
 
 	@Id
-	@GeneratedValue 
-	
-	
+	@GeneratedValue
+
 	@Column(name = "id")
 	private int id;
 	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
@@ -35,7 +34,7 @@ public class MedicalRecord {
 	@JsonView(MedicalRecordView.MedicalRecordfirstNameLastName.class)
 	@Column(name = "lastName")
 	private String lastName;
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM/dd/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
 	@JsonView(MedicalRecordView.Birthdate.class)
 	@Column(name = "birthDate")
 	private Date birthdate;
@@ -91,7 +90,7 @@ public class MedicalRecord {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-	
+
 	public List<String> getMedications() {
 		return medications;
 	}

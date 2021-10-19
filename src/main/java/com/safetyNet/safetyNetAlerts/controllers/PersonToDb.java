@@ -11,24 +11,18 @@ import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 public class PersonToDb {
 	@Autowired
 	private SafetyNetAlertsFileReader safetyNetAlertsFileReader;
-	
+
 	@Autowired
 	private PersonRepository personRepository;
-	
 
 	public void personToTable() {
-		
-	
+
 		long checkIfTableEmpty = personRepository.count();
-		if (checkIfTableEmpty <=0) {
-		safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
-		Root personObject = safetyNetAlertsFileReader.jsonDataFromUrl();
-		
-		personRepository.saveAll(personObject.persons);
+		if (checkIfTableEmpty <= 0) {
+			safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
+			Root personObject = safetyNetAlertsFileReader.jsonDataFromUrl();
+
+			personRepository.saveAll(personObject.persons);
 		}
-
 	}
-
 }
-
-

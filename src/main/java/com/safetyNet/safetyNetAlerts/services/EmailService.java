@@ -14,17 +14,17 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
 @Service
 public class EmailService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
-	
+
 	@Autowired
 	PersonRepository personRepository;
-	
-	public List<EmailDTO> getCommunityEmail (String city) {
+
+	public List<EmailDTO> getCommunityEmail(String city) {
 		List<EmailDTO> emailDTOls = new ArrayList<>();
 		try {
-		emailDTOls = personRepository.getAllEmailFromCity(city);
-		} catch (NullPointerException|NullArgumentException e) {
+			emailDTOls = personRepository.getAllEmailFromCity(city);
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set emailDTO ", e);
 		}
 		return emailDTOls;

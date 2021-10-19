@@ -12,28 +12,26 @@ import org.springframework.stereotype.Service;
 import com.safetyNet.safetyNetAlerts.DTO.PhoneAddressDTO;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
-
 @Service
 public class FirestationNumber {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FirestationNumber.class);
-	
+
 	@Autowired
 	FirestationRepository firestationRepository;
-	
-	public List<PhoneAddressDTO>firestationNumberPhone(int station) {
-		
+
+	public List<PhoneAddressDTO> firestationNumberPhone(int station) {
+
 		List<PhoneAddressDTO> phoneAddressByStation = new ArrayList<>();
-		
+
 		try {
-		phoneAddressByStation = firestationRepository.findPhoneByStation(station);
-		} catch (NullPointerException|NullArgumentException e) {
+			phoneAddressByStation = firestationRepository.findPhoneByStation(station);
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set PhoneAddressDTO ", e);
 		}
-		
+
 		return phoneAddressByStation;
-		
-		
+
 	}
 
 }

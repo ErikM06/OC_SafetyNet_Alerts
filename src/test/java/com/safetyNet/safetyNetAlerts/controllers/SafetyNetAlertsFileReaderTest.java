@@ -10,21 +10,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 
-
 @RunWith(SpringRunner.class)
 @TestPropertySource("/test.properties")
 @SpringBootTest
 class SafetyNetAlertsFileReaderTest {
 
-
 	@Test
-	 void testjsonDataFromUrlToMap() {
-		
+	void testjsonDataFromUrlToMap() {
+
 		SafetyNetAlertsFileReader safetyNetAlertsFileReader = new SafetyNetAlertsFileReader();
 		Object result = safetyNetAlertsFileReader.jsonDataFromUrl();
 		assertNotNull(result);
-		
 
-
-	} 
+	}
 }

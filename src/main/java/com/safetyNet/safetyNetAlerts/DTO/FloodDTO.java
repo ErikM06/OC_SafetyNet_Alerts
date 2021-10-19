@@ -21,11 +21,11 @@ public class FloodDTO {
 	private Person person;
 	@JsonView(FloodView.floodView.class)
 	private MedicalRecord medicalRecord;
-	
-	public FloodDTO () {
-		
+
+	public FloodDTO() {
+
 	}
-	
+
 	public FloodDTO(Person person, MedicalRecord medicalRecord) {
 		super();
 		this.person = person;

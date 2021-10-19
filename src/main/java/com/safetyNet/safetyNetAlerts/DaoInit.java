@@ -12,26 +12,23 @@ import com.safetyNet.safetyNetAlerts.controllers.PersonToDb;
 @Component
 
 public class DaoInit {
-	
+
 	@Autowired
 	PersonToDb personDao;
 	@Autowired
 	FirestationToDb firestationDao;
 	@Autowired
 	MedicalRecordToDb medicalRecordDao;
-	
-	
-	
+
 	@PostConstruct
-	public void initTables () {
-		//init person table
+	public void initTables() {
+		// init person table
 		personDao.personToTable();
-		
-		//init medicalRecord table
+
+		// init medicalRecord table
 		medicalRecordDao.medicalRecordToTable();
-		
-		//init fireStation table
+
+		// init fireStation table
 		firestationDao.fireStationTable();
 	}
-
 }

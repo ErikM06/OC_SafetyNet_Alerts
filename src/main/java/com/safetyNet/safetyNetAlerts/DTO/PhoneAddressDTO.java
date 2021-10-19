@@ -1,7 +1,5 @@
 package com.safetyNet.safetyNetAlerts.DTO;
 
-import java.util.List;
-
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
@@ -15,20 +13,19 @@ import lombok.Data;
 @Component
 @Data
 public class PhoneAddressDTO {
-	
+
 	@Id
 	private int id;
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
 	private Person person;
-	
+
 	public PhoneAddressDTO() {
-		
+
 	}
-	
+
 	public PhoneAddressDTO(Person person) {
 		super();
 		this.person = person;
 	}
-
 
 }

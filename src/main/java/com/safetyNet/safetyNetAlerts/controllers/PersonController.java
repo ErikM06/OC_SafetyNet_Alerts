@@ -36,37 +36,37 @@ import com.safetyNet.safetyNetAlerts.services.PersonService;
 @RestController
 @Endpoint(id = "person")
 public class PersonController {
-	
+
 	Logger logger = Logger.getLogger(PersonController.class.getName());
 
 	@Autowired
 	PersonService personService;
-	
+
 	@Autowired
 	PersonRepository personRepository;
-	
+
 	@Autowired
 	ChildAlertService childAlertService;
-	
+
 	@Autowired
 	FireAddressService fireAddressService;
-	
+
 	@Autowired
 	PersonInfoService personInfoService;
-	
+
 	@Autowired
 	EmailService emailService;
-	
+
 	@GetMapping("/person")
 	public ResponseEntity<List<Person>> getAllPerson() {
-		List<Person>personLs = personService.getAllPerson();
+		List<Person> personLs = personService.getAllPerson();
 		return new ResponseEntity<>(personLs, HttpStatus.OK);
 	}
 
-	
 	// Endpoint delete a person selected by the firstname and lastname
 	@DeleteMapping("person/{firstname} {lastname}")
-	private  ResponseEntity<HttpStatus> deletePerson(@PathVariable("firstname") String firstName, @PathVariable ("lastname") String lastName) {
+	private ResponseEntity<HttpStatus> deletePerson(@PathVariable("firstname") String firstName,
+			@PathVariable("lastname") String lastName) {
 		personService.delete(firstName, lastName);
 		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
@@ -75,11 +75,11 @@ public class PersonController {
 	@PostMapping(value = "/person")
 	private ResponseEntity<Person> savePerson(@RequestBody Person person) {
 		personService.savePerson(person);
-		return  new ResponseEntity<Person>(person, HttpStatus.CREATED);
-
+		return new ResponseEntity<Person>(person, HttpStatus.CREATED);
 	}
-	
-	//Endpoint : modify person (except for firstName and lastName...methods from "https://www.baeldung.com/rest-http-put-vs-post"
+
+	// Endpoint : modify person (except for firstName and lastName...methods from
+	// "https://www.baeldung.com/rest-http-put-vs-post"
 	@PutMapping(value = "/person/update/{id}")
 	private ResponseEntity<Person> modifyPerson(@RequestBody Person person, @PathVariable int id) {
 		Optional<Person> firestationOptional = personRepository.findById(id);
@@ -87,36 +87,34 @@ public class PersonController {
 			return ResponseEntity.notFound().build();
 		}
 		personService.modifyPerson(person, id);
-		
+
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	// ChildAltertService
 	@JsonView(ChildAlertView.View.class)
 	@GetMapping(value = "/childAlert/address=/{address}")
-	private ChildAlertDTO childAltert (@PathVariable String address) {
+	private ChildAlertDTO childAltert(@PathVariable String address) {
 		return childAlertService.childAlterService(address);
 	}
-	
+
 	// FireAddressService
 	@JsonView(FireAddressView.fireAddressView.class)
-	@GetMapping(value ="/fire/address=/{address}")
-	private List<FireAddressDTO> fireAddress (@PathVariable String address) {
+	@GetMapping(value = "/fire/address=/{address}")
+	private List<FireAddressDTO> fireAddress(@PathVariable String address) {
 		return fireAddressService.fireAddressServiceByAddress(address);
 	}
-		
-	//PersoInfoService
+
+	// PersoInfoService
 	@JsonView(PersonInfoView.personInfoView.class)
-	@GetMapping (value ="/personInfo/firstName={firstname}&lastName={lastname}")
-	private List<PersonInfoDTO> personInfo (@PathVariable String firstname, @PathVariable String lastname) {
+	@GetMapping(value = "/personInfo/firstName={firstname}&lastName={lastname}")
+	private List<PersonInfoDTO> personInfo(@PathVariable String firstname, @PathVariable String lastname) {
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
-	
+
 	@JsonView(EmailView.View.class)
-	@GetMapping (value ="/communityEmail/city={city}")
-	private List<EmailDTO> communityEmail (@PathVariable String city) {
+	@GetMapping(value = "/communityEmail/city={city}")
+	private List<EmailDTO> communityEmail(@PathVariable String city) {
 		return emailService.getCommunityEmail(city);
 	}
-	
-	
 }

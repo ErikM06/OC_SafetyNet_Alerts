@@ -15,31 +15,29 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
 @Service
 public class ChildAlertService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ChildAlertService.class);
-	
-	
+
 	@Autowired
 	PersonRepository personRepository;
-	
+
 	@Autowired
 	ChildAlertDTO childAlertDTO;
-	
 
 	public ChildAlertDTO childAlterService(String address) {
-		
-		try {
-		LocalDate currentDate = LocalDate.now().minusYears(18);
 
-		Date ageLimit = Date.from(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-		
-		childAlertDTO.setPersonLs(personRepository.getFamilyByAddress(address, ageLimit));
-		childAlertDTO.setMedicalRecordLs(personRepository.getChildrenByAddress(address, ageLimit));
-		} catch (NullPointerException|NullArgumentException e) {
+		try {
+			LocalDate currentDate = LocalDate.now().minusYears(18);
+
+			Date ageLimit = Date.from(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+			childAlertDTO.setPersonLs(personRepository.getFamilyByAddress(address, ageLimit));
+			childAlertDTO.setMedicalRecordLs(personRepository.getChildrenByAddress(address, ageLimit));
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set ChildAlertDTO");
 		}
-			
-		return childAlertDTO ;
+
+		return childAlertDTO;
 
 	}
 }

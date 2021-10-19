@@ -57,14 +57,12 @@ public class FirestationController {
 		List<Firestation> firestationLs = firestationService.getAllFirestation();
 		logger.info("Firestation list is : {} ", firestationLs);
 		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
-
 	}
 
 	@PostMapping(value = "/firestation")
 	private ResponseEntity<Firestation> saveFirestation(@RequestBody Firestation firestation) {
 		firestationService.saveFirestation(firestation);
 		return new ResponseEntity<Firestation>(firestation, HttpStatus.CREATED);
-
 	}
 
 	@DeleteMapping(value = "/firestation/{id}")
@@ -84,7 +82,6 @@ public class FirestationController {
 		firestationService.saveFirestation(firestation);
 
 		return ResponseEntity.noContent().build();
-
 	}
 
 	// return person info and nb of children by station area
@@ -105,7 +102,5 @@ public class FirestationController {
 	@GetMapping(value = "/flood/stations/stations=/{station}")
 	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathVariable List<Integer> station) {
 		return floodService.getPersonAndMedicalInfoByListOfStation(station);
-
 	}
-
 }

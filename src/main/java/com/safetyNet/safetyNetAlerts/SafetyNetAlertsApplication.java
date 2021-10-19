@@ -10,25 +10,11 @@ import org.apache.logging.log4j.LogManager;
 @SpringBootApplication
 
 public class SafetyNetAlertsApplication {
-	
+
 	private static final Logger logger = LogManager.getLogger(SafetyNetAlertsApplication.class);
 
 	public static void main(String[] args) {
 		logger.info("Starting the application");
 		SpringApplication.run(SafetyNetAlertsApplication.class, args);
 	}
-	
-	@Bean
-	public CommonsRequestLoggingFilter requestLoggingFilter() {
-	    CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
-	    loggingFilter.setIncludeClientInfo(true);
-	    loggingFilter.setIncludeQueryString(true);
-	    loggingFilter.setIncludePayload(true);
-	    loggingFilter.setMaxPayloadLength(64000);
-	    return loggingFilter;
-	}
-
 }
-
-
-

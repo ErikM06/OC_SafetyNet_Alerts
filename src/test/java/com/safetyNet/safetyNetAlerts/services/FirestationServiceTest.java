@@ -17,31 +17,29 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
-@RunWith (SpringRunner.class)
+@RunWith(SpringRunner.class)
 @TestPropertySource("/test.properties")
-@SpringBootTest 
+@SpringBootTest
 
 class FirestationServiceTest {
-	
+
 	@Autowired
 	FirestationRepository firestationRepository;
-	
+
 	@Autowired
 	FirestationService firestationService;
-	
+
 	@BeforeEach
 	private void deleteDataForEachTest() {
-	firestationRepository.deleteAll();
+		firestationRepository.deleteAll();
 	}
-	
+
 	@Test
 	void testGetAllFirestation() {
-		List<Firestation>firestations = firestationService
-				.getAllFirestation();
+		List<Firestation> firestations = firestationService.getAllFirestation();
 		assertEquals(firestations.size(), firestationRepository.count());
 	}
 
@@ -60,8 +58,9 @@ class FirestationServiceTest {
 		firestationService.deleteFirestation(firestation.getId());
 		assertFalse(firestationRepository.existsById(firestation.getId()));
 	}
-	@Test 
-	void testModifyFirestation () {
+
+	@Test
+	void testModifyFirestation() {
 		Firestation firestation = new Firestation("test", 3);
 		firestationService.saveFirestation(firestation);
 		Firestation modifiedfirestation = new Firestation("test", 1);

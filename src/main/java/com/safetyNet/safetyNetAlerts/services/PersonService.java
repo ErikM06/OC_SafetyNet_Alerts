@@ -17,14 +17,14 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 public class PersonService {
 
 	private static final Logger logger = Logger.getLogger(PersonService.class);
-	
+
 	@Autowired
 	private PersonRepository personRepository;
 
 	public List<Person> getAllPerson() {
 		List<Person> persons = new ArrayList<Person>();
 		try {
-		personRepository.findAll().forEach(person -> persons.add(person));
+			personRepository.findAll().forEach(person -> persons.add(person));
 		} catch (NullPointerException e) {
 			logger.error("Unable to set List<Person> ", e);
 		}
@@ -33,36 +33,37 @@ public class PersonService {
 
 	public void savePerson(Person person) {
 		try {
-		personRepository.save(person);
+			personRepository.save(person);
 		} catch (NullArgumentException e) {
-			logger.error("Arg is null " ,e);
+			logger.error("Arg is null ", e);
 		}
 	}
 
 	public void delete(String firstName, String lastName) {
 		try {
-	Person person =	personRepository.findByFirstNameAndLastName(firstName, lastName);
-	personRepository.delete(person);
+			Person person = personRepository.findByFirstNameAndLastName(firstName, lastName);
+			personRepository.delete(person);
 		} catch (NullArgumentException e) {
 			logger.error("Args are null ", e);
 		}
 
 	}
+
 	public Optional<Person> modifyPerson(Person newPerson, int id) {
-			Optional<Person> modifiedPerson = Optional.empty();
-			try {
-		   modifiedPerson =  personRepository.findById(id).map(person -> {
-			person.setAddress(newPerson.getAddress());
-			person.setCity(newPerson.getCity());
-			person.setEmail(newPerson.getEmail());
-			person.setPhone(newPerson.getPhone());
-			person.setZip(newPerson.getZip());
-			return personRepository.save(person);
-		});
-			} catch (NullArgumentException|NullPointerException e) {
-				logger.error("Unable to set Optional<Person> modifiedPerson ", e);
-			}
-			return modifiedPerson;
+		Optional<Person> modifiedPerson = Optional.empty();
+		try {
+			modifiedPerson = personRepository.findById(id).map(person -> {
+				person.setAddress(newPerson.getAddress());
+				person.setCity(newPerson.getCity());
+				person.setEmail(newPerson.getEmail());
+				person.setPhone(newPerson.getPhone());
+				person.setZip(newPerson.getZip());
+				return personRepository.save(person);
+			});
+		} catch (NullArgumentException | NullPointerException e) {
+			logger.error("Unable to set Optional<Person> modifiedPerson ", e);
+		}
+		return modifiedPerson;
 	}
 
 }

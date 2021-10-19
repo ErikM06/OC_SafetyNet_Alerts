@@ -13,14 +13,14 @@ import lombok.Data;
 @Component
 @Data
 public class EmailDTO {
-	
+
 	@Id
 	private int id;
 	@JsonView(EmailView.View.class)
 	private Person person;
-	
+
 	public EmailDTO() {
-		
+
 	}
 
 	public EmailDTO(Person person) {

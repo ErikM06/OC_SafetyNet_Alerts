@@ -7,14 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.safetyNet.safetyNetAlerts.DTO.ChildAlertDTO;
 import com.safetyNet.safetyNetAlerts.DTO.EmailDTO;
 import com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO;
-import com.safetyNet.safetyNetAlerts.Views.EmailView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
-
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Integer> {
@@ -39,33 +35,31 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	/*
 	 * @Query for ChildAlertService
 	 */
-	
-	@Query(value = "SELECT p "
-			+ "FROM Person p INNER JOIN MedicalRecord m"
+
+	@Query(value = "SELECT p " + "FROM Person p INNER JOIN MedicalRecord m"
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 AND m.birthdate < ?2 ORDER BY m.birthdate DESC ")
 	public List<Person> getFamilyByAddress(String address, Date ageLimit);
 
 	/*
 	 * @Query for childAlertService get the age (need to work on this)
 	 */
-	@Query(value = "SELECT  m "
-			+ " FROM MedicalRecord m  INNER JOIN Person p  "
+	@Query(value = "SELECT  m " + " FROM MedicalRecord m  INNER JOIN Person p  "
 			+ " ON m.firstName = p.firstName AND m.lastName = p.lastName WHERE p.address = ?1 AND m.birthdate > ?2 ORDER BY m.birthdate DESC")
 	public List<MedicalRecord> getChildrenByAddress(String address, Date ageLimit);
 
 	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as person, m as medicalRecord) "
 			+ "FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE p.firstName =?1 AND p.lastName =?2  ")
-			
+
 	public List<PersonInfoDTO> getPersonInfoByFirstnameAndLastname(String firstname, String lastname);
 
-	 @Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Pperson, m as medicalRecord)"
+	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.PersonInfoDTO (p as Pperson, m as medicalRecord)"
 			+ " FROM MedicalRecord m INNER JOIN Person p ON m.firstName = p.firstName AND m.lastName = p.lastName"
 			+ " WHERE  p.lastName =?1 ")
-	public List<PersonInfoDTO> getPersonByLastName(String lastname); 
-	
+	public List<PersonInfoDTO> getPersonByLastName(String lastname);
+
 	@Query(value = "SELECT new com.safetyNet.safetyNetAlerts.DTO.EmailDTO (p as Person)"
 			+ "FROM Person p WHERE p.city = ?1")
-	public List<EmailDTO> getAllEmailFromCity (String city);
+	public List<EmailDTO> getAllEmailFromCity(String city);
 
 }

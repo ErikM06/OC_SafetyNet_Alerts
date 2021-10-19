@@ -14,25 +14,23 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
 public class FloodService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FloodService.class);
-	
+
 	@Autowired
 	FirestationRepository firestationRepository;
-	
 
 	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(List<Integer> station) {
-		
+
 		List<FloodDTO> floodDTOLs = new ArrayList<>();
-		
+
 		try {
-		floodDTOLs = firestationRepository.getPersonAndMedicalInfoByListOfStation(station);
-		} catch (NullPointerException|NullArgumentException e) {
+			floodDTOLs = firestationRepository.getPersonAndMedicalInfoByListOfStation(station);
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set floddDTO", e);
 		}
-		
+
 		return floodDTOLs;
 	}
 
-	
 }

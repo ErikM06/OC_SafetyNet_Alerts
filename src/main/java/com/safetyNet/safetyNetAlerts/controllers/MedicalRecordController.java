@@ -20,40 +20,41 @@ import com.safetyNet.safetyNetAlerts.services.MedicalRecordService;
 
 @RestController
 public class MedicalRecordController {
-	
-	@Autowired 
+
+	@Autowired
 	MedicalRecordService medicalRecordService;
-	
+
 	@Autowired
 	MedicalRecordRepository medicalRecordRepository;
-	
-	@GetMapping ("/medicalRecord")
-	private ResponseEntity<List<MedicalRecord>> getAllMedicalRecord (){
-		 List<MedicalRecord> medicalRecordLs = medicalRecordService.getAllMedicalRecord();	
-		 return new ResponseEntity<>(medicalRecordLs, HttpStatus.OK);
+
+	@GetMapping("/medicalRecord")
+	private ResponseEntity<List<MedicalRecord>> getAllMedicalRecord() {
+		List<MedicalRecord> medicalRecordLs = medicalRecordService.getAllMedicalRecord();
+		return new ResponseEntity<>(medicalRecordLs, HttpStatus.OK);
 	}
-	
-	@PostMapping (value = "/medicalRecord")
-	private ResponseEntity<MedicalRecord> saveMedicalRecord (@RequestBody MedicalRecord medicalRecord) {
+
+	@PostMapping(value = "/medicalRecord")
+	private ResponseEntity<MedicalRecord> saveMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
 		medicalRecordService.saveMedicalRecord(medicalRecord);
 		return new ResponseEntity<MedicalRecord>(medicalRecord, HttpStatus.CREATED);
 	}
-	
-	@DeleteMapping (value ="/medicalRecord/{firstname} {lastname}")
-	private ResponseEntity<HttpStatus> deleteMedicalRecord (@PathVariable ("firstname") String firstName, @PathVariable ("lastname") String lastName) {
+
+	@DeleteMapping(value = "/medicalRecord/{firstname} {lastname}")
+	private ResponseEntity<HttpStatus> deleteMedicalRecord(@PathVariable("firstname") String firstName,
+			@PathVariable("lastname") String lastName) {
 		medicalRecordService.deleteMedicalRecord(firstName, lastName);
 		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
-	
-	@PutMapping (value ="/medicalRecord/update/{id}")
-	private ResponseEntity<MedicalRecord> modifyMedicalRecord (@RequestBody MedicalRecord medicalRecord, @PathVariable ("id") int id) {
+
+	@PutMapping(value = "/medicalRecord/update/{id}")
+	private ResponseEntity<MedicalRecord> modifyMedicalRecord(@RequestBody MedicalRecord medicalRecord,
+			@PathVariable("id") int id) {
 		Optional<MedicalRecord> firestationOptional = medicalRecordRepository.findById(id);
 		if (!firestationOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		medicalRecordService.modifyMedicalRecord(medicalRecord, id);
 		medicalRecordService.saveMedicalRecord(medicalRecord);
-		return ResponseEntity.noContent().build();	
+		return ResponseEntity.noContent().build();
 	}
-
 }

@@ -15,16 +15,16 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 
 @Service
 public class FirestationService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FirestationService.class);
-	
+
 	@Autowired
 	private FirestationRepository firesationRepository;
 
 	public List<Firestation> getAllFirestation() {
 		List<Firestation> firestation = new ArrayList<Firestation>();
 		try {
-		firesationRepository.findAll().forEach(firestations -> firestation.add(firestations));
+			firesationRepository.findAll().forEach(firestations -> firestation.add(firestations));
 		} catch (NullPointerException e) {
 			logger.error("firestation List is empty");
 		}
@@ -33,7 +33,7 @@ public class FirestationService {
 
 	public Firestation saveFirestation(Firestation firestation) {
 		try {
-		firesationRepository.save(firestation);
+			firesationRepository.save(firestation);
 		} catch (NullArgumentException e) {
 			logger.error("Unable to find firestation", e);
 		}
@@ -42,26 +42,24 @@ public class FirestationService {
 
 	public void deleteFirestation(int id) {
 		try {
-		firesationRepository.deleteById(id);
+			firesationRepository.deleteById(id);
 		} catch (NullArgumentException e) {
 			logger.error("id not found", e);
 		}
 
 	}
-	
-	public Optional<Firestation> modifyFirestation (Firestation firestation, int id) {
+
+	public Optional<Firestation> modifyFirestation(Firestation firestation, int id) {
 		Optional<Firestation> modifiedFirestation = Optional.empty();
 		try {
-		modifiedFirestation = firesationRepository.findById(id).map( carsern -> {
-		carsern.setStation(firestation.getStation());
-		return firesationRepository.save(firestation);
-	});
-		} catch (NullPointerException|NullArgumentException e) {
-			logger.error("unable to set modifiedFirestation",e);
+			modifiedFirestation = firesationRepository.findById(id).map(carsern -> {
+				carsern.setStation(firestation.getStation());
+				return firesationRepository.save(firestation);
+			});
+		} catch (NullPointerException | NullArgumentException e) {
+			logger.error("unable to set modifiedFirestation", e);
 		}
-	return modifiedFirestation;
-	
-		
-		
+		return modifiedFirestation;
+
 	}
 }

@@ -10,12 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.safetyNet.safetyNetAlerts.DTO.FirestationNumberDTO;
-import com.safetyNet.safetyNetAlerts.controllers.FirestationController;
 import com.safetyNet.safetyNetAlerts.models.Person;
 import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
@@ -30,7 +25,7 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 public class StationNumberService {
 
 	private static final Logger logger = LoggerFactory.getLogger(StationNumberService.class);
-	
+
 	@Autowired
 	FirestationRepository firestationRepository;
 
@@ -40,29 +35,25 @@ public class StationNumberService {
 	@Autowired
 	MedicalRecordRepository medicalRecordRepository;
 
-	
 	public FirestationNumberDTO findClosestStationPerHabitant(int station) {
 
 		FirestationNumberDTO firestationDTO = new FirestationNumberDTO();
-		
+
 		try {
-		LocalDate currentDate = LocalDate.now().minusYears(18);
-		
-		Date ageLimit = Date.from(currentDate.atStartOfDay()
-			      .atZone(ZoneId.systemDefault())
-			      .toInstant());
-		
-		List<Date> peopleUnderEighteen = personRepository.getChildrenByStation(station, ageLimit);
-		List<Date> peopleOverEighteen = personRepository.getAdultByStation(station, ageLimit);
-		List<Person> personLs = firestationRepository.findAllByStation(station);
-		
-		
-		firestationDTO.setPersons(personLs);
-		firestationDTO.setNbChildren(peopleUnderEighteen.size());
-		firestationDTO.setNbAdults(peopleOverEighteen.size());
-		} catch (NullPointerException|NullArgumentException e) {
+			LocalDate currentDate = LocalDate.now().minusYears(18);
+
+			Date ageLimit = Date.from(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+			List<Date> peopleUnderEighteen = personRepository.getChildrenByStation(station, ageLimit);
+			List<Date> peopleOverEighteen = personRepository.getAdultByStation(station, ageLimit);
+			List<Person> personLs = firestationRepository.findAllByStation(station);
+
+			firestationDTO.setPersons(personLs);
+			firestationDTO.setNbChildren(peopleUnderEighteen.size());
+			firestationDTO.setNbAdults(peopleOverEighteen.size());
+		} catch (NullPointerException | NullArgumentException e) {
 			logger.error("Unable to set firestationDTO ", e);
-		}	
-				return firestationDTO;	
+		}
+		return firestationDTO;
 	}
 }

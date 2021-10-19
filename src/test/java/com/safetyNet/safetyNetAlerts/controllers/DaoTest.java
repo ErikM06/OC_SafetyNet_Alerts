@@ -13,39 +13,34 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 
-
-
 @RunWith(SpringRunner.class)
 @TestPropertySource("/test.properties")
 @SpringBootTest
 
 class DaoTest {
 
-	 @Autowired
-	 PersonRepository personRepository;
-	 @Autowired
-	 FirestationRepository firesationRepository;
-	 @Autowired
-	 MedicalRecordRepository medicalRecordRepository;
-	 
+	@Autowired
+	PersonRepository personRepository;
+	@Autowired
+	FirestationRepository firesationRepository;
+	@Autowired
+	MedicalRecordRepository medicalRecordRepository;
+
 	@Test
 	public void testPersonToTable() {
-		Long person = personRepository
-				.count();	
+		Long person = personRepository.count();
 		assertNotNull(person);
 	}
-	
+
 	@Test
-	public void testFireStationToTable () {
-		Long fireStation = firesationRepository
-				.count();
+	public void testFireStationToTable() {
+		Long fireStation = firesationRepository.count();
 		assertNotNull(fireStation);
 	}
-	
-	 @Test
-	public void testMedicalRecordToTable () {
-		Long medicalRecord = medicalRecordRepository
-				.count();
+
+	@Test
+	public void testMedicalRecordToTable() {
+		Long medicalRecord = medicalRecordRepository.count();
 		assertNotNull(medicalRecord);
-	} 
+	}
 }

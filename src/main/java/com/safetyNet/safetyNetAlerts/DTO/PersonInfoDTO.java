@@ -20,10 +20,11 @@ public class PersonInfoDTO {
 	private Person personLs;
 	@JsonView(PersonInfoView.personInfoView.class)
 	private MedicalRecord medicalRecordLs;
-	
+
 	public PersonInfoDTO() {
 		super();
 	}
+
 	public PersonInfoDTO(Person personLs, MedicalRecord medicalRecordLs) {
 		super();
 		this.personLs = personLs;
