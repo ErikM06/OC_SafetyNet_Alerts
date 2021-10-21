@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class MedicalRecordService {
 		List<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
 		try {
 			medicalRecordRepository.findAll().forEach(medicalRecord -> medicalRecords.add(medicalRecord));
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set MedicalRecord", e);
 		}
 
@@ -35,7 +34,7 @@ public class MedicalRecordService {
 	public void saveMedicalRecord(MedicalRecord medicalRecord) {
 		try {
 			medicalRecordRepository.save(medicalRecord);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set MedicalRecord", e);
 		}
 	}
@@ -44,7 +43,7 @@ public class MedicalRecordService {
 		try {
 			MedicalRecord medicalRecord = medicalRecordRepository.findByFirstNameAndLastName(firstName, lastName);
 			medicalRecordRepository.delete(medicalRecord);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Ars are null");
 		}
 	}
@@ -58,7 +57,7 @@ public class MedicalRecordService {
 				modifiedInfo.setMedications(medicalRecord.getMedications());
 				return medicalRecordRepository.save(medicalRecord);
 			});
-		} catch (NullArgumentException | NullPointerException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set MedicalRecord");
 		}
 		return modifiedMedicalRecord;

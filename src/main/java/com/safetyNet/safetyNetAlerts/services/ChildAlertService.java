@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class ChildAlertService {
 
 			childAlertDTO.setPersonLs(personRepository.getFamilyByAddress(address, ageLimit));
 			childAlertDTO.setMedicalRecordLs(personRepository.getChildrenByAddress(address, ageLimit));
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set ChildAlertDTO");
 		}
 

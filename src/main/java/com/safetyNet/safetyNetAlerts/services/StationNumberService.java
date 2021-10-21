@@ -5,7 +5,6 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +50,7 @@ public class StationNumberService {
 			firestationDTO.setPersons(personLs);
 			firestationDTO.setNbChildren(peopleUnderEighteen.size());
 			firestationDTO.setNbAdults(peopleOverEighteen.size());
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set firestationDTO ", e);
 		}
 		return firestationDTO;

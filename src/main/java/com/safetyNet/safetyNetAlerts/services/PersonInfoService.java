@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class PersonInfoService {
 			List<PersonInfoDTO> personInfoByLastName = personRepository.getPersonByLastName(lastname);
 			allPersonInfo = Stream.concat(personInfoByFirstnameLastname.stream(), personInfoByLastName.stream())
 					.collect(Collectors.toList());
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set List<PersonInfoDTO> ", e);
 		}
 

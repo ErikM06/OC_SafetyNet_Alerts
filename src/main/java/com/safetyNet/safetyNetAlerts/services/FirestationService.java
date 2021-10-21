@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class FirestationService {
 	public Firestation saveFirestation(Firestation firestation) {
 		try {
 			firesationRepository.save(firestation);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to find firestation", e);
 		}
 		return firestation;
@@ -43,7 +42,7 @@ public class FirestationService {
 	public void deleteFirestation(int id) {
 		try {
 			firesationRepository.deleteById(id);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("id not found", e);
 		}
 
@@ -56,7 +55,7 @@ public class FirestationService {
 				carsern.setStation(firestation.getStation());
 				return firesationRepository.save(firestation);
 			});
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("unable to set modifiedFirestation", e);
 		}
 		return modifiedFirestation;

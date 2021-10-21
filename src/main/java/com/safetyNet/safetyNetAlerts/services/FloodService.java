@@ -3,7 +3,6 @@ package com.safetyNet.safetyNetAlerts.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class FloodService {
 
 		try {
 			floodDTOLs = firestationRepository.getPersonAndMedicalInfoByListOfStation(station);
-		} catch (NullPointerException | NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set floddDTO", e);
 		}
 

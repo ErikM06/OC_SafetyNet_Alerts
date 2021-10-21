@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class PersonService {
 	public void savePerson(Person person) {
 		try {
 			personRepository.save(person);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Arg is null ", e);
 		}
 	}
@@ -43,7 +42,7 @@ public class PersonService {
 		try {
 			Person person = personRepository.findByFirstNameAndLastName(firstName, lastName);
 			personRepository.delete(person);
-		} catch (NullArgumentException e) {
+		} catch (NullPointerException e) {
 			logger.error("Args are null ", e);
 		}
 
@@ -60,7 +59,7 @@ public class PersonService {
 				person.setZip(newPerson.getZip());
 				return personRepository.save(person);
 			});
-		} catch (NullArgumentException | NullPointerException e) {
+		} catch (NullPointerException e) {
 			logger.error("Unable to set Optional<Person> modifiedPerson ", e);
 		}
 		return modifiedPerson;
