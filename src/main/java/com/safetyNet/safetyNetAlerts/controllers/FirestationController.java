@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +53,7 @@ public class FirestationController {
 
 	@GetMapping(value = "/firestation")
 	private ResponseEntity<List<Firestation>> getAllFirestations() {
+		logger.info("call url /firestation");
 		List<Firestation> firestationLs = firestationService.getAllFirestation();
 		logger.info("Firestation list is : {} ", firestationLs);
 		return new ResponseEntity<>(firestationLs, HttpStatus.OK);
@@ -61,12 +61,14 @@ public class FirestationController {
 
 	@PostMapping(value = "/firestation")
 	private ResponseEntity<Firestation> saveFirestation(@RequestBody Firestation firestation) {
+		logger.info("call url /firestation");
 		firestationService.saveFirestation(firestation);
 		return new ResponseEntity<Firestation>(firestation, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/firestation/{id}")
 	private ResponseEntity<HttpStatus> deleteFirestation(@PathVariable int id) {
+		logger.info("call url /firestation/{id}");
 		firestationService.deleteFirestation(id);
 		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
@@ -74,6 +76,7 @@ public class FirestationController {
 	@PutMapping("/firestation/update/{id}")
 	private ResponseEntity<Firestation> modifyFirestationNumber(@RequestBody Firestation firestation,
 			@PathVariable int id) {
+		logger.info("call url /firestation/uptade/{id}");
 		Optional<Firestation> firestationOptional = firestationRepository.findById(id);
 		if (!firestationOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
@@ -86,21 +89,24 @@ public class FirestationController {
 
 	// return person info and nb of children by station area
 	@JsonView(FirestationNumberView.personInfoView.class)
-	@GetMapping(value = "/firestation/stationNumber=/{station}")
+	@GetMapping(value = "/firestation?stationNumber={station}")
 	public FirestationNumberDTO findClosestStationPerHabitant(@PathVariable int station) {
+		logger.info("call url /firestation?stationNumber={station}");
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
 
 	// return phone and address for a firestation
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
-	@GetMapping(value = "/phoneAlert/firestation=/{station}")
+	@GetMapping(value = "/phoneAlert?firestation={firestation_number}")
 	public List<PhoneAddressDTO> firestationNumber(@PathVariable int station) {
+		logger.info("call url /phoneAlert?firestation={firestation_number}");
 		return firestationNumber.firestationNumberPhone(station);
 	}
 
 	@JsonView(FloodView.floodView.class)
-	@GetMapping(value = "/flood/stations/stations=/{station}")
-	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathVariable List<Integer> station) {
-		return floodService.getPersonAndMedicalInfoByListOfStation(station);
+	@GetMapping(value = "/flood/stations?stations={a_list_of_station_numbers}")
+	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathVariable List<Integer> stationList) {
+		logger.info("call url /flood/stations?stations={a_list_of_station_numbers}");
+		return floodService.getPersonAndMedicalInfoByListOfStation(stationList);
 	}
 }
