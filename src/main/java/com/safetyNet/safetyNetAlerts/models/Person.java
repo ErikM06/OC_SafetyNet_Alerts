@@ -25,9 +25,9 @@ public class Person {
 	private String address;
 	private String city;
 	private String zip;
-	@JsonView(PersonView.PersonContactDetails.class)
+	@JsonView(PersonView.PersonPhone.class)
 	private String phone;
-	@JsonView(PersonView.PersonContactDetails.class)
+	@JsonView(PersonView.PersonEmail.class)
 	private String email;
 
 	// added a default constructeur bc Jackson looking for POJO (which is a class

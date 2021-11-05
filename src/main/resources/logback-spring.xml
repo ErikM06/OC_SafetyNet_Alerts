@@ -20,15 +20,6 @@
 		</encoder>
 	</appender>
 
-
-	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
-		<File>logs/spring-boot-logger.log</File>
-		<append>true</append>
-		<encoder>
-			<pattern>${FILE_LOG_PATTERN}</pattern>
-		</encoder>
-	</appender>
-
 	<appender name="ROLLING_FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_PATH}</file>
@@ -45,26 +36,19 @@
 		</rollingPolicy>
 	</appender>
 
-
-
-
 	<logger
 		name="org.springframework.web.filter.CommonsRequestLoggingFilter"
 		level="DEBUG">
-		<appender-ref ref="FILE" />
 		<appender-ref ref="ROLLING_FILE" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
 	<logger name="com.safetyNet.safetyBetALerts" level="INFO">
-		<appender-ref ref="FILE" />
 		<appender-ref ref="ROLLING_FILE" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
 	<root level="DEBUG">
-		<appender-ref ref="FILE" />
-		<appender-ref ref="ROLLING_FILE" />
 		<appender-ref ref="CONSOLE" />
 	</root>
 

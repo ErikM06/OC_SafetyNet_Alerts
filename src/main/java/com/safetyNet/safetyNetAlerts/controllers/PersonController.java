@@ -3,6 +3,8 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,8 +123,8 @@ public class PersonController {
 	}
 
 	@JsonView(EmailView.View.class)
-	@GetMapping(value = "/communityEmail?city={city}")
-	private List<EmailDTO> communityEmail(@PathVariable String city) {
+	@GetMapping(value = "/communityEmail")
+	private List<EmailDTO> communityEmail(@PathParam(value = "city") String city) {
 		logger.info("call url /communityEmail?city={city}");
 		return emailService.getCommunityEmail(city);
 	}

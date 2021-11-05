@@ -10,7 +10,11 @@ public class PersonView {
 		
 	}
 	
-	public interface PersonContactDetails {
+	public interface PersonEmail {
+		
+	}
+	
+	public interface PersonPhone {
 		
 	}
 
