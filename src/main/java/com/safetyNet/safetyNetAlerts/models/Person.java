@@ -17,9 +17,9 @@ public class Person {
 	@GeneratedValue
 
 	private int id;
-	@JsonView(PersonView.PersonFirstNameLastname.class)
+	@JsonView(PersonView.PersonFirstName.class)
 	private String firstName;
-	@JsonView(PersonView.PersonFirstNameLastname.class)
+	@JsonView(PersonView.PersonLastName.class)
 	private String lastName;
 	@JsonView(PersonView.PersonAddress.class)
 	private String address;

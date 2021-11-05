@@ -3,6 +3,8 @@ package com.safetyNet.safetyNetAlerts.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,8 +106,8 @@ public class FirestationController {
 	}
 
 	@JsonView(FloodView.floodView.class)
-	@GetMapping(value = "/flood/stations?stations={a_list_of_station_numbers}")
-	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathVariable List<Integer> stationList) {
+	@GetMapping(value = "/flood/stations")
+	public List<FloodDTO> personAndMedicalInfoByListOfStation(@PathParam (value = "stations") List<Integer> stationList) {
 		logger.info("call url /flood/stations?stations={a_list_of_station_numbers}");
 		return floodService.getPersonAndMedicalInfoByListOfStation(stationList);
 	}

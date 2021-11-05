@@ -100,24 +100,26 @@ public class PersonController {
 
 	// ChildAltertService
 	@JsonView(ChildAlertView.View.class)
-	@GetMapping(value = "/childAlert?address={address}")
-	private ChildAlertDTO childAltert(@PathVariable String address) {
+	@GetMapping(value = "/childAlert")
+	private ChildAlertDTO childAltert(@PathParam (value ="address") String address) {
 		logger.info("call url /childAlert?address={address}");
 		return childAlertService.childAlterService(address);
 	}
 
 	// FireAddressService
 	@JsonView(FireAddressView.fireAddressView.class)
-	@GetMapping(value = "/fire?address={address}")
-	private List<FireAddressDTO> fireAddress(@PathVariable String address) {
+	@GetMapping(value = "/fire")
+	private List<FireAddressDTO> fireAddress(@PathParam (value = "address") String address) {
 		logger.info("call url /fire?address=/{address}");
 		return fireAddressService.fireAddressServiceByAddress(address);
 	}
 
 	// PersoInfoService
 	@JsonView(PersonInfoView.personInfoView.class)
-	@GetMapping(value = "/personInfo?firstName={firstname}&lastName={lastname}")
-	private List<PersonInfoDTO> personInfo(@PathVariable String firstname, @PathVariable String lastname) {
+	@GetMapping(value = "/personInfo")
+	private List<PersonInfoDTO> personInfo(
+			@PathParam ( value = "firstname") String firstname,
+			@PathParam ( value = "lastname") String lastname) {
 		logger.info("call url /personInfo?firstName={firstname}&lastName={lastname}");
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
