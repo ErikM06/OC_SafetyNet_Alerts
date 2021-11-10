@@ -26,6 +26,6 @@ public interface FirestationRepository extends CrudRepository<Firestation, Integ
 	@Query(value = "Select new com.safetyNet.safetyNetAlerts.DTO.FloodDTO (p as person, m as medicalRecord) "
 			+ " FROM Person p " + "INNER JOIN MedicalRecord m ON p.firstName = m.firstName AND p.lastName = m.lastName "
 			+ "INNER JOIN Firestation f ON f.address = p.address  WHERE f.station = ?1 ORDER BY p.address")
-	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(List<Integer> station);
+	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(Integer[] station);
 
 }

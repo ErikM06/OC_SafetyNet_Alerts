@@ -117,7 +117,7 @@ public class FirestationController {
 	@JsonView(FloodView.floodView.class)
 	@GetMapping(value = "/flood/stations")
 	public List<FloodDTO> personAndMedicalInfoByListOfStation(
-			@RequestParam(value = "stations") List<Integer> stationList) {
+			@RequestParam(value = "stations") Integer[]stationList) {
 		logger.info("call url /flood/stations?stations={a_list_of_station_numbers}");
 		return floodService.getPersonAndMedicalInfoByListOfStation(stationList);
 	}

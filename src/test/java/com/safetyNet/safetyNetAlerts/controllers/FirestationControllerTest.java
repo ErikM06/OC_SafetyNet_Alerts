@@ -83,7 +83,7 @@ class FirestationControllerTest {
 
 	@Test
 	public void testPersonAndMedicalInfoByListOfStation() throws Exception {
-		List <Integer> intLs = new ArrayList<>(Arrays.asList(1,2,3));
+		List <Integer> intLs = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3}));
 		mockMvc.perform(get("/flood/stations?stations={intLs}", intLs)).andExpect(status().isOk());		
 	}
 

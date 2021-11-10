@@ -19,7 +19,7 @@ public class FloodService {
 	@Autowired
 	FirestationRepository firestationRepository;
 
-	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(List<Integer> station) {
+	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(Integer[] station) {
 
 		List<FloodDTO> floodDTOLs = new ArrayList<>();
 
