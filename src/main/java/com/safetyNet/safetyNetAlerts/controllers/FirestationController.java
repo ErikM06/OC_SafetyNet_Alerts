@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -91,8 +92,8 @@ public class FirestationController {
 
 	// return person info and nb of children by station area
 	@JsonView(FirestationNumberView.personInfoView.class)
-	@GetMapping(value = "/firestation?stationNumber={station}")
-	public FirestationNumberDTO findClosestStationPerHabitant(@PathVariable int station) {
+	@GetMapping(value = "/firestation?stationNumber={station}", params = "station")
+	public FirestationNumberDTO findClosestStationPerHabitant(@RequestParam(value = "station") int station) {
 		logger.info("call url /firestation?stationNumber={station}");
 		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
@@ -100,7 +101,7 @@ public class FirestationController {
 	// return phone and address for a firestation
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
 	@GetMapping(value = "/phoneAlert?firestation={firestation_number}")
-	public List<PhoneAddressDTO> firestationNumber(@PathVariable int station) {
+	public List<PhoneAddressDTO> firestationNumber(@RequestParam (value = "firestation_number") int station) {
 		logger.info("call url /phoneAlert?firestation={firestation_number}");
 		return firestationNumber.firestationNumberPhone(station);
 	}

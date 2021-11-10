@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -101,7 +102,7 @@ public class PersonController {
 	// ChildAltertService
 	@JsonView(ChildAlertView.View.class)
 	@GetMapping(value = "/childAlert")
-	private ChildAlertDTO childAltert(@PathParam (value ="address") String address) {
+	private ChildAlertDTO childAltert(@RequestParam (value ="address") String address) {
 		logger.info("call url /childAlert?address={address}");
 		return childAlertService.childAlterService(address);
 	}
@@ -109,7 +110,7 @@ public class PersonController {
 	// FireAddressService
 	@JsonView(FireAddressView.fireAddressView.class)
 	@GetMapping(value = "/fire")
-	private List<FireAddressDTO> fireAddress(@PathParam (value = "address") String address) {
+	private List<FireAddressDTO> fireAddress(@RequestParam (value = "address") String address) {
 		logger.info("call url /fire?address=/{address}");
 		return fireAddressService.fireAddressServiceByAddress(address);
 	}
@@ -118,15 +119,15 @@ public class PersonController {
 	@JsonView(PersonInfoView.personInfoView.class)
 	@GetMapping(value = "/personInfo")
 	private List<PersonInfoDTO> personInfo(
-			@PathParam ( value = "firstname") String firstname,
-			@PathParam ( value = "lastname") String lastname) {
+			@RequestParam ( value = "firstname") String firstname,
+			@RequestParam ( value = "lastname") String lastname) {
 		logger.info("call url /personInfo?firstName={firstname}&lastName={lastname}");
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}
 
 	@JsonView(EmailView.View.class)
 	@GetMapping(value = "/communityEmail")
-	private List<EmailDTO> communityEmail(@PathParam(value = "city") String city) {
+	private List<EmailDTO> communityEmail(@RequestParam(value = "city") String city) {
 		logger.info("call url /communityEmail?city={city}");
 		return emailService.getCommunityEmail(city);
 	}
