@@ -1,8 +1,13 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 
 @RunWith(SpringRunner.class)
@@ -67,17 +73,18 @@ class FirestationControllerTest {
 
 	@Test
 	public void testFindClosestStationPerHabitant() throws Exception {
-		mockMvc.perform(get("/firestation/stationNumber=/1")).andExpect(status().isOk());
+		mockMvc.perform(get("/firestation?stationNumber=1")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void testFirestationNumber() throws Exception {
-		mockMvc.perform(get("/phoneAlert/firestation=/1")).andExpect(status().isOk());
+		mockMvc.perform(get("/phoneAlert?firestation=1")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void testPersonAndMedicalInfoByListOfStation() throws Exception {
-		mockMvc.perform(get("/flood/stations/stations=/1")).andExpect(status().isOk());
+		List <Integer> intLs = new ArrayList<>(Arrays.asList(1,2,3));
+		mockMvc.perform(get("/flood/stations?stations={intLs}", intLs)).andExpect(status().isOk());		
 	}
 
 }

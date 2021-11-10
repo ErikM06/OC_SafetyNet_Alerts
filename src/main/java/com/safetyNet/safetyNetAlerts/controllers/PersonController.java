@@ -119,8 +119,8 @@ public class PersonController {
 	@JsonView(PersonInfoView.personInfoView.class)
 	@GetMapping(value = "/personInfo")
 	private List<PersonInfoDTO> personInfo(
-			@RequestParam ( value = "firstname") String firstname,
-			@RequestParam ( value = "lastname") String lastname) {
+			@RequestParam ( value = "firstName") String firstname,
+			@RequestParam ( value = "lastName") String lastname) {
 		logger.info("call url /personInfo?firstName={firstname}&lastName={lastname}");
 		return personInfoService.getPersonInfo(firstname, lastname);
 	}

@@ -74,22 +74,22 @@ class PersonControllerTest {
 
 	@Test
 	public void TestChildAltert() throws Exception {
-		mockMvc.perform(get("/childAlert/address=/1509 Culver St")).andExpect(status().isOk());
+		mockMvc.perform(get("/childAlert?address=1509 Culver St")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void TestCommunityEmail() throws Exception {
-		mockMvc.perform(get("/communityEmail/city=Culver")).andExpect(status().isOk());
+		mockMvc.perform(get("/communityEmail?city=Culver")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void TestFireAddress() throws Exception {
-		mockMvc.perform(get("/fire/address=/1509 Culver St")).andExpect(status().isOk());
+		mockMvc.perform(get("/fire?address=1509 Culver St")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void TestPersonInfo() throws Exception {
-		mockMvc.perform(get("/personInfo/firstName=John&lastName=Boyd")).andExpect(status().isOk());
+		mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd")).andExpect(status().isOk());
 	}
 
 }

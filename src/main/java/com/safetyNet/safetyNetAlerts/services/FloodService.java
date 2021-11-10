@@ -24,7 +24,7 @@ public class FloodService {
 		List<FloodDTO> floodDTOLs = new ArrayList<>();
 
 		try {
-			floodDTOLs = firestationRepository.getPersonAndMedicalInfoByListOfStation(station);
+			floodDTOLs.addAll(firestationRepository.getPersonAndMedicalInfoByListOfStation(station));
 		} catch (NullPointerException e) {
 			logger.error("Unable to set floddDTO", e);
 		}

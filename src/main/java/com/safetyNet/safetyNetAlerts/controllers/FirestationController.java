@@ -55,20 +55,23 @@ public class FirestationController {
 	private static final Logger logger = LoggerFactory.getLogger(FirestationController.class);
 
 	@GetMapping(value = "/firestation")
-	private ResponseEntity<?> getAllFirestations(@RequestParam( value = "firestationNumber", required = false) Integer station) {
+	private ResponseEntity<?> getAllFirestations(
+			@RequestParam(value = "firestationNumber", required = false) Integer station) {
 		List<Object> ls = new ArrayList<Object>();
 		if (station == null) {
 			logger.info("call url /firestation");
 			List<Firestation> firestationLs = firestationService.getAllFirestation();
 			ls.addAll(firestationLs);
 			return new ResponseEntity<>(firestationLs, HttpStatus.OK);
-		}if (station != null) {
+		}
+		if (station != null) {
 			findClosestStationPerHabitant(station);
 			ls.add(findClosestStationPerHabitant(station));
 		}
-		 return new ResponseEntity<>(ls,HttpStatus.OK);
+		return new ResponseEntity<>(ls, HttpStatus.OK);
 	}
-	
+
+	// return person info and nb of children by station area
 	@JsonView(FirestationNumberView.personInfoView.class)
 	public FirestationNumberDTO findClosestStationPerHabitant(int station) {
 		logger.info("call url /firestation?stationNumber={station}");
@@ -103,14 +106,10 @@ public class FirestationController {
 		return ResponseEntity.noContent().build();
 	}
 
-	// return person info and nb of children by station area
-
-	
-
 	// return phone and address for a firestation
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
-	@GetMapping(value = "/phoneAlert?firestation={firestation_number}")
-	public List<PhoneAddressDTO> firestationNumber(@RequestParam(value = "firestation_number") int station) {
+	@GetMapping(value = "/phoneAlert")
+	public List<PhoneAddressDTO> firestationNumber(@RequestParam(value = "firestation") int station) {
 		logger.info("call url /phoneAlert?firestation={firestation_number}");
 		return firestationNumber.firestationNumberPhone(station);
 	}
@@ -118,7 +117,7 @@ public class FirestationController {
 	@JsonView(FloodView.floodView.class)
 	@GetMapping(value = "/flood/stations")
 	public List<FloodDTO> personAndMedicalInfoByListOfStation(
-			@PathParam(value = "stations") List<Integer> stationList) {
+			@RequestParam(value = "stations") List<Integer> stationList) {
 		logger.info("call url /flood/stations?stations={a_list_of_station_numbers}");
 		return floodService.getPersonAndMedicalInfoByListOfStation(stationList);
 	}
