@@ -55,7 +55,7 @@ public class FirestationController {
 	private static final Logger logger = LoggerFactory.getLogger(FirestationController.class);
 
 	@GetMapping(value = "/firestation")
-	private ResponseEntity<?> getAllFirestations(@RequestParam( value = "stationNumber", required = false) Integer station) {
+	private ResponseEntity<?> getAllFirestations(@RequestParam( value = "firestationNumber", required = false) Integer station) {
 		List<Object> ls = new ArrayList<Object>();
 		if (station == null) {
 			logger.info("call url /firestation");
@@ -63,9 +63,16 @@ public class FirestationController {
 			ls.addAll(firestationLs);
 			return new ResponseEntity<>(firestationLs, HttpStatus.OK);
 		}if (station != null) {
+			findClosestStationPerHabitant(station);
 			ls.add(findClosestStationPerHabitant(station));
 		}
 		 return new ResponseEntity<>(ls,HttpStatus.OK);
+	}
+	
+	@JsonView(FirestationNumberView.personInfoView.class)
+	public FirestationNumberDTO findClosestStationPerHabitant(int station) {
+		logger.info("call url /firestation?stationNumber={station}");
+		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
 	}
 
 	@PostMapping(value = "/firestation")
@@ -98,13 +105,7 @@ public class FirestationController {
 
 	// return person info and nb of children by station area
 
-	@JsonView(FirestationNumberView.personInfoView.class)
-
-	@GetMapping(value = "/firestation?stationNumber={station}", params = "station")
-	public FirestationNumberDTO findClosestStationPerHabitant(@RequestParam(value = "station") int station) {
-		logger.info("call url /firestation?stationNumber={station}");
-		return stationNumberPerHabitantService.findClosestStationPerHabitant(station);
-	}
+	
 
 	// return phone and address for a firestation
 	@JsonView(PhoneAddressView.PhoneAddressViewForPerson.class)
