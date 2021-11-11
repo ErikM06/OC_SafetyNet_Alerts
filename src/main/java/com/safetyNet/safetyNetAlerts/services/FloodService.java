@@ -2,6 +2,7 @@ package com.safetyNet.safetyNetAlerts.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,16 @@ public class FloodService {
 	@Autowired
 	FirestationRepository firestationRepository;
 
-	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(Integer[] station) {
+	public List<FloodDTO> getPersonAndMedicalInfoByListOfStation(List<String> stationList) {
 
 		List<FloodDTO> floodDTOLs = new ArrayList<>();
-
+		List<Integer> stationListToInt = new ArrayList<>();
 		try {
-			floodDTOLs.addAll(firestationRepository.getPersonAndMedicalInfoByListOfStation(station));
+			stationListToInt = stationList.stream().map(Integer::parseInt).collect(Collectors.toList());
+			for (int i = 0; i < stationListToInt.size(); i++) {
+				floodDTOLs
+						.addAll(firestationRepository.getPersonAndMedicalInfoByListOfStation(stationListToInt.get(i)));
+			}
 		} catch (NullPointerException e) {
 			logger.error("Unable to set floddDTO", e);
 		}
