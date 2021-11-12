@@ -42,3 +42,63 @@
 2021-11-05 11:12:36.636 DEBUG 4108 [HikariPool-1 connection closer] --- com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@372b6f5e: (connection evicted)
 2021-11-05 11:12:36.636 DEBUG 4108 [RMI TCP Connection(11)-127.0.0.1] --- com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
 2021-11-05 11:12:36.636  INFO 4108 [RMI TCP Connection(11)-127.0.0.1] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-12 09:42:54.391  INFO 14108 [main] --- c.s.s.SafetyNetAlertsApplication         : Starting SafetyNetAlertsApplication using Java 11 on DESKTOP-Q0H09QF with PID 14108 (C:\dev\P5\safetyNetAlerts\target\classes started by Megaport in C:\dev\P5\safetyNetAlerts)
+2021-11-12 09:42:54.396  INFO 14108 [main] --- c.s.s.SafetyNetAlertsApplication         : No active profile set, falling back to default profiles: default
+2021-11-12 09:42:55.192  INFO 14108 [main] --- .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-12 09:42:55.251  INFO 14108 [main] --- .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2021-11-12 09:42:55.665  INFO 14108 [main] --- o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-12 09:42:55.674  INFO 14108 [main] --- o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-12 09:42:55.674  INFO 14108 [main] --- o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-12 09:42:55.674  INFO 14108 [main] --- org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-12 09:42:55.762  INFO 14108 [main] --- o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-12 09:42:55.762  INFO 14108 [main] --- w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1332 ms
+2021-11-12 09:42:55.845  INFO 14108 [main] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-12 09:42:55.982  INFO 14108 [main] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-12 09:42:55.987  INFO 14108 [main] --- o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/safetyNetAlerts_db'
+2021-11-12 09:42:56.107  INFO 14108 [main] --- o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-12 09:42:56.170  INFO 14108 [main] --- org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-12 09:42:56.316  INFO 14108 [main] --- o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-12 09:42:56.446  INFO 14108 [main] --- org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-12 09:42:57.099  INFO 14108 [main] --- o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-12 09:42:57.107  INFO 14108 [main] --- j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-12 09:42:57.673  WARN 14108 [main] --- JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-12 09:42:58.083  INFO 14108 [main] --- o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-12 09:42:58.104  INFO 14108 [main] --- o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-12 09:42:58.124  INFO 14108 [main] --- o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-12 09:42:58.135  INFO 14108 [main] --- c.s.s.SafetyNetAlertsApplication         : Started SafetyNetAlertsApplication in 4.165 seconds (JVM running for 5.067)
+2021-11-12 09:42:58.275  INFO 14108 [RMI TCP Connection(3)-127.0.0.1] --- o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-12 09:42:58.275  INFO 14108 [RMI TCP Connection(3)-127.0.0.1] --- o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-12 09:42:58.276  INFO 14108 [RMI TCP Connection(3)-127.0.0.1] --- o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-12 09:43:02.572  INFO 14108 [http-nio-8080-exec-2] --- c.s.s.controllers.FirestationController  : call url /flood/stations?stations={a_list_of_station_numbers}
+2021-11-12 09:45:50.361  INFO 14108 [RMI TCP Connection(7)-127.0.0.1] --- inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-11-12 09:45:50.499  INFO 14108 [RMI TCP Connection(7)-127.0.0.1] --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-12 09:45:50.501  INFO 14108 [RMI TCP Connection(7)-127.0.0.1] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-12 09:45:50.513  INFO 14108 [RMI TCP Connection(7)-127.0.0.1] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-12 09:45:53.255  INFO 10748 [main] --- c.s.s.SafetyNetAlertsApplication         : Starting SafetyNetAlertsApplication using Java 11 on DESKTOP-Q0H09QF with PID 10748 (C:\dev\P5\safetyNetAlerts\target\classes started by Megaport in C:\dev\P5\safetyNetAlerts)
+2021-11-12 09:45:53.256  INFO 10748 [main] --- c.s.s.SafetyNetAlertsApplication         : No active profile set, falling back to default profiles: default
+2021-11-12 09:45:53.887  INFO 10748 [main] --- .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-12 09:45:53.938  INFO 10748 [main] --- .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2021-11-12 09:45:54.311  INFO 10748 [main] --- o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-12 09:45:54.320  INFO 10748 [main] --- o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-12 09:45:54.320  INFO 10748 [main] --- o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-12 09:45:54.320  INFO 10748 [main] --- org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-12 09:45:54.398  INFO 10748 [main] --- o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-12 09:45:54.399  INFO 10748 [main] --- w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1117 ms
+2021-11-12 09:45:54.474  INFO 10748 [main] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-12 09:45:54.593  INFO 10748 [main] --- com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-12 09:45:54.598  INFO 10748 [main] --- o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/safetyNetAlerts_db'
+2021-11-12 09:45:54.710  INFO 10748 [main] --- o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-12 09:45:54.757  INFO 10748 [main] --- org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-12 09:45:54.871  INFO 10748 [main] --- o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-12 09:45:54.979  INFO 10748 [main] --- org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-12 09:45:55.617  INFO 10748 [main] --- o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-12 09:45:55.625  INFO 10748 [main] --- j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-12 09:45:56.124  WARN 10748 [main] --- JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-12 09:45:56.465  INFO 10748 [main] --- o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2021-11-12 09:45:56.484  INFO 10748 [main] --- o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8080"]
+2021-11-12 09:45:56.497  INFO 10748 [main] --- o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-12 09:45:56.506  INFO 10748 [main] --- c.s.s.SafetyNetAlertsApplication         : Started SafetyNetAlertsApplication in 3.553 seconds (JVM running for 4.22)
+2021-11-12 09:45:58.649  INFO 10748 [RMI TCP Connection(3)-127.0.0.1] --- o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-12 09:45:58.649  INFO 10748 [RMI TCP Connection(3)-127.0.0.1] --- o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-12 09:45:58.650  INFO 10748 [RMI TCP Connection(3)-127.0.0.1] --- o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-12 09:46:10.441  INFO 10748 [http-nio-8080-exec-1] --- c.s.s.controllers.FirestationController  : call url /flood/stations?stations={a_list_of_station_numbers}
