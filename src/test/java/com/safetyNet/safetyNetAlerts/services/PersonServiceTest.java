@@ -23,7 +23,7 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 
-class PersonServiceTest {
+public class PersonServiceTest {
 
 	@Autowired
 	PersonRepository personRepository;

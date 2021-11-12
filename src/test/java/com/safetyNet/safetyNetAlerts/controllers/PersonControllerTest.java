@@ -24,7 +24,7 @@ import com.safetyNet.safetyNetAlerts.models.Person;
 @SpringBootTest
 @AutoConfigureMockMvc
 
-class PersonControllerTest {
+public class PersonControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;

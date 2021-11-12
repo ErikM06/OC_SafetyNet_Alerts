@@ -27,7 +27,7 @@ import com.safetyNet.safetyNetAlerts.repositories.MedicalRecordRepository;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 
-class MedicalRecordServiceTest {
+public class MedicalRecordServiceTest {
 
 	@Autowired
 	MedicalRecordRepository medicalRecordRepository;

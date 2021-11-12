@@ -21,7 +21,7 @@ import com.safetyNet.safetyNetAlerts.repositories.FirestationRepository;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 
-class FirestationServiceTest {
+public class FirestationServiceTest {
 
 	@Autowired
 	FirestationRepository firestationRepository;

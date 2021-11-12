@@ -28,7 +28,7 @@ import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 @AutoConfigureMockMvc
-class MedicalRecordControllerTest {
+public class MedicalRecordControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;

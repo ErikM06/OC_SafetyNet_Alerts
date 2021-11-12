@@ -23,7 +23,7 @@ import com.safetyNet.safetyNetAlerts.models.Firestation;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 @AutoConfigureMockMvc
-class FirestationControllerTest {
+public class FirestationControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;

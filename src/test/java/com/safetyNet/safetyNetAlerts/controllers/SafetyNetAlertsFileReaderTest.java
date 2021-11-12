@@ -13,7 +13,7 @@ import com.safetyNet.safetyNetAlerts.services.SafetyNetAlertsFileReader;
 @RunWith(SpringRunner.class)
 @TestPropertySource("/test.properties")
 @SpringBootTest
-class SafetyNetAlertsFileReaderTest {
+public class SafetyNetAlertsFileReaderTest {
 
 	@Test
 	void testjsonDataFromUrlToMap() {

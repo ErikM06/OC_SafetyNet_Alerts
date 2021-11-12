@@ -17,7 +17,7 @@ import com.safetyNet.safetyNetAlerts.repositories.PersonRepository;
 @TestPropertySource("/test.properties")
 @SpringBootTest
 
-class DaoTest {
+public class DaoTest {
 
 	@Autowired
 	PersonRepository personRepository;
