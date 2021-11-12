@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.safetyNet.safetyNetAlerts.Views.PhoneAddressView;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Component
-@Getter
-@Setter
+@Data
 public class PhoneAddressDTO {
 
 	@Id

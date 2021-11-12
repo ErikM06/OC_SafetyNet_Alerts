@@ -11,8 +11,10 @@ import com.safetyNet.safetyNetAlerts.Views.ChildAlertView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
-@Component
+import lombok.Data;
 
+@Component
+@Data
 public class ChildAlertDTO {
 
 	@Id

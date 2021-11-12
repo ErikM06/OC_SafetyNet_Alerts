@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -83,8 +84,7 @@ class FirestationControllerTest {
 
 	@Test
 	public void testPersonAndMedicalInfoByListOfStation() throws Exception {
-		List <Integer> intLs = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3}));
-		mockMvc.perform(get("/flood/stations?stations={intLs}", intLs)).andExpect(status().isOk());		
+		mockMvc.perform(get("/flood/stations?stations=1,2,3" )).andExpect(status().isOk());		
 	}
 
 }

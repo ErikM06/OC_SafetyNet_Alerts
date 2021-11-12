@@ -9,12 +9,12 @@ import com.safetyNet.safetyNetAlerts.Views.FireAddressView;
 import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Component
-@Getter
-@Setter
+@Data
 public class FireAddressDTO {
 
 	@Id
