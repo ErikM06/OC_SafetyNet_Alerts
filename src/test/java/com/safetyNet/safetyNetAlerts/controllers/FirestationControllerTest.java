@@ -1,14 +1,8 @@
 package com.safetyNet.safetyNetAlerts.controllers;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.safetyNet.safetyNetAlerts.models.Firestation;
 
 @RunWith(SpringRunner.class)
@@ -49,6 +42,7 @@ class FirestationControllerTest {
 		mockMvc.perform(get("/firestation")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").exists())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].address").isNotEmpty());
+		mockMvc.perform(get("/firestation?stationNumber=1")).andExpect(status().isOk());
 	}
 
 	@Test

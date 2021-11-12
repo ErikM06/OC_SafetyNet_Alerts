@@ -10,8 +10,6 @@ import com.safetyNet.safetyNetAlerts.models.MedicalRecord;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Component
 @Data

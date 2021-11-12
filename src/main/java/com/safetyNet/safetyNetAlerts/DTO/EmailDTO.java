@@ -9,8 +9,6 @@ import com.safetyNet.safetyNetAlerts.Views.EmailView;
 import com.safetyNet.safetyNetAlerts.models.Person;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Component
 @Data
